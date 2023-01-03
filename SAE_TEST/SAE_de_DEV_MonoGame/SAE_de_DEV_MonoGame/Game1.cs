@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace SAE_geniert
+namespace SAE_de_DEV_MonoGame
 {
     public class Game1 : Game
     {
@@ -19,7 +19,6 @@ namespace SAE_geniert
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Window.Title = "Bonjour";
 
             base.Initialize();
         }
@@ -43,7 +42,7 @@ namespace SAE_geniert
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Blue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
 
