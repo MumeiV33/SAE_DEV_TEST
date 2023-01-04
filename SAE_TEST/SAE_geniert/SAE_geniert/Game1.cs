@@ -26,8 +26,8 @@ namespace SAE_geniert
         private TiledMapTileLayer mapLayer;
 
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
-        public const int LARGEUR_FENETRE = 800;
-        public const int HAUTEUR_FENETRE = 640;
+        public const int LARGEUR_FENETRE = 480;
+        public const int HAUTEUR_FENETRE = 480;
 
         public Game1()
         {
@@ -46,7 +46,7 @@ namespace SAE_geniert
             // TODO: Add your initialization logic here
             Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
-            _positionPerso = new Vector2(20, 340);
+            _positionPerso = new Vector2(300, 340);
             _vitessePerso = 100;
 
 
@@ -57,7 +57,7 @@ namespace SAE_geniert
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _tiledMap = Content.Load<TiledMap>("mapGenerale");
+            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             // TODO: use this.Content to load your game content here
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
@@ -86,7 +86,7 @@ namespace SAE_geniert
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 1);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
 
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty)) { }
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
 
@@ -98,7 +98,7 @@ namespace SAE_geniert
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 1);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
 
-                if (!IsCollision(tx, ty))
+                /*if (!IsCollision(tx, ty))*/
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
             }
@@ -117,7 +117,7 @@ namespace SAE_geniert
                     _perso.Play("walkNorth");
 
 
-                if (!IsCollision(tx, ty))
+                /*if (!IsCollision(tx, ty))*/
                     _positionPerso.Y -= walkSpeed;
 
             }
@@ -135,13 +135,13 @@ namespace SAE_geniert
                 else
                     _perso.Play("walkSouth");
 
-                if (!IsCollision(tx, ty))
+                /*if (!IsCollision(tx, ty))*/
                     _positionPerso.Y += walkSpeed;
             }
 
             base.Update(gameTime);
         }
-        private bool IsCollision(ushort x, ushort y)
+        /*private bool IsCollision(ushort x, ushort y)
         {
             // définition de tile qui peut être null (?)
             TiledMapTile? tile;
@@ -150,7 +150,7 @@ namespace SAE_geniert
             if (!tile.Value.IsBlank)
                 return true;
             return false;
-        }
+        }*/
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Blue);
