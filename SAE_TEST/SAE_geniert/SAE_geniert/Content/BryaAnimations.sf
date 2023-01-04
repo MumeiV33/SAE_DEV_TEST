@@ -6,32 +6,27 @@
     },
   "cycles": {
     "idle": {
-      "frames": [ 1 ],
+      "frames": [ 10 ],
       "isLooping": false,
       "frameDuration": 0.1
     },
     "walkSouth": {
-      "frames": [ 0, 1, 2, 1 ],
-      "isLooping": false,
-      "frameDuration": 0.1
-    },
-    "IdleSouth": {
-      "frames": [ 11 ],
+      "frames": [ 11, 10, 0, 10 ],
       "isLooping": false,
       "frameDuration": 0.1
     },
     "walkWest": {
-      "frames": [ 3, 4, 5, 4 ],
+      "frames": [ 3, 2, 1, 2 ],
       "isLooping": false,
       "frameDuration": 0.1
     },
     "walkEast": {
-      "frames": [ 6, 7, 8, 7 ],
+      "frames": [ 9, 8, 7, 8 ],
       "isLooping": false,
       "frameDuration": 0.1
     },
     "walkNorth": {
-      "frames": [ 9, 10, 11, 10 ],
+      "frames": [ 6, 5, 4, 5 ],
       "isLooping": false,
       "frameDuration": 0.1
     }

@@ -75,7 +75,6 @@ namespace SAE_geniert
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
-            String animation = "idle";
             _perso.Update(deltaSeconds); // time écoulé
 
             _keyboardState = Keyboard.GetState();
@@ -86,7 +85,6 @@ namespace SAE_geniert
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 1);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
-                animation = "walkEast";
 
                 if (!IsCollision(tx, ty))
                     _positionPerso.X += walkSpeed;
@@ -99,11 +97,10 @@ namespace SAE_geniert
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 1);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
-                animation = "walkEast";
 
                 if (!IsCollision(tx, ty))
                     _positionPerso.X -= walkSpeed;
-                _perso.Play("idle");
+                _perso.Play("walkWest");
             }
             //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
 
@@ -111,18 +108,18 @@ namespace SAE_geniert
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight);
-                animation = "walkNorth";
 
                 if (_keyboardState.IsKeyDown(Keys.Left))
-                    _perso.Play("walkEast");
-                if (_keyboardState.IsKeyDown(Keys.Right))
                     _perso.Play("walkWest");
+                else if (_keyboardState.IsKeyDown(Keys.Right))
+                    _perso.Play("walkEast");
                 else
                     _perso.Play("walkNorth");
 
 
                 if (!IsCollision(tx, ty))
                     _positionPerso.Y -= walkSpeed;
+
             }
             //-=-=-=-=-=-=-=-=-=-BAS-=-=-=-=-=-=-=-=-=-\\
 
@@ -130,12 +127,11 @@ namespace SAE_geniert
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1.5);
-                animation = "walkSouth";
 
                 if (_keyboardState.IsKeyDown(Keys.Left))
-                    _perso.Play("walkEast");
-                if (_keyboardState.IsKeyDown(Keys.Right))
                     _perso.Play("walkWest");
+                else if (_keyboardState.IsKeyDown(Keys.Right))
+                    _perso.Play("walkEast");
                 else
                     _perso.Play("walkSouth");
 
