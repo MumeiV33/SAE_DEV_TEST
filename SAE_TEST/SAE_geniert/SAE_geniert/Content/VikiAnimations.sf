@@ -1,6 +1,6 @@
 {
     "textureAtlas": {
-        "texture": "Viki_M.png",
+        "texture": "VikiAnimations.png",
         "regionWidth": 52,
         "regionHeight": 72
     },
