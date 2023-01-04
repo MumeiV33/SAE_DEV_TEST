@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.Sprites;
-using MonoGame.Extended.Content;
 using MonoGame.Extended.Serialization;
 using System;
+using MonoGame.Extended.Content;
 
 namespace SAE_geniert
 {
@@ -19,6 +19,7 @@ namespace SAE_geniert
         private TiledMapRenderer _tiledMapRenderer;
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
+
         private KeyboardState _keyboardState;
         private int _sensPerso;
         private int _vitessePerso;
@@ -45,10 +46,11 @@ namespace SAE_geniert
             // TODO: Add your initialization logic here
             Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
+            _positionPerso = new Vector2(20, 340);
+            _vitessePerso = 100;
 
 
 
-           
             base.Initialize();
         }
 
@@ -58,8 +60,8 @@ namespace SAE_geniert
             _tiledMap = Content.Load<TiledMap>("mapGenerale");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             // TODO: use this.Content to load your game content here
-
-          
+            SpriteSheet spriteSheet = Content.Load<SpriteSheet>("VikiAnimations.sf", new JsonContentLoader());
+            _perso = new AnimatedSprite(spriteSheet);
         }
 
         protected override void Update(GameTime gameTime)

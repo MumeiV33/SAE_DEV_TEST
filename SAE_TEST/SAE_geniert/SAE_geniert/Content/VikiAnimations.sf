@@ -1,8 +1,8 @@
 {
     "textureAtlas": {
-        "texture": "VikiAnimations.png",
-        "regionWidth": 52,
-        "regionHeight": 72
+        "texture": "VikiAnimationsPNG.png",
+        "regionWidth": 712,
+        "regionHeight": 580
     },
     "cycles": {
         "idle": {
