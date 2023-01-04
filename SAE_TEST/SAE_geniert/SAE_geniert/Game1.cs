@@ -6,6 +6,7 @@ using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Serialization;
+
 using System;
 
 namespace SAE_geniert
@@ -60,8 +61,6 @@ namespace SAE_geniert
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             // TODO: use this.Content to load your game content here
 
-            var spriteSheet = Content.Load<SpriteSheet>("Viki_M.sf", new JsonContentLoader());
-            _perso = new AnimatedSprite(spriteSheet);
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("obstacles");
         }
 
@@ -72,7 +71,8 @@ namespace SAE_geniert
             _tiledMapRenderer.Update(gameTime);
             // TODO: Add your update logic here
 
-
+            _tiledMapRenderer.Update(gameTime);
+            /*
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
@@ -143,7 +143,7 @@ namespace SAE_geniert
                     _positionPerso.Y += walkSpeed;
             }
 
-
+            */
             base.Update(gameTime);
         }
         private bool IsCollision(ushort x, ushort y)
@@ -162,6 +162,9 @@ namespace SAE_geniert
             GraphicsDevice.Clear(Color.Blue);
             _tiledMapRenderer.Draw();
             // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            //_spriteBatch.Draw(_perso, _positionPerso);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

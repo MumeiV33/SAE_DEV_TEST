@@ -33,9 +33,6 @@
     <None Update="Content\mapGeneraleTuiles.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Viki_M.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="Content\Viki_M.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
