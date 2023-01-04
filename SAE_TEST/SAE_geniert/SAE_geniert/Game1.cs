@@ -12,20 +12,30 @@ namespace SAE_geniert
 {
     public class Game1 : Game
     {
+        /*=-=-=-=-=-=-=-=-=-=-CHAMPS-=-=-=-=-=-=-=-=-=-*/
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private TiledMap _tiledMap;
         private TiledMapRenderer _tiledMapRenderer;
+
+        /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
+        public const int LARGEUR_FENETRE = 800;
+        public const int HAUTEUR_FENETRE = 640;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+
         }
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;
+            _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;
+            _graphics.ApplyChanges();
             // TODO: Add your initialization logic here
             Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
