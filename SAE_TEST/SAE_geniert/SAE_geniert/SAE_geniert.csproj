@@ -33,10 +33,10 @@
     <None Update="Content\mapGeneraleTuiles.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Viki_M.png">
+    <None Update="Content\VikiAnimations.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Viki_M.sf">
+    <None Update="Content\VikiAnimations.sf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

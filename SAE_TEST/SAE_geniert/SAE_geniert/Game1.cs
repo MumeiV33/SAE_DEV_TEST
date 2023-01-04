@@ -6,7 +6,7 @@ using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Serialization;
-
+using MonoGame.Extended;
 using System;
 
 namespace SAE_geniert
@@ -60,7 +60,8 @@ namespace SAE_geniert
             _tiledMap = Content.Load<TiledMap>("mapGenerale");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             // TODO: use this.Content to load your game content here
-
+            var spriteSheet = Content.Load<SpriteSheet>("Viki_M.sf", new JsonContentLoader());
+            _perso = new AnimatedSprite(spriteSheet);
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("obstacles");
         }
 
@@ -80,7 +81,7 @@ namespace SAE_geniert
             _perso.Update(deltaSeconds); // time écoulé
 
             _keyboardState = Keyboard.GetState();
-
+            
             //-=-=-=-=-=-=-=-=-=-DROITE-=-=-=-=-=-=-=-=-=-\\
             if (keyboardState.IsKeyDown(Keys.Right))
             {
