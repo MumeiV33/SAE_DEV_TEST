@@ -84,16 +84,13 @@ namespace SAE_geniert
             _keyboardState = Keyboard.GetState();
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
-            ushort mx1_4 = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 1);
-            ushort my1_4 = (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1);
-            //MatriceLayers.MatriceInitialize(my1_4)
             //-=-=-=-=-=-=-=-=-=-DROITE-=-=-=-=-=-=-=-=-=-\\
 
             //-----------------Déplacements-------------------------------------------------------------------
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 1);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
+                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
+                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
 
@@ -109,8 +106,8 @@ namespace SAE_geniert
             //-----------------Déplacements-------------------------------------------------------------------
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 1);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
+                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 0.5);
+                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.5);
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
                 if (!IsCollision(tx, ty))
@@ -146,7 +143,7 @@ namespace SAE_geniert
             if (keyboardState.IsKeyDown(Keys.Down))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1.5);
+                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
 
                 if (_keyboardState.IsKeyDown(Keys.Left))
                     _perso.Play("walkWest");
