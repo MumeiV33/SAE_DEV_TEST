@@ -16,6 +16,8 @@ namespace SAE_geniert
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private TiledMap _tiledMap;
+        private TiledMap _tiledMapTestFin;
+        private TiledMap _tiledMapRendererTestFin;
         private TiledMapRenderer _tiledMapRenderer;
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
@@ -59,6 +61,7 @@ namespace SAE_geniert
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+            
             // TODO: use this.Content to load your game content here
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
@@ -81,8 +84,9 @@ namespace SAE_geniert
             _keyboardState = Keyboard.GetState();
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
-
-
+            ushort mx1_4 = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 1);
+            ushort my1_4 = (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1);
+            //MatriceLayers.MatriceInitialize(my1_4)
             //-=-=-=-=-=-=-=-=-=-DROITE-=-=-=-=-=-=-=-=-=-\\
 
             //-----------------Déplacements-------------------------------------------------------------------
@@ -94,7 +98,7 @@ namespace SAE_geniert
 
 
 
-                /*if (!IsCollision(tx, ty)) */
+                /*if (!IsCollision(tx, ty))*/ 
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
 
@@ -151,7 +155,7 @@ namespace SAE_geniert
                 else
                     _perso.Play("walkSouth");
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
-               /* if (!IsCollision(tx, ty))*/
+                /*if (!IsCollision(tx, ty))*/
                     _positionPerso.Y += walkSpeed;
             }
 
@@ -171,7 +175,7 @@ namespace SAE_geniert
         {
             GraphicsDevice.Clear(Color.Blue);
             _tiledMapRenderer.Draw();
-            _tiledMapRenderer.Draw();
+            
             _spriteBatch.Begin();
             _spriteBatch.Draw(_perso, _positionPerso);
             _spriteBatch.End();
