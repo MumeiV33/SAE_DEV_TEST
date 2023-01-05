@@ -53,6 +53,35 @@
 /processor:TiledMapProcessor
 /build:Map_Generale_SilverWorld.tmx
 
+#begin MapGrotte.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte.tmx
+
+#begin TextureGrotteAutre.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:TextureGrotteAutre.png
+
+#begin TexturePierre.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:TexturePierre.png
+
 #begin Verdure.png
 /importer:TextureImporter
 /processor:TextureProcessor

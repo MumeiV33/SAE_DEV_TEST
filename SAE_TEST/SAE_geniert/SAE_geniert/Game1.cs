@@ -94,7 +94,7 @@ namespace SAE_geniert
 
 
 
-                /*if (!IsCollision(tx, ty)) */
+                if (!IsCollision(tx, ty)) 
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
 
@@ -157,7 +157,7 @@ namespace SAE_geniert
 
             base.Update(gameTime);
         }
-        /*private bool IsCollision(ushort x, ushort y)
+        private bool IsCollision(ushort x, ushort y)
         {
             // définition de tile qui peut être null (?)
             TiledMapTile? tile;
@@ -166,7 +166,7 @@ namespace SAE_geniert
             if (!tile.Value.IsBlank)
                 return true;
             return false;
-        }*/
+        }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Blue);
