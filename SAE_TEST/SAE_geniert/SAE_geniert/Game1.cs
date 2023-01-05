@@ -72,31 +72,42 @@ namespace SAE_geniert
             _tiledMapRenderer.Update(gameTime);
             // TODO: Add your update logic here
 
+            //-----------------Déplacements-------------------------------------------------------------------
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé
 
             _keyboardState = Keyboard.GetState();
+            //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+
 
 
             //-=-=-=-=-=-=-=-=-=-DROITE-=-=-=-=-=-=-=-=-=-\\
+
+            //-----------------Déplacements-------------------------------------------------------------------
             if (keyboardState.IsKeyDown(Keys.Right))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 1);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
+            //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
-                if (!IsCollision(tx, ty)) { }
+
+
+                /*if (!IsCollision(tx, ty)) */
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
+
 
             }
             //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
 
+            //-----------------Déplacements-------------------------------------------------------------------
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 1);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
+            //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
                 /*if (!IsCollision(tx, ty))*/
                     _positionPerso.X -= walkSpeed;
@@ -104,17 +115,20 @@ namespace SAE_geniert
             }
             //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
 
+            //-----------------Déplacements-------------------------------------------------------------------
             if (keyboardState.IsKeyDown(Keys.Up))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight);
-
+            
                 if (_keyboardState.IsKeyDown(Keys.Left))
                     _perso.Play("walkWest");
                 else if (_keyboardState.IsKeyDown(Keys.Right))
                     _perso.Play("walkEast");
                 else
                     _perso.Play("walkNorth");
+            //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+
 
 
                 /*if (!IsCollision(tx, ty))*/
@@ -122,6 +136,8 @@ namespace SAE_geniert
 
             }
             //-=-=-=-=-=-=-=-=-=-BAS-=-=-=-=-=-=-=-=-=-\\
+
+            //-----------------Déplacements-------------------------------------------------------------------
 
             if (keyboardState.IsKeyDown(Keys.Down))
             {
@@ -134,8 +150,8 @@ namespace SAE_geniert
                     _perso.Play("walkEast");
                 else
                     _perso.Play("walkSouth");
-
-                /*if (!IsCollision(tx, ty))*/
+            //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+               /* if (!IsCollision(tx, ty))*/
                     _positionPerso.Y += walkSpeed;
             }
 
