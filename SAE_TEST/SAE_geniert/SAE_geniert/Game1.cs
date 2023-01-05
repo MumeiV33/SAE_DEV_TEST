@@ -65,7 +65,7 @@ namespace SAE_geniert
             // TODO: use this.Content to load your game content here
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("obstacles");
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
         }
 
         protected override void Update(GameTime gameTime)
