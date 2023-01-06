@@ -59,8 +59,8 @@ namespace SAE_geniert
 
 
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
-        public const int LARGEUR_FENETRE = 800;
-        public const int HAUTEUR_FENETRE = 512;
+        public const int LARGEUR_FENETRE = 496;
+        public const int HAUTEUR_FENETRE = 496;
 
 
 
@@ -98,8 +98,8 @@ namespace SAE_geniert
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 496;
-            _graphics.PreferredBackBufferHeight = 496;
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 500;
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
