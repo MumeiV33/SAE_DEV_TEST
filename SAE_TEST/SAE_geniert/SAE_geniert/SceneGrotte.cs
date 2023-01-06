@@ -120,22 +120,21 @@ namespace SAE_geniert
         {
             _tiledMapRenderer.Update(gameTime);
 
-            //-----------------Déplacements-------------------------------------------------------------------
+            //-----------------Déplacements--------
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé
             _keyboardState = Keyboard.GetState();
-            //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
-
+            
             //-=-=-=-=-=-=-=-=-=-DROITE-=-=-=-=-=-=-=-=-=-\\
 
-            //-----------------Déplacements-------------------------------------------------------------------
+            //-----------------Déplacements---------
             if (keyboardState.IsKeyDown(Keys.Right))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
-                //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
 
 
@@ -147,12 +146,12 @@ namespace SAE_geniert
             }
             //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
 
-            //-----------------Déplacements-------------------------------------------------------------------
+            //-----------------Déplacements-------------
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 0.5);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.5);
-                //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+             //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
                 if (!IsCollision(tx, ty))
                     _positionPerso.X -= walkSpeed;
