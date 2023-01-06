@@ -16,6 +16,7 @@ namespace SAE_geniert
         private new Game1 Game => (Game1)base.Game;
         public SceneMapPrincipale(Game1 game) : base(game) { }
 
+        //------> Map
         private GraphicsDeviceManager _graphics;
         private TiledMap _tiledMap;
         private TiledMap _tiledMapTest;
@@ -25,17 +26,20 @@ namespace SAE_geniert
         private TiledMapTileLayer mapLayer;
         private TiledMapTileLayer mapLayerTest;
 
+        //-----> Perso
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
         private int _sensPerso;
         private int _vitessePerso;
 
+        //-----> Autres
+        private KeyboardState _keyboardState;
+        private SpriteBatch _spriteBatch;
 
 
-        private Vector2 _positionTortue;
-        private AnimatedSprite _Tortue;
-        private int _sensTortue;
-        private int _vitesseTortue;
+        /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
+        public const int LARGEUR_FENETRE = 496;
+        public const int HAUTEUR_FENETRE = 496;
 
 
 
@@ -45,6 +49,10 @@ namespace SAE_geniert
 
             
             Console.WriteLine("map");
+            _positionPerso = new Vector2(300, 340);
+            _vitessePerso = 100;
+
+
         }
 
         public override void LoadContent()
@@ -62,13 +70,40 @@ namespace SAE_geniert
             _Tortue = new AnimatedSprite(spriteSheetTortue);
 
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
-            mapLayerTest = _tiledMap.GetLayer<TiledMapTileLayer>("Calque de Tuiles 2");
+            
+
+
+
+
+            
         }
 
         public override void Update(GameTime gameTime)
         {
-         
+            //debug map (collision vers le bas)
+            int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(a);
+
+
+            //debug autres collisions (collision vers le bas)
+            int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(b);
         }
+
+
+
+        private bool IsCollision(ushort x, ushort y)
+        {
+            // définition de tile qui peut être null (?)
+            TiledMapTile? tile;
+            if (mapLayer.TryGetTile(x, y, out tile) == false)
+                return false;
+            if (!tile.Value.IsBlank)
+                return true;
+            return false;
+        }
+
+
 
         public override void Draw(GameTime gameTime)
         {
