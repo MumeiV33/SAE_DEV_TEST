@@ -16,10 +16,12 @@ namespace SAE_geniert
         //-----> Map
         private GraphicsDeviceManager _graphics;
         private TiledMap _tiledMap;
+        private TiledMap _tiledMapTest;
         private TiledMap _tiledMapTestFin;
         private TiledMap _tiledMapRendererTestFin;
         private TiledMapRenderer _tiledMapRenderer;
         private TiledMapTileLayer mapLayer;
+        private TiledMapTileLayer mapLayerTest;
         //-----> Perso
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
@@ -39,8 +41,8 @@ namespace SAE_geniert
 
 
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
-        public const int LARGEUR_FENETRE = 480;
-        public const int HAUTEUR_FENETRE = 480;
+        public const int LARGEUR_FENETRE = 512;
+        public const int HAUTEUR_FENETRE = 512;
         
 
         public Game1()
@@ -84,6 +86,7 @@ namespace SAE_geniert
             _Tortue = new AnimatedSprite(spriteSheetTortue);
 
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+            mapLayerTest = _tiledMap.GetLayer<TiledMapTileLayer>("Calque de Tuiles 2");
         }
 
         protected override void Update(GameTime gameTime)
@@ -222,8 +225,11 @@ namespace SAE_geniert
 
 
             }
-            
-            
+            //ushort txI = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
+            //ushort tyI = (ushort)(_positionPerso.Y / _tiledMap.TileHeight);
+            //if (IsInteraction(tyI,txI))
+            //    _positionPerso.Y += walkSpeed;
+
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
             base.Update(gameTime);
         }
@@ -238,6 +244,18 @@ namespace SAE_geniert
             return false;
         }
         
+        //private bool IsInteraction(ushort x, ushort y)
+        //{
+        //    // définition de tile qui peut être null (?)
+        //    TiledMapTile? tile;
+        //    if (mapLayerTest.TryGetTile(x, y, out tile) == false)
+        //        if (tile.)
+        //        return false;
+        //    if (!tile.Value.IsBlank)
+        //        return true;
+
+        //    return false;
+        //}
 
         protected override void Draw(GameTime gameTime)
         {
