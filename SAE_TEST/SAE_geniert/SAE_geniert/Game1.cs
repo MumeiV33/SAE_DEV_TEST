@@ -7,6 +7,8 @@ using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Serialization;
 using System;
 using MonoGame.Extended.Content;
+using MonoGame.Extended.Screens;
+using MonoGame.Extended.Screens.Transitions;
 
 namespace SAE_geniert
 {
