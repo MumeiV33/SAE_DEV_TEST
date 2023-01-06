@@ -24,6 +24,7 @@ namespace SAE_geniert
         private TiledMapRenderer _tiledMapRenderer;
         private TiledMapTileLayer mapLayer;
         private TiledMapTileLayer mapLayerTest;
+        
 
         //-----> Perso
         private Vector2 _positionPerso;
@@ -48,20 +49,21 @@ namespace SAE_geniert
 
         // on définit  2 écrans ( à compléter )
         private ScreenMenu _screenMenu;
-        private ScreenPlay _screenPlay;
+        private SceneMapPrincipale _sceneMapPrincipale;
+        private SceneGrotte _sceneGrotte;
 
-        public SpriteBatch SpriteBatch
-        {
-            get
-            {
-                return this._spriteBatch;
-            }
+        //-----> Autres
+        private KeyboardState _keyboardState;
+        private SpriteBatch _spriteBatch;
+        
 
-            set
-            {
-                this._spriteBatch = value;
-            }
-        }
+
+        /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
+        public const int LARGEUR_FENETRE = 512;
+        public const int HAUTEUR_FENETRE = 512;
+
+
+
 
         public Etats Etat
         {
@@ -78,15 +80,7 @@ namespace SAE_geniert
 
 
 
-        //-----> Autres
-        private KeyboardState _keyboardState;
-        private SpriteBatch _spriteBatch;
-        private readonly ScreenManager _screenManager;
-
-
-        /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
-        public const int LARGEUR_FENETRE = 512;
-        public const int HAUTEUR_FENETRE = 512;
+        
 
         public SpriteBatch SpriteBatch
         {
@@ -117,7 +111,7 @@ namespace SAE_geniert
 
             //  chargement les 2 écrans 
             _screenMenu = new ScreenMenu(this);
-            _screenPlay = new ScreenPlay(this);
+            _sceneMapPrincipale = new SceneMapPrincipale(this);
 
 
         }
@@ -316,7 +310,7 @@ namespace SAE_geniert
                     Exit();
 
                 else if (this.Etat == Etats.Play)
-                    _screenManager.LoadScreen(_screenPlay, new FadeTransition(GraphicsDevice, Color.Black));
+                    _screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
 
             }
 
