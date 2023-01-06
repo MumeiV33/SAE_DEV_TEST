@@ -26,11 +26,12 @@ namespace SAE_geniert
         private int _sensPerso;
         private int _vitessePerso;
 
-        //-----> Tortue
+        //-----> Tortue   /*]=-• COPY CODE TORTUE*/
         private Vector2 _positionTortue;
         private AnimatedSprite _Tortue;
         private int _sensTortue;
         private int _vitesseTortue;
+
 
         //-----> Autres
         private KeyboardState _keyboardState;
@@ -40,6 +41,7 @@ namespace SAE_geniert
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
         public const int LARGEUR_FENETRE = 480;
         public const int HAUTEUR_FENETRE = 480;
+        
 
         public Game1()
         {
@@ -60,11 +62,10 @@ namespace SAE_geniert
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
             _positionPerso = new Vector2(300, 340);
             _vitessePerso = 100;
-            _positionTortue = new Vector2(300, 400);
-            _vitesseTortue = 100;
+            _positionTortue = new Vector2(300, 300);   /*]=-• COPY CODE TORTUE*/
+            _vitesseTortue = 100;   /*]=-• COPY CODE TORTUE*/
 
-            _sensTortue = 1;
-
+            _sensTortue = 1;   /*]=-• COPY CODE TORTUE*/
 
             base.Initialize();
         }
@@ -172,42 +173,58 @@ namespace SAE_geniert
                 if (!IsCollision(tx, ty))
                     _positionPerso.Y += walkSpeed;
             }
-            /*=•=•=•=•=•=•=•=•=•Espace_Utilisé-par_Val•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•*/
+            
+            /*]=-• COPY CODE TORTUE*/
+            //--------------Déplacements-Torute-----------------------------------------------------------
 
-            //--------------Déplacements-Torute-essai-----------------------------------------------------------
-            int test = 0;
-                float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
                 float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite
                 _Tortue.Update(deltaSecondsTortue); // time écoulé
+            
+            
             //-->> Gauche
-            if (test == 0)
+            if (_sensTortue == 1)
             {
-                ushort txTortue = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 0.5);
-                ushort tyTortue = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.5);
+
+                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
+                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
+
 
                 if (!IsCollision(txTortue, tyTortue))
-                    _positionTortue.X += walkSpeedTortue;
+                {
+                    _positionTortue.X -= walkSpeedTortue;
+                    _Tortue.Play("walkWest");
+                }
                 else
-                    test = 1;
-                _Tortue.Play("walkWest");
+                {
+                    _sensTortue = 0;
+                }
+
+
             }
             //-->> Droite
-            if (test == 1)
+            if (_sensTortue == 0)
             {
 
                 ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
-                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight + 0.8);
+                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
 
 
                 if (!IsCollision(txTortue, tyTortue))
-                    _positionTortue.X -= walkSpeedTortue;
+                {
+                    _positionTortue.X += walkSpeedTortue;
+                    _Tortue.Play("walkEast");
+                }
                 else
-                    test = 0;
-                _Tortue.Play("walkEast");
+                {
+                    _sensTortue = 1;
+                }
+
+
             }
             
+            
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
-            /*=•=•=•=•=•=•=•=•=•Fin_Espace_Utilisé-par_Val•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•*/
             base.Update(gameTime);
         }
         private bool IsCollision(ushort x, ushort y)
@@ -220,14 +237,17 @@ namespace SAE_geniert
                 return true;
             return false;
         }
+        
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Blue);
             _tiledMapRenderer.Draw();
             
             _spriteBatch.Begin();
-            _spriteBatch.Draw(_Tortue, _positionTortue);
+            
             _spriteBatch.Draw(_perso, _positionPerso);
+            _spriteBatch.Draw(_Tortue, _positionTortue);   /*]=-• COPY CODE TORTUE*/
             _spriteBatch.End();
             
             base.Draw(gameTime);
