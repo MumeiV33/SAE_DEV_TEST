@@ -48,7 +48,7 @@ namespace SAE_geniert
         private Etats etat;
 
         // on définit  2 écrans ( à compléter )
-        private ScreenMenu _screenMenu;
+        //private ScreenMenu _screenMenu;
         private SceneMapPrincipale _sceneMapPrincipale;
         private SceneGrotte _sceneGrotte;
 
@@ -59,7 +59,7 @@ namespace SAE_geniert
 
 
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
-        public const int LARGEUR_FENETRE = 512;
+        public const int LARGEUR_FENETRE = 800;
         public const int HAUTEUR_FENETRE = 512;
 
 
@@ -98,8 +98,8 @@ namespace SAE_geniert
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 800;
-            _graphics.PreferredBackBufferHeight = 500;
+            _graphics.PreferredBackBufferWidth = 496;
+            _graphics.PreferredBackBufferHeight = 496;
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -110,8 +110,8 @@ namespace SAE_geniert
             Etat = Etats.Menu;
 
             //  chargement les 2 écrans 
-            _screenMenu = new ScreenMenu(this);
-            _sceneMapPrincipale = new SceneMapPrincipale(this);
+            //_screenMenu = new ScreenMenu(this);
+            //_sceneMapPrincipale = new SceneMapPrincipale(this);
 
 
         }
@@ -141,7 +141,7 @@ namespace SAE_geniert
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
             //-- charmenet du menu de base 
-            _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
 
             // TODO: use this.Content to load your game content here
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
@@ -151,7 +151,6 @@ namespace SAE_geniert
             _Tortue = new AnimatedSprite(spriteSheetTortue);
 
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
-            mapLayerTest = _tiledMap.GetLayer<TiledMapTileLayer>("Calque de Tuiles 2");
         }
 
         protected override void Update(GameTime gameTime)
@@ -159,6 +158,8 @@ namespace SAE_geniert
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             _tiledMapRenderer.Update(gameTime);
+            base.Update(gameTime);
+
             // TODO: Add your update logic here
 
             //-----------------Déplacements-------------------------------------------------------------------
@@ -290,10 +291,6 @@ namespace SAE_geniert
 
 
             }
-            //ushort txI = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
-            //ushort tyI = (ushort)(_positionPerso.Y / _tiledMap.TileHeight);
-            //if (IsInteraction(tyI,txI))
-            //    _positionPerso.Y += walkSpeed;
 
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
@@ -314,13 +311,12 @@ namespace SAE_geniert
 
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Back))
-            {
-                if (this.Etat == Etats.Menu)
-                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
-            }
+            //if (Keyboard.GetState().IsKeyDown(Keys.Back))
+            //{
+            //    if (this.Etat == Etats.Menu)
+            //        _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            //}
 
-            base.Update(gameTime);
         }
         private bool IsCollision(ushort x, ushort y)
         {
