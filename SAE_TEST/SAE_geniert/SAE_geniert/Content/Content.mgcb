@@ -88,6 +88,18 @@
 /processorParam:TextureFormat=Color
 /build:Menu_Avec_Nom_STart.png
 
+#begin story.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:story.png
+
 #begin TextureGrotteAutre.png
 /importer:TextureImporter
 /processor:TextureProcessor
