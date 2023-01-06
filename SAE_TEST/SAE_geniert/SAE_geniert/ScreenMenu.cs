@@ -22,9 +22,7 @@ namespace SAE_geniert
         // contient les rectangles : position et taille des 3 boutons présents dans la texture 
         private Rectangle[] lesBoutons;
 
-        public ScreenMenu(Game game) : base(game)
-        {
-        }
+        
 
         public ScreenMenu(Game1 game) : base(game)
         {
