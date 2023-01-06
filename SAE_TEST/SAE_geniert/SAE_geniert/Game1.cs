@@ -7,6 +7,8 @@ using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Serialization;
 using System;
 using MonoGame.Extended.Content;
+using MonoGame.Extended.Screens;
+using MonoGame.Extended.Screens.Transitions;
 
 namespace SAE_geniert
 {
@@ -22,6 +24,7 @@ namespace SAE_geniert
         private TiledMapRenderer _tiledMapRenderer;
         private TiledMapTileLayer mapLayer;
         private TiledMapTileLayer mapLayerTest;
+
         //-----> Perso
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
@@ -38,19 +41,33 @@ namespace SAE_geniert
         //-----> Autres
         private KeyboardState _keyboardState;
         private SpriteBatch _spriteBatch;
+        private readonly ScreenManager _screenManager;
 
 
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
         public const int LARGEUR_FENETRE = 512;
         public const int HAUTEUR_FENETRE = 512;
-        
+
+        public SpriteBatch SpriteBatch
+        {
+            get
+            {
+                return this._spriteBatch;
+            }
+
+            set
+            {
+                this._spriteBatch = value;
+            }
+        }
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
+            _screenManager = new ScreenManager();
+            Components.Add(_screenManager);
 
         }
 
@@ -74,7 +91,7 @@ namespace SAE_geniert
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             
@@ -231,6 +248,30 @@ namespace SAE_geniert
             //    _positionPerso.Y += walkSpeed;
 
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+
+
+            //Console.WriteLine(_positionPerso/_tiledMap.TileHeight);
+
+            Vector2 cooTuile = _positionPerso / _tiledMap.TileHeight;         // comme les tuiles sont carrés ont peut mettre tout diviser par la hauteur
+            
+            if((ushort)cooTuile.X == 28 && (ushort)cooTuile.Y == 27)
+            {
+
+            }
+
+            keyboardState = Keyboard.GetState();
+           
+            if (keyboardState.IsKeyDown(Keys.NumPad1))
+            {
+                LoadGrotte();
+            }
+            else if (keyboardState.IsKeyDown(Keys.NumPad2))
+            {
+                LoadMap();
+            }
+
+
+
             base.Update(gameTime);
         }
         private bool IsCollision(ushort x, ushort y)
@@ -262,13 +303,23 @@ namespace SAE_geniert
             GraphicsDevice.Clear(Color.Blue);
             _tiledMapRenderer.Draw();
             
-            _spriteBatch.Begin();
+            SpriteBatch.Begin();
             
-            _spriteBatch.Draw(_perso, _positionPerso);
-            _spriteBatch.Draw(_Tortue, _positionTortue);   /*]=-• COPY CODE TORTUE*/
-            _spriteBatch.End();
+            SpriteBatch.Draw(_perso, _positionPerso);
+            SpriteBatch.Draw(_Tortue, _positionTortue);   /*]=-• COPY CODE TORTUE*/
+            SpriteBatch.End();
             
             base.Draw(gameTime);
+        }
+
+        private void LoadGrotte()
+        {
+            _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
+
+        private void LoadMap()
+        {
+            _screenManager.LoadScreen(new SceneMapPrincipale(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
     }
 }
