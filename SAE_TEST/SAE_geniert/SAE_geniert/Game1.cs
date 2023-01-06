@@ -43,8 +43,8 @@ namespace SAE_geniert
 
 
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
-        public const int LARGEUR_FENETRE = 512;
-        public const int HAUTEUR_FENETRE = 512;
+        public const int LARGEUR_FENETRE = 496;
+        public const int HAUTEUR_FENETRE = 496;
         
 
         public Game1()
