@@ -36,6 +36,46 @@ namespace SAE_geniert
         private int _sensTortue;
         private int _vitesseTortue;
 
+        //------------------------------------------------------------------> Changement de scene 
+        
+        private readonly ScreenManager _screenManager;
+        // on définit les différents états possibles du jeu ( à compléter) 
+        public enum Etats { Menu, Controls, Play, Quit };
+
+        // on définit un champ pour stocker l'état en cours du jeu
+        private Etats etat;
+
+        // on définit  2 écrans ( à compléter )
+        private ScreenMenu _screenMenu;
+        private ScreenPlay _screenPlay;
+
+        public SpriteBatch SpriteBatch
+        {
+            get
+            {
+                return this._spriteBatch;
+            }
+
+            set
+            {
+                this._spriteBatch = value;
+            }
+        }
+
+        public Etats Etat
+        {
+            get
+            {
+                return this.etat;
+            }
+
+            set
+            {
+                this.etat = value;
+            }
+        }
+
+
 
         //-----> Autres
         private KeyboardState _keyboardState;
@@ -50,8 +90,21 @@ namespace SAE_geniert
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 500;
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _screenManager = new ScreenManager();
+            Components.Add(_screenManager);
+
+            // écrant de base Menu 
+            Etat = Etats.Menu;
+
+            //  chargement les 2 écrans 
+            _screenMenu = new ScreenMenu(this);
+            _screenPlay = new ScreenPlay(this);
+
 
 
         }
@@ -79,7 +132,10 @@ namespace SAE_geniert
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-            
+
+            //-- charmenet du menu de base 
+            _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+
             // TODO: use this.Content to load your game content here
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
@@ -233,6 +289,30 @@ namespace SAE_geniert
             //    _positionPerso.Y += walkSpeed;
 
             //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+
+            //clic souris
+            //-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+            // On teste le clic de souris et l'état pour savoir quelle action faire 
+            MouseState _mouseState = Mouse.GetState();
+            if (_mouseState.LeftButton == ButtonState.Pressed)
+            {
+                // Attention, l'état a été mis à jour directement par l'écran en question
+                if (this.Etat == Etats.Quit)
+                    Exit();
+
+                else if (this.Etat == Etats.Play)
+                    _screenManager.LoadScreen(_screenPlay, new FadeTransition(GraphicsDevice, Color.Black));
+
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Back))
+            {
+                if (this.Etat == Etats.Menu)
+                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            }
+
             base.Update(gameTime);
         }
         private bool IsCollision(ushort x, ushort y)
