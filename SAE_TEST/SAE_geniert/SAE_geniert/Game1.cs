@@ -109,7 +109,7 @@ namespace SAE_geniert
             Etat = Etats.Menu;
 
             //  chargement les 2 écrans 
-            //_screenMenu = new ScreenMenu(this);
+            _screenMenu = new ScreenMenu(this);
             //_sceneMapPrincipale = new SceneMapPrincipale(this);
 
 
@@ -127,10 +127,11 @@ namespace SAE_geniert
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
+           // _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             //Joueur.LoadContentPerso();
             //-- charmenet du menu de base 
+            _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
@@ -148,14 +149,14 @@ namespace SAE_geniert
 
 
             //============ INTERACTIONS
-
+            
             //debug map (collision vers le bas)
-            int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+           /* int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(a);
 
             //debug autres collisions (collision vers le bas)
             int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(b);
+            Console.WriteLine(b);*/
             //============ 
 
 
@@ -164,11 +165,7 @@ namespace SAE_geniert
 
 
 
-            _tiledMapRenderer.Update(gameTime);
-
             
-
-            base.Update(gameTime);
 
             
             //clic souris                                                                                                                           //THEO RANGEEEEEE
@@ -190,13 +187,14 @@ namespace SAE_geniert
 
 
             }
-            
+
 
             //if (Keyboard.GetState().IsKeyDown(Keys.Back))
             //{
             //   
             //}
-
+            _tiledMapRenderer.Update(gameTime);
+            base.Update(gameTime);
         }
 
 
