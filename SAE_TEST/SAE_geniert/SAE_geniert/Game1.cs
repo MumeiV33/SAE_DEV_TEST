@@ -39,7 +39,6 @@ namespace SAE_geniert
         private int _sensPerso;
         private int _vitessePerso;
 
-
         //------------------------------------------------------------------> Changement de scene 
 
         private readonly ScreenManager _screenManager;
@@ -119,7 +118,7 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                            // Theo doit ranger  
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            // Theo doit ranger 
             _graphics.ApplyChanges();
-            _player.DeplacementsPerso(gameTime);
+            _player.DeplacementsPerso(GameTime gameTime);
             base.Initialize();
         }
 
@@ -141,7 +140,6 @@ namespace SAE_geniert
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé
 
-            //Joueur.DeplacementsPerso(deltaSeconds);
 
 
             //============ INTERACTIONS
