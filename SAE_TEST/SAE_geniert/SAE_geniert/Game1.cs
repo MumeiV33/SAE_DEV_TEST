@@ -226,13 +226,6 @@ namespace SAE_geniert
         //    return false;
         //}
 
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.Blue);
-            _tiledMapRenderer.Draw();
-            base.Draw(gameTime);
-
-        }
         private void LoadMenu()
         {
             _screenManager.LoadScreen(new ScreenMenu(this), new FadeTransition(GraphicsDevice, Color.Black));
@@ -247,11 +240,6 @@ namespace SAE_geniert
         private void LoadMap()
         {
             _screenManager.LoadScreen(new SceneMapPrincipale(this), new FadeTransition(GraphicsDevice, Color.Black));
-        }
-
-        private void LoadMenu()
-        {
-            _screenManager.LoadScreen(new scene(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
     }
