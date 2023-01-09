@@ -6,6 +6,7 @@ using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Serialization;
 using System;
+using System.Windows;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
@@ -75,7 +76,7 @@ namespace SAE_geniert
             _vitesseTortue = 100;   /*]=-• COPY CODE TORTUE*/
             _sensTortue = 1;   /*]=-• COPY CODE TORTUE*/
             _graphics.ApplyChanges();
-            Window.Title = "Silver World";
+            Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
             _positionPerso = new Vector2(30, 30);
             
