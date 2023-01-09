@@ -250,10 +250,7 @@ namespace SAE_geniert
             _screenManager.LoadScreen(new SceneMapPrincipale(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
-        private void LoadMenu()
-        {
-            _screenManager.LoadScreen(new scene(this), new FadeTransition(GraphicsDevice, Color.Black));
-        }
+       
 
     }
 }
