@@ -17,24 +17,16 @@ namespace SAE_geniert
         public SceneMapPrincipale(Game1 game) : base(game) { }
 
         //------> Map
-        private GraphicsDeviceManager _graphics;
         private TiledMap _tiledMap;
-        private TiledMap _tiledMapTest;
-        private TiledMap _tiledMapTestFin;
-        private TiledMap _tiledMapRendererTestFin;
         private TiledMapRenderer _tiledMapRenderer;
         private TiledMapTileLayer mapLayer;
-        private TiledMapTileLayer mapLayerTest;
 
         //-----> Perso
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
-        private int _sensPerso;
-        private int _vitessePerso;
+
 
         //-----> Autres
-        private KeyboardState _keyboardState;
-        private SpriteBatch _spriteBatch;
 
 
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
@@ -45,14 +37,14 @@ namespace SAE_geniert
 
         public override void Initialize()
         {
-            base.Initialize();
+           
 
             
             Console.WriteLine("map");
             _positionPerso = new Vector2(300, 340);
-            _vitessePerso = 100;
 
 
+            base.Initialize();
         }
 
         public override void LoadContent()

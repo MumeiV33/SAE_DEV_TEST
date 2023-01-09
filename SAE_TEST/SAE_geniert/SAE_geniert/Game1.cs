@@ -57,7 +57,7 @@ namespace SAE_geniert
 
 
         public Joueur _player = new Joueur();
-        public SceneMapPrincipale _MapP;
+        
 
         private GameTime gameTime;
         public float deltaSeconds = 1;
@@ -97,10 +97,12 @@ namespace SAE_geniert
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
             _graphics.PreferredBackBufferWidth = 800;
             _graphics.PreferredBackBufferHeight = 500;
+            _graphics.IsFullScreen = false;
 
-            Content.RootDirectory = "Content";
+            Window.Title = "test";
             IsMouseVisible = true;
             _screenManager = new ScreenManager();
             Components.Add(_screenManager);
@@ -117,8 +119,8 @@ namespace SAE_geniert
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                            // Theo doit ranger  
-            _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            // Theo doit ranger 
+            _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                             
+            _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            
             _graphics.ApplyChanges();
             _player.DeplacementsPerso(deltaSeconds);
             base.Initialize();
@@ -129,19 +131,19 @@ namespace SAE_geniert
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-           // _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
+            //_tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             //-- charmenet du menu de base 
             _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+            //mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
         }
 
         protected override void Update(GameTime gameTime)
         {
-            deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _player.DeplacementsPerso(deltaSeconds);
@@ -162,8 +164,7 @@ namespace SAE_geniert
             //============ 
 
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))                // Théo range
-                Exit();                                                                                                                             // Théo range
+                                                                                                                                        // Théo range
 
 
 
@@ -195,6 +196,7 @@ namespace SAE_geniert
             //{
             //   
             //}
+
             _tiledMapRenderer.Update(gameTime);
             base.Update(gameTime);
         }
@@ -203,11 +205,10 @@ namespace SAE_geniert
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Blue);
+            GraphicsDevice.Clear(Color.Black);
             _tiledMapRenderer.Draw();
 
             SpriteBatch.Begin();
-
             SpriteBatch.Draw(_perso, _positionPerso);
             SpriteBatch.End();
 

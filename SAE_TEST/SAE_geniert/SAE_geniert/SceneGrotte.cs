@@ -32,11 +32,10 @@ namespace SAE_geniert
         //-----> Perso
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
-        private int _sensPerso;
         private int _vitessePerso;
 
 
-        //-----> Tortue   /*]=-• COPY CODE TORTUE*/
+        //-----> Tortue
         private Vector2 _positionTortue;
         private AnimatedSprite _Tortue;
         private int _sensTortue;
@@ -55,7 +54,6 @@ namespace SAE_geniert
         
         //-----> Autres
         private KeyboardState _keyboardState;
-        private SpriteBatch _spriteBatch;
 
 
 

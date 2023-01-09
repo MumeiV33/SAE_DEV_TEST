@@ -14,14 +14,8 @@ namespace SAE_geniert
     public class Joueur
     {
 
-        private GraphicsDeviceManager _graphics;
         private TiledMap _tiledMap;
-        private TiledMap _tiledMapTest;
-        private TiledMap _tiledMapTestFin;
-        private TiledMap _tiledMapRendererTestFin;
-        private TiledMapRenderer _tiledMapRenderer;
         private TiledMapTileLayer mapLayer;
-        private TiledMapTileLayer mapLayerTest;
 
         public Vector2 _positionPerso = new Vector2(300, 340);
         public int _vitessePerso = 100;
