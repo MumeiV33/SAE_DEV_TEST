@@ -175,11 +175,23 @@ namespace SAE_geniert
 
 
 
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.Blue);
+            _tiledMapRenderer.Draw();
+
+            SpriteBatch.Begin();
+
+            SpriteBatch.Draw(_perso, _positionPerso);
+            SpriteBatch.End();
+
+            base.Draw(gameTime);
+        }
 
 
 
-       
-        
+
+
         //private bool IsInteraction(ushort x, ushort y)
         //{
         //    // définition de tile qui peut être null (?)

@@ -57,7 +57,6 @@ namespace SAE_geniert
 
         public override void LoadContent()
         {
-            base.LoadContent();
 
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
@@ -70,6 +69,7 @@ namespace SAE_geniert
             
 
 
+            base.LoadContent();
 
 
             
