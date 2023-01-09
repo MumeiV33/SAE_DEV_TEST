@@ -60,12 +60,13 @@ namespace SAE_geniert
 
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
 
             // TODO: use this.Content to load your game content here
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
 
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+           
             
 
 
