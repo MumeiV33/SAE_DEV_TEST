@@ -32,12 +32,18 @@ namespace SAE_geniert
         private KeyboardState _keyboardState;
         private SpriteBatch _spriteBatch;
 
-        public void DeplacementsPerso()
+        public void LoadContentPerso()
+        {
+            _vitessePerso = 100;
+
+        }
+
+        public void DeplacementsPerso(float deltaSeconds)
         {
             // TODO: Add your update logic here
 
             //-----------------Déplacements-------------------------------------------------------------------
-            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé

@@ -24,9 +24,16 @@ namespace SAE_geniert
         private TiledMapRenderer _tiledMapRenderer;
         private TiledMapTileLayer mapLayer;
         private TiledMapTileLayer mapLayerTest;
-        
+
+
+        private int LARGEUR_FENETRE = 800;
+        private int HAUTEUR_FENETRE = 500;
 
         //-----> Perso
+        //private Joueur _positionPerso;
+        //private Joueur _perso;
+        //private Joueur _sensPerso;
+        //private Joueur _vitessePerso;
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
         private int _sensPerso;
@@ -34,7 +41,7 @@ namespace SAE_geniert
 
 
         //------------------------------------------------------------------> Changement de scene 
-        
+
         private readonly ScreenManager _screenManager;
         // on définit les différents états possibles du jeu ( à compléter) 
         public enum Etats { Menu, Controls, Play, Quit };
@@ -117,7 +124,7 @@ namespace SAE_geniert
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-
+            //Joueur.LoadContentPerso();
             //-- charmenet du menu de base 
             //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
 
@@ -125,6 +132,14 @@ namespace SAE_geniert
 
         protected override void Update(GameTime gameTime)
         {
+            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
+            KeyboardState keyboardState = Keyboard.GetState();
+            _perso.Update(deltaSeconds); // time écoulé
+
+            //Joueur.DeplacementsPerso(deltaSeconds);
+
+
             //============ INTERACTIONS
 
             //debug map (collision vers le bas)
@@ -144,6 +159,7 @@ namespace SAE_geniert
 
             _tiledMapRenderer.Update(gameTime);
 
+            
 
             base.Update(gameTime);
 
@@ -164,6 +180,7 @@ namespace SAE_geniert
                     _screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
 
             }
+            
 
             //if (Keyboard.GetState().IsKeyDown(Keys.Back))
             //{
