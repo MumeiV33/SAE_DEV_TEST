@@ -163,13 +163,15 @@ namespace SAE_geniert
 
                 else if (this.Etat == Etats.Play)
                     _screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
+                else if (this.Etat == Etats.Menu)
+                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+
 
             }
 
             //if (Keyboard.GetState().IsKeyDown(Keys.Back))
             //{
-            //    if (this.Etat == Etats.Menu)
-            //        _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            //   
             //}
 
         }
@@ -212,6 +214,10 @@ namespace SAE_geniert
             _tiledMapRenderer.Draw();
             base.Draw(gameTime);
 
+        }
+        private void LoadMenu()
+        {
+            _screenManager.LoadScreen(new ScreenMenu(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
         
 
