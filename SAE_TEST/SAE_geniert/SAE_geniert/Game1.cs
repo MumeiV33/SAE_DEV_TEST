@@ -39,7 +39,6 @@ namespace SAE_geniert
         private int _sensPerso;
         private int _vitessePerso;
 
-
         //------------------------------------------------------------------> Changement de scene 
 
         private readonly ScreenManager _screenManager;
@@ -138,7 +137,7 @@ namespace SAE_geniert
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé
 
-            //Joueur.DeplacementsPerso(deltaSeconds);
+            Joueur.DeplacementsPerso(gameTime);
 
 
             //============ INTERACTIONS
@@ -223,13 +222,6 @@ namespace SAE_geniert
         //    return false;
         //}
 
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.Blue);
-            _tiledMapRenderer.Draw();
-            base.Draw(gameTime);
-
-        }
         
 
         private void LoadGrotte()
