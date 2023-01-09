@@ -23,22 +23,21 @@ namespace SAE_geniert
         private TiledMapTileLayer mapLayer;
         private TiledMapTileLayer mapLayerTest;
 
-        public Vector2 _positionPerso;
+        public Vector2 _positionPerso = new Vector2(300, 340);
+        public int _vitessePerso = 100;
         public AnimatedSprite _perso;
         public int _sensPerso;
-        public int _vitessePerso;
 
         
 
         //-----> Autres
         private KeyboardState _keyboardState;
         private SpriteBatch _spriteBatch;
-        public void DeltaTime(GameTime gameTime)
-        {
-            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
-            float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
-        }
 
+        public void playerInitialize(ref Vector2 _positionPerso, ref int _vitessePerso)
+        {
+            
+        }
         public void DeplacementsPerso(float deltaSeconds)
         {
             

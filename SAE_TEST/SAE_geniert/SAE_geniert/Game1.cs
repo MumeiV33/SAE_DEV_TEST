@@ -122,6 +122,8 @@ namespace SAE_geniert
             _graphics.ApplyChanges();
             _player.DeplacementsPerso(deltaSeconds);
             base.Initialize();
+            _positionPerso = _player._positionPerso;
+            _vitessePerso = _player._vitessePerso;
         }
 
         protected override void LoadContent()
@@ -129,11 +131,11 @@ namespace SAE_geniert
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-            //Joueur.LoadContentPerso();
             //-- charmenet du menu de base 
             //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
         }
 
         protected override void Update(GameTime gameTime)
@@ -147,16 +149,16 @@ namespace SAE_geniert
 
 
 
-            //============ INTERACTIONS
+            ////============ INTERACTIONS
 
-            //debug map (collision vers le bas)
-            int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(a);
+            ////debug map (collision vers le bas)
+            //int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            //Console.WriteLine(a);
 
-            //debug autres collisions (collision vers le bas)
-            int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(b);
-            //============ 
+            ////debug autres collisions (collision vers le bas)
+            //int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            //Console.WriteLine(b);
+            ////============ 
 
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))                // Théo range
