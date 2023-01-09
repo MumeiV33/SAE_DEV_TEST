@@ -46,6 +46,7 @@ namespace SAE_geniert
         //private ScreenMenu _screenMenu;
         private SceneMapPrincipale _sceneMapPrincipale;
         private SceneGrotte _sceneGrotte;
+        private ScreenMenu _screenMenu;
         private SpriteBatch _spriteBatch;
 
 
@@ -200,6 +201,7 @@ namespace SAE_geniert
             base.Draw(gameTime);
 
         }
+        
 
         private void LoadGrotte()
         {
