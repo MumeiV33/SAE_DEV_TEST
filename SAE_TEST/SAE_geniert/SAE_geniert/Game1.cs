@@ -59,7 +59,7 @@ namespace SAE_geniert
         public Joueur _player = new Joueur();
         private GameTime gameTime;
 
-
+        public float deltaSeconds;
 
         // Theo doit ranger 
 
@@ -119,7 +119,7 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                            // Theo doit ranger  
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            // Theo doit ranger 
             _graphics.ApplyChanges();
-            _player.DeplacementsPerso(gameTime);
+            _player.DeplacementsPerso(deltaSeconds);
             base.Initialize();
         }
 
@@ -136,9 +136,11 @@ namespace SAE_geniert
 
         protected override void Update(GameTime gameTime)
         {
-            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            
+            deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
+            _player.DeplacementsPerso(deltaSeconds);
             _perso.Update(deltaSeconds); // time écoulé
 
 
