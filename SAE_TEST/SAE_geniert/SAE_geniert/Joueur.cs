@@ -39,7 +39,7 @@ namespace SAE_geniert
             // TODO: Add your update logic here
 
             //-----------------Déplacements-------------------------------------------------------------------
-            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé

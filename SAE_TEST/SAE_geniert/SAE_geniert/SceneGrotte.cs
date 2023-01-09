@@ -114,10 +114,11 @@ namespace SAE_geniert
 
         public override void Update(GameTime gameTime)
         {
+            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             _tiledMapRenderer.Update(gameTime);
 
             //-----------------Déplacements--------
-            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé
