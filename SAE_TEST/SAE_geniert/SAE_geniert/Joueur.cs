@@ -28,11 +28,13 @@ namespace SAE_geniert
         public int _sensPerso;
         public int _vitessePerso;
 
+       
+
         //-----> Autres
         private KeyboardState _keyboardState;
         private SpriteBatch _spriteBatch;
 
-        public void DeplacementsPerso()
+        public void DeplacementsPerso(GameTime gameTime)
         {
             // TODO: Add your update logic here
 

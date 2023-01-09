@@ -27,10 +27,10 @@ namespace SAE_geniert
         
 
         //-----> Perso
-        private Vector2 _positionPerso;
-        private AnimatedSprite _perso;
-        private int _sensPerso;
-        private int _vitessePerso;
+        //private Vector2 _positionPerso;
+        //private AnimatedSprite _perso;
+        //private int _sensPerso;
+        //private int _vitessePerso;
 
 
         //------------------------------------------------------------------> Changement de scene 
@@ -47,6 +47,9 @@ namespace SAE_geniert
         private SceneMapPrincipale _sceneMapPrincipale;
         private SceneGrotte _sceneGrotte;
         private SpriteBatch _spriteBatch;
+
+
+        public Joueur _player = new Joueur();
 
 
 
@@ -108,7 +111,7 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                            // Theo doit ranger  
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            // Theo doit ranger 
             _graphics.ApplyChanges();
-
+            _player.DeplacementsPerso(gameTime);
             base.Initialize();
         }
 
@@ -222,5 +225,11 @@ namespace SAE_geniert
         {
             _screenManager.LoadScreen(new SceneMapPrincipale(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
+
+        private void LoadMenu()
+        {
+            _screenManager.LoadScreen(new scene(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
+
     }
 }

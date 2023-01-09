@@ -70,9 +70,6 @@ namespace SAE_geniert
 
 
             base.LoadContent();
-
-
-            
         }
 
         public override void Update(GameTime gameTime)

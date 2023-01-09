@@ -259,8 +259,6 @@ namespace SAE_geniert
             Game.SpriteBatch.Draw(_perso, _positionPerso);
             Game.SpriteBatch.Draw(_Tortue, _positionTortue);   /*]=-• COPY CODE TORTUE*/
             Game.SpriteBatch.End();
-
-          
         }
 
     }

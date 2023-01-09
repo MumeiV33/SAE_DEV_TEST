@@ -71,7 +71,6 @@ namespace Project1
             _myGame.SpriteBatch.Draw(_textBoutons, new Vector2(0, 0), Color.White);
             _myGame.SpriteBatch.End();
 
-
         }
     }
 
