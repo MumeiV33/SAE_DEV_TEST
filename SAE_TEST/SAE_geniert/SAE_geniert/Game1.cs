@@ -118,7 +118,7 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                            // Theo doit ranger  
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            // Theo doit ranger 
             _graphics.ApplyChanges();
-            _player.DeplacementsPerso(GameTime gameTime);
+            _player.DeplacementsPerso(gameTime);
             base.Initialize();
         }
 
