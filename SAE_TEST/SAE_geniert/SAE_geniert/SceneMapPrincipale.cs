@@ -66,9 +66,6 @@ namespace SAE_geniert
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
 
-            SpriteSheet spriteSheetTortue = Content.Load<SpriteSheet>("Torute.sf", new JsonContentLoader());
-            _Tortue = new AnimatedSprite(spriteSheetTortue);
-
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
             
 
