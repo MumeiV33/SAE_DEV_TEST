@@ -92,11 +92,6 @@ namespace SAE_geniert
 
             _tiledMap = Content.Load<TiledMap>("MapGrotte");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-            SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
-            _perso = new AnimatedSprite(spriteSheet);
-
-            SpriteSheet spriteSheetTortue = Content.Load<SpriteSheet>("Torute.sf", new JsonContentLoader());
-            _Tortue = new AnimatedSprite(spriteSheetTortue);
 
 
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
@@ -136,14 +131,9 @@ namespace SAE_geniert
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
                 //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-
-
-
                 if (!IsCollision(tx, ty))
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
-
-
             }
             //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
 
@@ -172,7 +162,7 @@ namespace SAE_geniert
                     _perso.Play("walkEast");
                 else
                     _perso.Play("walkNorth");
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
+            //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
                 if (!IsCollision(tx, ty))
                     _positionPerso.Y -= walkSpeed;
@@ -194,7 +184,7 @@ namespace SAE_geniert
                     _perso.Play("walkEast");
                 else
                     _perso.Play("walkSouth");
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
+            //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
                 if (!IsCollision(tx, ty))
                     _positionPerso.Y += walkSpeed;
