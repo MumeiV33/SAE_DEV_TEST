@@ -56,6 +56,9 @@ namespace SAE_geniert
         private SpriteBatch _spriteBatch;
 
 
+        public Joueur _player = new Joueur();
+
+
 
         // Theo doit ranger 
 
@@ -115,7 +118,7 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                            // Theo doit ranger  
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            // Theo doit ranger 
             _graphics.ApplyChanges();
-
+            _player.DeplacementsPerso(gameTime);
             base.Initialize();
         }
 
@@ -178,14 +181,16 @@ namespace SAE_geniert
 
                 else if (this.Etat == Etats.Play)
                     _screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
+                else if (this.Etat == Etats.Menu)
+                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+
 
             }
             
 
             //if (Keyboard.GetState().IsKeyDown(Keys.Back))
             //{
-            //    if (this.Etat == Etats.Menu)
-            //        _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            //   
             //}
 
         }
@@ -222,6 +227,17 @@ namespace SAE_geniert
         //    return false;
         //}
 
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.Blue);
+            _tiledMapRenderer.Draw();
+            base.Draw(gameTime);
+
+        }
+        private void LoadMenu()
+        {
+            _screenManager.LoadScreen(new ScreenMenu(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
         
 
         private void LoadGrotte()
@@ -233,5 +249,11 @@ namespace SAE_geniert
         {
             _screenManager.LoadScreen(new SceneMapPrincipale(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
+
+        private void LoadMenu()
+        {
+            _screenManager.LoadScreen(new scene(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
+
     }
 }
