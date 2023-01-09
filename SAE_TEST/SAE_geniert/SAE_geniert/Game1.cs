@@ -46,7 +46,8 @@ namespace SAE_geniert
         //private ScreenMenu _screenMenu;
         private SceneMapPrincipale _sceneMapPrincipale;
         private SceneGrotte _sceneGrotte;
-        
+        private SpriteBatch _spriteBatch;
+
 
 
         // Theo doit ranger 
