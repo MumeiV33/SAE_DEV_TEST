@@ -57,6 +57,7 @@ namespace SAE_geniert
 
 
         public Joueur _player = new Joueur();
+        private GameTime gameTime;
 
 
 
