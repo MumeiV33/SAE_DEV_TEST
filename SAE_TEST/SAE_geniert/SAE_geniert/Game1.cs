@@ -57,9 +57,10 @@ namespace SAE_geniert
 
 
         public Joueur _player = new Joueur();
-        private GameTime gameTime;
+        public SceneMapPrincipale _MapP;
 
-        public float deltaSeconds;
+        private GameTime gameTime;
+        public float deltaSeconds = 1;
 
         // Theo doit ranger 
 
@@ -131,16 +132,17 @@ namespace SAE_geniert
             //Joueur.LoadContentPerso();
             //-- charmenet du menu de base 
             //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
-
+            SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
+            _perso = new AnimatedSprite(spriteSheet);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            
             deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _player.DeplacementsPerso(deltaSeconds);
+
             _perso.Update(deltaSeconds); // time écoulé
 
 
