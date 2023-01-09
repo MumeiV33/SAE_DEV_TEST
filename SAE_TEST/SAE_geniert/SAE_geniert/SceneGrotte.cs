@@ -234,9 +234,6 @@ namespace SAE_geniert
             }
 
 
-
-
-            base.Update(gameTime);
         }
 
 
@@ -258,13 +255,13 @@ namespace SAE_geniert
             GraphicsDevice.Clear(Color.Blue);
             _tiledMapRenderer.Draw();
 
-            SpriteBatch.Begin();
+            Game.SpriteBatch.Begin();
 
-            SpriteBatch.Draw(_perso, _positionPerso);
-            SpriteBatch.Draw(_Tortue, _positionTortue);   /*]=-• COPY CODE TORTUE*/
-            SpriteBatch.End();
+            Game.SpriteBatch.Draw(_perso, _positionPerso);
+            Game.SpriteBatch.Draw(_Tortue, _positionTortue);   /*]=-• COPY CODE TORTUE*/
+            Game.SpriteBatch.End();
 
-            base.Draw(gameTime);
+          
         }
 
     }

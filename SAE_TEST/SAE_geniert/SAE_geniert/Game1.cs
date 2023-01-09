@@ -53,6 +53,7 @@ namespace SAE_geniert
         //private ScreenMenu _screenMenu;
         private SceneMapPrincipale _sceneMapPrincipale;
         private SceneGrotte _sceneGrotte;
+        private ScreenMenu _screenMenu;
         private SpriteBatch _spriteBatch;
 
 
@@ -192,11 +193,23 @@ namespace SAE_geniert
 
 
 
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.Blue);
+            _tiledMapRenderer.Draw();
+
+            SpriteBatch.Begin();
+
+            SpriteBatch.Draw(_perso, _positionPerso);
+            SpriteBatch.End();
+
+            base.Draw(gameTime);
+        }
 
 
 
-       
-        
+
+
         //private bool IsInteraction(ushort x, ushort y)
         //{
         //    // définition de tile qui peut être null (?)
@@ -217,6 +230,7 @@ namespace SAE_geniert
             base.Draw(gameTime);
 
         }
+        
 
         private void LoadGrotte()
         {

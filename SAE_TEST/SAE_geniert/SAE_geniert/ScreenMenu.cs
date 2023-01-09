@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project1
+namespace SAE_geniert
 {
 
 
@@ -17,7 +17,7 @@ namespace Project1
     {
         // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est 
         // défini dans Game1
-        private Game1 _myGame;
+        private new Game1 _myGame;
 
         // texture du menu avec 3 boutons
         private Texture2D _textBoutons;
@@ -29,7 +29,7 @@ namespace Project1
         {
             _myGame = game;
             lesBoutons = new Rectangle[3];
-            lesBoutons[0] = new Rectangle(0, 0, 0, 0);
+            lesBoutons[0] = new Rectangle(700, 365, 190, 70);
             lesBoutons[1] = new Rectangle(300, 265, 190, 70);//oui bouton start
             lesBoutons[2] = new Rectangle(300, 365, 190, 70); // oui exit
 
@@ -62,6 +62,9 @@ namespace Project1
 
                 }
             }
+
+
+
 
         }
         public override void Draw(GameTime gameTime)
