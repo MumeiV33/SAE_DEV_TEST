@@ -124,10 +124,9 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                             
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            
             _graphics.ApplyChanges();
-            _player.DeplacementsPerso(deltaSeconds);
+            _positionPerso = new Vector2(300, 340);
+            
             base.Initialize();
-            _positionPerso = _player._positionPerso;
-            _vitessePerso = _player._vitessePerso;
         }
 
         protected override void LoadContent()
@@ -137,12 +136,12 @@ namespace SAE_geniert
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-            
-           
+
+
             //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
-            SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
-            _perso = new AnimatedSprite(spriteSheet);
+            _player.playerInitialize(_positionPerso, 100, this);
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer);
 
         }
 
@@ -151,9 +150,9 @@ namespace SAE_geniert
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
-            _player.DeplacementsPerso(deltaSeconds);
+            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer);
 
-            _perso.Update(deltaSeconds); // time écoulé
+            _player._perso.Update(deltaSeconds); // time écoulé
 
 
 
@@ -204,6 +203,8 @@ namespace SAE_geniert
             }
 
             _tiledMapRenderer.Update(gameTime);
+
+            //Console.WriteLine(_player._positionPerso);
             base.Update(gameTime);
         }
 
@@ -216,7 +217,7 @@ namespace SAE_geniert
             _tiledMapRenderer.Draw();
 
             SpriteBatch.Begin();
-            SpriteBatch.Draw(_perso, _positionPerso);
+            SpriteBatch.Draw(_player._perso, _player._positionPerso);
             SpriteBatch.End();
 
             base.Draw(gameTime);

@@ -14,11 +14,9 @@ namespace SAE_geniert
     public class Joueur
     {
 
-        private TiledMap _tiledMap;
-        private TiledMapTileLayer mapLayer;
 
-        public Vector2 _positionPerso = new Vector2(300, 340);
-        public int _vitessePerso = 100;
+        public Vector2 _positionPerso;
+        public int _vitessePerso;
         public AnimatedSprite _perso;
         public int _sensPerso;
 
@@ -26,13 +24,15 @@ namespace SAE_geniert
 
         //-----> Autres
         private KeyboardState _keyboardState;
-        private SpriteBatch _spriteBatch;
 
-        public void playerInitialize(ref Vector2 _positionPerso, ref int _vitessePerso)
+        public void playerInitialize(Vector2 positionPerso, int vitessePerso, Game1 _game)
         {
-            
+            _vitessePerso = vitessePerso;
+            _positionPerso = positionPerso;
+            SpriteSheet spriteSheet = _game.Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
+            _perso = new AnimatedSprite(spriteSheet);
         }
-        public void DeplacementsPerso(float deltaSeconds)
+        public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer)
         {
             
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
@@ -55,7 +55,7 @@ namespace SAE_geniert
 
 
 
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
 
@@ -70,7 +70,7 @@ namespace SAE_geniert
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.5);
                 //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
             }
@@ -92,7 +92,7 @@ namespace SAE_geniert
 
 
 
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y -= walkSpeed;
 
             }
@@ -112,11 +112,11 @@ namespace SAE_geniert
                 else
                     _perso.Play("walkSouth");
                 //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y += walkSpeed;
             }
         }
-        private bool IsCollision(ushort x, ushort y)
+        private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {
             // définition de tile qui peut être null (?)
             TiledMapTile? tile;
