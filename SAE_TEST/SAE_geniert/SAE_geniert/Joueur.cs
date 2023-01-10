@@ -115,6 +115,21 @@ namespace SAE_geniert
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y += walkSpeed;
             }
+            //============ INTERACTIONS
+
+            //debug map (collision vers le bas)
+           /* int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(a);
+
+            //debug autres collisions (collision vers le bas)
+            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(b);
+
+            if (a == 1064 && _keyboardState.IsKeyDown(Keys.Up)){
+                Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+                //game.LoadGrotte(); 
+            }
+            //============ */
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {
@@ -126,6 +141,26 @@ namespace SAE_geniert
                 return true;
             return false;
         }
+       /* public void Theo(TiledMapTileLayer _mapLayer, TiledMap _tiledMap)
+        {
+
+            //debug map (collision vers le bas)
+            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(a);
+
+            //debug autres collisions (collision vers le bas)
+            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(b);
+
+            if (a == 1064)
+            {
+                Console.WriteLine("oui");
+
+            }
+            //============ 
+
+        }*/
+
     }
 }
 
