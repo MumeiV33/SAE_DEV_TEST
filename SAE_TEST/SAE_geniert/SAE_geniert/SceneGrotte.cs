@@ -102,6 +102,7 @@ namespace SAE_geniert
         {
 
             _tiledMap = Content.Load<TiledMap>("MapGrotte");
+            
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
 
