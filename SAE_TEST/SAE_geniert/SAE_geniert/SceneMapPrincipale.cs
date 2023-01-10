@@ -59,7 +59,7 @@ namespace SAE_geniert
             
             Console.WriteLine("map");
             _positionPerso = new Vector2(300, 340);
-
+            _player._positionPerso = _positionPerso;
 
             base.Initialize();
         }
@@ -77,7 +77,7 @@ namespace SAE_geniert
 
            
             
-
+            Game.mapLayer = mapLayer;
 
             base.LoadContent();
         }

@@ -22,7 +22,7 @@ namespace SAE_geniert
         private TiledMap _tiledMapTestFin;
         private TiledMap _tiledMapRendererTestFin;
         private TiledMapRenderer _tiledMapRenderer;
-        private TiledMapTileLayer mapLayer;
+        public TiledMapTileLayer mapLayer;
         private TiledMapTileLayer mapLayerTest;
 
 
@@ -127,7 +127,7 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                             
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            
             _graphics.ApplyChanges();
-            _positionPerso = new Vector2(30, 65);
+            
             
 
             base.Initialize();
@@ -147,7 +147,7 @@ namespace SAE_geniert
 
             _player.playerInitialize(_positionPerso, 100, this);
             
-            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer);
+            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer, this);
 
 
 
@@ -158,7 +158,7 @@ namespace SAE_geniert
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
-            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer);
+            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer, this);
 
             _player._perso.Update(deltaSeconds); // time écoulé
 

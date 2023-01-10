@@ -32,7 +32,7 @@ namespace SAE_geniert
             SpriteSheet spriteSheet = _game.Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
         }
-        public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer)
+        public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game)
         {
             
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
@@ -115,7 +115,7 @@ namespace SAE_geniert
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y += walkSpeed;
             }
-           /* //============ INTERACTIONS
+           //============ INTERACTIONS
 
             //debug map (collision vers le bas)
             int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
@@ -127,9 +127,9 @@ namespace SAE_geniert
 
             if (a == 1064 && _keyboardState.IsKeyDown(Keys.Up)){
                 Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUU");
-                //game.LoadGrotte(); 
+                game.LoadGrotte(); 
             }
-            //============ */
+            //============
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {

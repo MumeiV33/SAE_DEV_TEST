@@ -86,10 +86,10 @@ namespace SAE_geniert
             _vitesseTortue = 100;   
             _sensTortue = 1;
 
-            _positionPerso = new Vector2(30, 30);
-            _graphics.ApplyChanges();
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
+
+            _player._positionPerso = new Vector2(30, 60);
             
             base.Initialize();
         }
@@ -110,10 +110,11 @@ namespace SAE_geniert
             _perso = new AnimatedSprite(spriteSheet);
 
             
-            SpriteSheet spriteSheetChainsaw = Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
-            _chainsaw = new AnimatedSprite(spriteSheetChainsaw);
+            /*SpriteSheet spriteSheetChainsaw = Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
+            _chainsaw = new AnimatedSprite(spriteSheetChainsaw);*/
 
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Calque de Tuiles 2");
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Colision");
+            Game.mapLayer = mapLayer;
             
             base.LoadContent();
         }
@@ -143,7 +144,7 @@ namespace SAE_geniert
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
                 //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty, mapLayer))
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
             }
@@ -156,7 +157,7 @@ namespace SAE_geniert
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.5);
              //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty, mapLayer))
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
             }
@@ -176,7 +177,7 @@ namespace SAE_geniert
                     _perso.Play("walkNorth");
             //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty, mapLayer))
                     _positionPerso.Y -= walkSpeed;
             }
 
@@ -198,7 +199,7 @@ namespace SAE_geniert
                     _perso.Play("walkSouth");
             //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
-                if (!IsCollision(tx, ty))
+                if (!IsCollision(tx, ty, mapLayer))
                     _positionPerso.Y += walkSpeed;
             }
 
@@ -209,7 +210,7 @@ namespace SAE_geniert
 
             float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite
-            _Tortue.Update(deltaSecondsTortue); // time écoulé
+            //_Tortue.Update(deltaSecondsTortue); // time écoulé
 
 
             //-->> Gauche
@@ -217,7 +218,7 @@ namespace SAE_geniert
             {
                 ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
                 ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue))
+                if (!IsCollision(txTortue, tyTortue, mapLayer))
                 {
                     _positionTortue.X -= walkSpeedTortue;
                     _Tortue.Play("walkWest");
@@ -233,7 +234,7 @@ namespace SAE_geniert
             {
                 ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
                 ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue))
+                if (!IsCollision(txTortue, tyTortue, mapLayer))
                 {
                     _positionTortue.X += walkSpeedTortue;
                     _Tortue.Play("walkEast");
@@ -248,11 +249,11 @@ namespace SAE_geniert
         }
 
 
-        private bool IsCollision(ushort x, ushort y)
+        private bool IsCollision(ushort x, ushort y, TiledMapTileLayer __mapLayer)
         {
             // définition de tile qui peut être null (?)
             TiledMapTile? tile;
-            if (mapLayer.TryGetTile(x, y, out tile) == false)
+            if (__mapLayer.TryGetTile(x, y, out tile) == false)
                 return false;
             if (!tile.Value.IsBlank)
                 return true;
@@ -267,9 +268,9 @@ namespace SAE_geniert
 
             _tiledMapRenderer.Draw();
 
-            SpriteBatch.Begin();
-            SpriteBatch.Draw(_player._perso, _positionPerso);
-            SpriteBatch.End();
+            Game.SpriteBatch.Begin();
+            Game.SpriteBatch.Draw(Game._player._perso, Game._player._positionPerso);
+            Game.SpriteBatch.End();
         }
 
     }
