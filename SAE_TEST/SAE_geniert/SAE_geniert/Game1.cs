@@ -49,7 +49,7 @@ namespace SAE_geniert
         private Etats etat;
 
         // on définit  2 écrans ( à compléter )
-        //private ScreenMenu _screenMenu;
+        
         private SceneMapPrincipale _sceneMapPrincipale;
         private SceneGrotte _sceneGrotte;
         private ScreenMenu _screenMenu;
@@ -112,7 +112,7 @@ namespace SAE_geniert
 
             //  chargement les 2 écrans 
             _screenMenu = new ScreenMenu(this);
-            //_sceneMapPrincipale = new SceneMapPrincipale(this);
+            _sceneMapPrincipale = new SceneMapPrincipale(this);
 
 
         }
