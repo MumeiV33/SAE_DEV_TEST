@@ -95,8 +95,7 @@ namespace SAE_geniert
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
 
-            SpriteSheet spriteSheetTortue = Content.Load<SpriteSheet>("Torute.sf", new JsonContentLoader());
-            _Tortue = new AnimatedSprite(spriteSheetTortue);
+            
             SpriteSheet spriteSheetChainsaw = Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
             _chainsaw = new AnimatedSprite(spriteSheetChainsaw);
 

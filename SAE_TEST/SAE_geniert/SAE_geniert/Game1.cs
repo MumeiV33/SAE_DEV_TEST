@@ -134,13 +134,13 @@ namespace SAE_geniert
             //-- charmenet du menu de base 
            // _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
+            _tiledMap = Content.Load<TiledMap>("MapGrotte");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
 
             //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             _player.playerInitialize(_positionPerso, 100, this);
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Colision");
             _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer);
 
         }
