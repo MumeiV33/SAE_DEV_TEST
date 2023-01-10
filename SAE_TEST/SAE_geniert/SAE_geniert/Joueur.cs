@@ -115,10 +115,10 @@ namespace SAE_geniert
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y += walkSpeed;
             }
-            //============ INTERACTIONS
+           /* //============ INTERACTIONS
 
             //debug map (collision vers le bas)
-           /* int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(a);
 
             //debug autres collisions (collision vers le bas)
@@ -126,7 +126,7 @@ namespace SAE_geniert
             Console.WriteLine(b);
 
             if (a == 1064 && _keyboardState.IsKeyDown(Keys.Up)){
-                Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+                Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUU");
                 //game.LoadGrotte(); 
             }
             //============ */
@@ -141,9 +141,9 @@ namespace SAE_geniert
                 return true;
             return false;
         }
-       /* public void Theo(TiledMapTileLayer _mapLayer, TiledMap _tiledMap)
+        public bool Theo(TiledMapTileLayer _mapLayer, TiledMap _tiledMap)
         {
-
+            bool res = false;
             //debug map (collision vers le bas)
             int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(a);
@@ -155,11 +155,11 @@ namespace SAE_geniert
             if (a == 1064)
             {
                 Console.WriteLine("oui");
-
+                res = true;
             }
             //============ 
-
-        }*/
+            return res;
+        }
 
     }
 }

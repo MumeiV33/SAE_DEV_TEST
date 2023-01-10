@@ -137,10 +137,13 @@ namespace SAE_geniert
             
            
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            
 
-            
-            
+
+            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
+            _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+
+
             _player.playerInitialize(_positionPerso, 100, this);
             
             _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer);
@@ -159,7 +162,8 @@ namespace SAE_geniert
             _player._perso.Update(deltaSeconds); // time écoulé
 
 
-            
+            if (keyboardState.IsKeyDown(Keys.A))
+                LoadGrotte(); 
 
 
 

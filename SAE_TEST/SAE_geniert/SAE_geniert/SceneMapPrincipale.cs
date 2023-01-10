@@ -115,6 +115,28 @@ namespace SAE_geniert
 
 
         }
+        /* public bool Interaction()
+        {
+            bool res = false;
+
+
+
+            //debug map (collision vers le bas)
+            int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(a);
+
+            //debug autres collisions (collision vers le bas)
+            int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(b);
+
+            if (a == 1064)
+            {
+                Console.WriteLine("oui");
+
+            }
+            //============ 
+            return res; 
+        }*/
 
 
 
