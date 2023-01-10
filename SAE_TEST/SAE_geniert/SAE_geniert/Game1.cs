@@ -127,7 +127,7 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                             
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            
             _graphics.ApplyChanges();
-            
+            _positionPerso = new Vector2(265, 210);
             
 
             base.Initialize();
@@ -247,6 +247,10 @@ namespace SAE_geniert
             _screenManager.LoadScreen(new SceneMapPrincipale(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
        
+
+
+
+        // JEU SUR LE GITHUB // 
 
     }
 }

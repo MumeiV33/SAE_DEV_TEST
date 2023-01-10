@@ -13,7 +13,10 @@ namespace SAE_geniert
 {
     public class Joueur
     {
+        public Joueur()
+        {
 
+        }
 
         public Vector2 _positionPerso;
         public int _vitessePerso;
