@@ -215,13 +215,10 @@ namespace SAE_geniert
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            
-            _tiledMapRenderer.Draw();
 
-            SpriteBatch.Begin();
-            SpriteBatch.Draw(_player._perso, _player._positionPerso);
-            SpriteBatch.End();
+
+
+
 
             base.Draw(gameTime);
         }
