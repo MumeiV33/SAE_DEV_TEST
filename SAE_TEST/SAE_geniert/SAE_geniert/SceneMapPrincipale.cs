@@ -37,6 +37,20 @@ namespace SAE_geniert
         public const int HAUTEUR_FENETRE = 496;
 
 
+        public Joueur _player = new Joueur();
+        private SpriteBatch _spriteBatch;
+        public SpriteBatch SpriteBatch
+        {
+            get
+            {
+                return this._spriteBatch;
+            }
+
+            set
+            {
+                this._spriteBatch = value;
+            }
+        }
 
         public override void Initialize()
         {
@@ -106,24 +120,14 @@ namespace SAE_geniert
 
         public override void Draw(GameTime gameTime)
         {
+
+            GraphicsDevice.Clear(Color.Black);
+
             _tiledMapRenderer.Draw();
-            Game.SpriteBatch.Begin();
 
-            Game.SpriteBatch.Draw(_perso, _positionPerso);
-            
-            Game.SpriteBatch.End();
-
-
-        }
-        /* public bool Interaction()
-        {
-            bool res = false;
-
-
-
-            //debug map (collision vers le bas)
-            int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(a);
+            SpriteBatch.Begin();
+            SpriteBatch.Draw(_player._perso, _positionPerso);
+            SpriteBatch.End();
 
             //debug autres collisions (collision vers le bas)
             int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;

@@ -217,29 +217,19 @@ namespace SAE_geniert
         protected override void Draw(GameTime gameTime)
         {
 
+            GraphicsDevice.Clear(Color.Black);
+
             _tiledMapRenderer.Draw();
-           
+
+            SpriteBatch.Begin();
+            SpriteBatch.Draw(_player._perso, _player._positionPerso);
+            SpriteBatch.End();
+
 
 
             base.Draw(gameTime);
         }
 
-
-
-
-
-        //private bool IsInteraction(ushort x, ushort y)
-        //{
-        //    // définition de tile qui peut être null (?)
-        //    TiledMapTile? tile;
-        //    if (mapLayerTest.TryGetTile(x, y, out tile) == false)
-        //        if (tile.)
-        //        return false;
-        //    if (!tile.Value.IsBlank)
-        //        return true;
-
-        //    return false;
-        //}
 
         private void LoadMenu()
         {
