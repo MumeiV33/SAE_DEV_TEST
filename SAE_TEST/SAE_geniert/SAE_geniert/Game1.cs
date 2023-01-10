@@ -26,8 +26,8 @@ namespace SAE_geniert
         private TiledMapTileLayer mapLayerTest;
 
 
-        private int LARGEUR_FENETRE = 496;
-        private int HAUTEUR_FENETRE = 496;
+        private int LARGEUR_FENETRE = 512;
+        private int HAUTEUR_FENETRE = 512;
 
         //-----> Perso
         //private Joueur _positionPerso;
@@ -35,6 +35,7 @@ namespace SAE_geniert
         //private Joueur _sensPerso;
         //private Joueur _vitessePerso;
         private Vector2 _positionPerso;
+
         private AnimatedSprite _perso;
         private int _sensPerso;
         private int _vitessePerso;
@@ -124,7 +125,7 @@ namespace SAE_geniert
             _graphics.PreferredBackBufferWidth = LARGEUR_FENETRE;                                             
             _graphics.PreferredBackBufferHeight = HAUTEUR_FENETRE;                                            
             _graphics.ApplyChanges();
-            _positionPerso = new Vector2(300, 340);
+            _positionPerso = new Vector2(30, 65);
             
             base.Initialize();
         }
