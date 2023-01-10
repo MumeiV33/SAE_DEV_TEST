@@ -17,6 +17,8 @@ namespace SAE_geniert
         
         public SceneMapPrincipale(Game1 game) : base(game) { }
 
+        private new Game1 Game; 
+
         //------> Map
         public TiledMap _tiledMap;
         public TiledMapRenderer _tiledMapRenderer;
@@ -76,6 +78,15 @@ namespace SAE_geniert
             //debug autres collisions (collision vers le bas)
             int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(b);
+
+            if (a == 1064 && Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+                /*Game1.LoadGrotte();
+                GameScreen.LoadGrotte();*/ 
+            }
+
+
         }
 
 
@@ -95,10 +106,37 @@ namespace SAE_geniert
 
         public override void Draw(GameTime gameTime)
         {
+            _tiledMapRenderer.Draw();
+            Game.SpriteBatch.Begin();
+
+            Game.SpriteBatch.Draw(_perso, _positionPerso);
             
-            
+            Game.SpriteBatch.End();
+
 
         }
+        /* public bool Interaction()
+        {
+            bool res = false;
+
+
+
+            //debug map (collision vers le bas)
+            int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(a);
+
+            //debug autres collisions (collision vers le bas)
+            int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            Console.WriteLine(b);
+
+            if (a == 1064)
+            {
+                Console.WriteLine("oui");
+
+            }
+            //============ 
+            return res; 
+        }*/
 
 
 

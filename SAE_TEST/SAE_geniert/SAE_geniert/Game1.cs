@@ -44,12 +44,12 @@ namespace SAE_geniert
 
         private readonly ScreenManager _screenManager;
         // on définit les différents états possibles du jeu ( à compléter) 
-        public enum Etats { Menu, Controls, Play, Quit };
+        public enum Etats { Menu, Controls, Play, Quit , Grotte };
 
         // on définit un champ pour stocker l'état en cours du jeu
         private Etats etat;
 
-        // on définit  2 écrans ( à compléter )
+        
         
         private SceneMapPrincipale _sceneMapPrincipale;
         private SceneGrotte _sceneGrotte;
@@ -110,12 +110,14 @@ namespace SAE_geniert
 
             // écrant de base Menu 
             //Etat = Etats.Menu;        pour le menu de base 
-            Etat = Etats.Play; 
+            //Etat = Etats.Play;
 
             //  chargement les 2 écrans 
-            
+            //LoadMap(); 
             _sceneMapPrincipale = new SceneMapPrincipale(this);
+            /*_sceneGrotte = new SceneGrotte(this);
             _screenMenu = new ScreenMenu(this);
+            LoadMap();*/
 
 
         }
@@ -127,22 +129,27 @@ namespace SAE_geniert
             _graphics.ApplyChanges();
             _positionPerso = new Vector2(30, 65);
             
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            //-- charmenet du menu de base 
-           // _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            
+           
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            _tiledMap = Content.Load<TiledMap>("MapGrotte");
+
+
+            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
 
 
-            //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             _player.playerInitialize(_positionPerso, 100, this);
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Colision");
+            
             _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer);
+
+
 
         }
 
@@ -156,24 +163,19 @@ namespace SAE_geniert
             _player._perso.Update(deltaSeconds); // time écoulé
 
 
-
-            //============ INTERACTIONS
-            
-            //debug map (collision vers le bas)
-           /* int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(a);
-
-            //debug autres collisions (collision vers le bas)
-            int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(b);*/
-            //============ 
-
-
-                                                                                                                                        // Théo range
+            if (keyboardState.IsKeyDown(Keys.A))
+                LoadGrotte(); 
 
 
 
-            
+            // Théo range
+           
+
+           /* if (etat == Etats.Grotte)
+            {
+                _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
+            }
+
 
             
             //clic souris                                                                                                                           //THEO RANGEEEEEE
@@ -201,8 +203,9 @@ namespace SAE_geniert
             {
                 if (this.Etat == Etats.Menu)
                     _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
-            }
+            }*/
 
+           
             _tiledMapRenderer.Update(gameTime);
 
             //Console.WriteLine(_player._positionPerso);
@@ -213,13 +216,10 @@ namespace SAE_geniert
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            
-            _tiledMapRenderer.Draw();
 
-            SpriteBatch.Begin();
-            SpriteBatch.Draw(_player._perso, _player._positionPerso);
-            SpriteBatch.End();
+
+
+
 
             base.Draw(gameTime);
         }
@@ -247,7 +247,7 @@ namespace SAE_geniert
         }
         
 
-        private void LoadGrotte()
+        public void LoadGrotte()
         {
             _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
@@ -256,6 +256,7 @@ namespace SAE_geniert
         {
             _screenManager.LoadScreen(new SceneMapPrincipale(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
+       
 
     }
 }
