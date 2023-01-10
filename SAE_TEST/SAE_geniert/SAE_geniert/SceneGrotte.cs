@@ -57,12 +57,24 @@ namespace SAE_geniert
 
 
 
-
-
+        public Joueur _player = new Joueur();
+        private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
         public const int LARGEUR_FENETRE = 512;
         public const int HAUTEUR_FENETRE = 512;
 
+        public SpriteBatch SpriteBatch
+        {
+            get
+            {
+                return this._spriteBatch;
+            }
+
+            set
+            {
+                this._spriteBatch = value;
+            }
+        }
 
         public override void Initialize()
         {
@@ -70,13 +82,15 @@ namespace SAE_geniert
             Console.WriteLine("grotte");
 
 
-            _positionTortue = new Vector2(300, 300);   /*]=-• COPY CODE TORTUE*/
-            _vitesseTortue = 100;   /*]=-• COPY CODE TORTUE*/
-            _sensTortue = 1;   /*]=-• COPY CODE TORTUE*/
+            _positionTortue = new Vector2(300, 300);   
+            _vitesseTortue = 100;   
+            _sensTortue = 1;
+
+            _positionPerso = new Vector2(30, 30);
             _graphics.ApplyChanges();
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
-            _positionPerso = new Vector2(30, 30);
+            _player._positionPerso = new Vector2(30, 30);
             
             base.Initialize();
         }
@@ -249,14 +263,13 @@ namespace SAE_geniert
 
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Blue);
+            GraphicsDevice.Clear(Color.Black);
+
             _tiledMapRenderer.Draw();
 
-            Game.SpriteBatch.Begin();
-
-            Game.SpriteBatch.Draw(_perso, _positionPerso);
-            Game.SpriteBatch.Draw(_Tortue, _positionTortue);   /*]=-• COPY CODE TORTUE*/
-            Game.SpriteBatch.End();
+            SpriteBatch.Begin();
+            SpriteBatch.Draw(_player._perso, _positionPerso);
+            SpriteBatch.End();
         }
 
     }

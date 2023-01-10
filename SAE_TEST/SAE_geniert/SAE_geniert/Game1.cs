@@ -212,13 +212,10 @@ namespace SAE_geniert
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            
-            _tiledMapRenderer.Draw();
 
-            SpriteBatch.Begin();
-            SpriteBatch.Draw(_player._perso, _player._positionPerso);
-            SpriteBatch.End();
+
+
+
 
             base.Draw(gameTime);
         }
@@ -245,7 +242,6 @@ namespace SAE_geniert
             _screenManager.LoadScreen(new ScreenMenu(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
         
-
         private void LoadGrotte()
         {
             _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
