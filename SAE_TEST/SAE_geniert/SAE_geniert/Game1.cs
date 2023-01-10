@@ -55,7 +55,7 @@ namespace SAE_geniert
         private ScreenMenu _screenMenu;
         private SpriteBatch _spriteBatch;
 
-
+        
         public Joueur _player = new Joueur();
         
 
@@ -143,6 +143,7 @@ namespace SAE_geniert
             _perso = new AnimatedSprite(spriteSheet);
             //_tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             //mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+
         }
 
         protected override void Update(GameTime gameTime)

@@ -13,13 +13,14 @@ namespace SAE_geniert
 {
     public class SceneMapPrincipale : GameScreen
     {
-        private new Game1 Game => (Game1)base.Game;
+        //private new Game1 Game => (Game1)base.Game;
+        
         public SceneMapPrincipale(Game1 game) : base(game) { }
 
         //------> Map
-        private TiledMap _tiledMap;
-        private TiledMapRenderer _tiledMapRenderer;
-        private TiledMapTileLayer mapLayer;
+        public TiledMap _tiledMap;
+        public TiledMapRenderer _tiledMapRenderer;
+        public TiledMapTileLayer mapLayer;
 
         //-----> Perso
         private Vector2 _positionPerso;
@@ -95,7 +96,7 @@ namespace SAE_geniert
         public override void Draw(GameTime gameTime)
         {
             
-            Game.SpriteBatch.Begin();
+            
 
         }
 
