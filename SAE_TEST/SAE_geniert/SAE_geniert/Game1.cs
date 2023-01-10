@@ -131,13 +131,17 @@ namespace SAE_geniert
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            //_tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
-            _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-            //-- charmenet du menu de base 
             _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
-            //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+            
+            
+            
+            //-- charmenet du menu de base 
+            
+            
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
+            //_tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             //mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
         }
 
