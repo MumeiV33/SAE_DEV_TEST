@@ -1,4 +1,4 @@
-﻿ using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Tiled;
@@ -90,7 +90,6 @@ namespace SAE_geniert
             _graphics.ApplyChanges();
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
-            _player._positionPerso = new Vector2(30, 30);
             
             base.Initialize();
         }

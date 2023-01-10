@@ -35,6 +35,20 @@ namespace SAE_geniert
         public const int HAUTEUR_FENETRE = 496;
 
 
+        public Joueur _player = new Joueur();
+        private SpriteBatch _spriteBatch;
+        public SpriteBatch SpriteBatch
+        {
+            get
+            {
+                return this._spriteBatch;
+            }
+
+            set
+            {
+                this._spriteBatch = value;
+            }
+        }
 
         public override void Initialize()
         {
@@ -95,8 +109,14 @@ namespace SAE_geniert
 
         public override void Draw(GameTime gameTime)
         {
-            
-            
+
+            GraphicsDevice.Clear(Color.Black);
+
+            _tiledMapRenderer.Draw();
+
+            SpriteBatch.Begin();
+            SpriteBatch.Draw(_player._perso, _positionPerso);
+            SpriteBatch.End();
 
         }
 
