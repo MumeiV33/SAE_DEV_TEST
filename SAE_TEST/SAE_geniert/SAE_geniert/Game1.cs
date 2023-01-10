@@ -26,8 +26,8 @@ namespace SAE_geniert
         private TiledMapTileLayer mapLayerTest;
 
 
-        private int LARGEUR_FENETRE = 800;
-        private int HAUTEUR_FENETRE = 500;
+        private int LARGEUR_FENETRE = 496;
+        private int HAUTEUR_FENETRE = 496;
 
         //-----> Perso
         //private Joueur _positionPerso;
