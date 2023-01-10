@@ -55,7 +55,7 @@ namespace SAE_geniert
         private ScreenMenu _screenMenu;
         private SpriteBatch _spriteBatch;
 
-
+        
         public Joueur _player = new Joueur();
         
 
@@ -143,6 +143,7 @@ namespace SAE_geniert
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+
         }
 
         protected override void Update(GameTime gameTime)
