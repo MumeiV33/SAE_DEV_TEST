@@ -132,15 +132,15 @@ namespace SAE_geniert
             //debug autres collisions (collision vers le bas)
             int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(b);
-
+            /*
             if (a == 1064)
             {
                 Console.WriteLine("oui");
 
             }
             //============ 
-            return res; 
-        }*/
+            return res; */
+        }
 
 
 
