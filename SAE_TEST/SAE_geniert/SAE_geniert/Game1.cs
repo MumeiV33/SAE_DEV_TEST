@@ -217,8 +217,8 @@ namespace SAE_geniert
         protected override void Draw(GameTime gameTime)
         {
 
-
-
+            _tiledMapRenderer.Draw();
+           
 
 
             base.Draw(gameTime);
