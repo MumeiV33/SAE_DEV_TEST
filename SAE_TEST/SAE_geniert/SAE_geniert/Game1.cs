@@ -108,11 +108,13 @@ namespace SAE_geniert
             Components.Add(_screenManager);
 
             // écrant de base Menu 
-            Etat = Etats.Menu;
+            //Etat = Etats.Menu;        pour le menu de base 
+            Etat = Etats.Play; 
 
             //  chargement les 2 écrans 
-            _screenMenu = new ScreenMenu(this);
+            
             _sceneMapPrincipale = new SceneMapPrincipale(this);
+            _screenMenu = new ScreenMenu(this);
 
 
         }
@@ -130,15 +132,17 @@ namespace SAE_geniert
 
         protected override void LoadContent()
         {
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
-            //_tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
-            _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             //-- charmenet du menu de base 
-            _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+           // _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
+            _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+            
+           
             //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
-            //mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
         }
 
         protected override void Update(GameTime gameTime)
@@ -192,10 +196,11 @@ namespace SAE_geniert
             }
 
 
-            //if (Keyboard.GetState().IsKeyDown(Keys.Back))
-            //{
-            //   
-            //}
+            if (Keyboard.GetState().IsKeyDown(Keys.Back))
+            {
+                if (this.Etat == Etats.Menu)
+                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            }
 
             _tiledMapRenderer.Update(gameTime);
             base.Update(gameTime);
@@ -206,6 +211,7 @@ namespace SAE_geniert
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+            
             _tiledMapRenderer.Draw();
 
             SpriteBatch.Begin();

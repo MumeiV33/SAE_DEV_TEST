@@ -17,7 +17,7 @@ namespace SAE_geniert
     {
         // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est 
         // défini dans Game1
-        private new Game1 _myGame;
+        private new Game1 Game;
 
         // texture du menu avec 3 boutons
         private Texture2D _textBoutons;
@@ -29,7 +29,7 @@ namespace SAE_geniert
 
         public ScreenMenu(Game1 game) : base(game)
         {
-            _myGame = game;
+            Game = game;
             lesBoutons = new Rectangle[3];
             lesBoutons[0] = new Rectangle(700, 365, 190, 70);
             lesBoutons[1] = new Rectangle(300, 265, 190, 70);//oui bouton start
@@ -54,11 +54,11 @@ namespace SAE_geniert
                     {
                         // on change l'état défini dans Game1 en fonction du bouton cliqué
                         if (i == 0)
-                            _myGame.Etat = Game1.Etats.Controls;
+                            Game.Etat = Game1.Etats.Controls;
                         else if (i == 1)
-                            _myGame.Etat = Game1.Etats.Play;
+                            Game.Etat = Game1.Etats.Play;
                         else
-                            _myGame.Etat = Game1.Etats.Quit;
+                            Game.Etat = Game1.Etats.Quit;
                         break;
                     }
 
@@ -72,11 +72,13 @@ namespace SAE_geniert
         public override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            _myGame.SpriteBatch.Begin();
-            _myGame.SpriteBatch.Draw(_textBoutons, new Vector2(0, 0), Color.White);
-            _myGame.SpriteBatch.End();
+            Game.SpriteBatch.Begin();
+            Game.SpriteBatch.Draw(_textBoutons, new Vector2(0, 0), Color.White);
+            Game.SpriteBatch.End();
 
         }
+
+      
     }
 
 }
