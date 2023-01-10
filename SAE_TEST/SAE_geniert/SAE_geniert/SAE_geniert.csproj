@@ -33,9 +33,6 @@
     <None Update="Content\MapGrotte.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Map_Generale_SilverWorld.tmx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="Content\TextureGrotteAutre.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
