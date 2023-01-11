@@ -30,10 +30,6 @@ namespace SAE_geniert
         private int HAUTEUR_FENETRE = 512;
 
         //-----> Perso
-        //private Joueur _positionPerso;
-        //private Joueur _perso;
-        //private Joueur _sensPerso;
-        //private Joueur _vitessePerso;
         private Vector2 _positionPerso;
 
         private AnimatedSprite _perso;
