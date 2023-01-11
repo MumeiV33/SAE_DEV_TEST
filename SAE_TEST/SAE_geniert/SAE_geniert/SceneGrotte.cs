@@ -55,6 +55,7 @@ namespace SAE_geniert
         //-----> Autres
         private KeyboardState _keyboardState;
         float deltaSeconds = 1;
+        float niveauGravite = 4;
 
         public Enemis _Enemis = new Enemis();
 
@@ -142,84 +143,23 @@ namespace SAE_geniert
             _Enemis.DeplacementsChainsaw(deltaSecondsTortue, _tiledMap, _mapLayer, this);
 
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            float walkSpeed = deltaSeconds * _player._vitessePerso; // Vitesse de déplacement du sprite
 
-            //-----------------Déplacements--------
-
-            float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
-            _perso.Update(deltaSeconds); // time écoulé
-            _keyboardState = Keyboard.GetState();
-
-            //-=-=-=-=-=-=-=-=-=-DROITE-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements---------
-            if (keyboardState.IsKeyDown(Keys.Right))
+            //=================GRAVITY=================\\
+            if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
             {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-                if (!IsCollision(tx, ty, _mapLayer))
-                    _positionPerso.X += walkSpeed;
-                _perso.Play("walkEast");
+                ushort txGravity = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
+                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight+1);
+
+                if (!IsCollision(txGravity, tyGravity, _mapLayer))
+                    Game._player._positionPerso.Y += niveauGravite;
+                _perso.Play("idle");
             }
-            //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements-------------
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 0.5);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.5);
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-
-                if (!IsCollision(tx, ty, _mapLayer))
-                    _positionPerso.X -= walkSpeed;
-                _perso.Play("walkWest");
-            }
-            //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements----------
-            if (keyboardState.IsKeyDown(Keys.Up))
-            {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight);
-
-                if (_keyboardState.IsKeyDown(Keys.Left))
-                    _perso.Play("walkWest");
-                else if (_keyboardState.IsKeyDown(Keys.Right))
-                    _perso.Play("walkEast");
-                else
-                    _perso.Play("walkNorth");
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-
-                if (!IsCollision(tx, ty, _mapLayer))
-                    _positionPerso.Y -= walkSpeed;
-            }
-
-
-            //-=-=-=-=-=-=-=-=-=-BAS-=-=-=-=-=-=-=-=-=-\\
-
             //-----------------Déplacements--------
 
-            if (keyboardState.IsKeyDown(Keys.Down))
-            {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
-
-                if (_keyboardState.IsKeyDown(Keys.Left))
-                    _perso.Play("walkWest");
-                else if (_keyboardState.IsKeyDown(Keys.Right))
-                    _perso.Play("walkEast");
-                else
-                    _perso.Play("walkSouth");
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-
-                if (!IsCollision(tx, ty, _mapLayer))
-                    _positionPerso.Y += walkSpeed;
-            }
-
-
-
-
+            
+            _perso.Update(deltaSeconds); // time écoulé
 
 
 
