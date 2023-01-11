@@ -133,6 +133,14 @@ namespace SAE_geniert
                 game.LoadGrotte(); 
             }
             //============
+
+
+            /*if (a == 401)
+            {
+                Console.WriteLine("Map"); ////////////////////////////////////////////////////////////////////////////////////////
+                game.LoadMap();
+            }*/
+               
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {
@@ -144,7 +152,7 @@ namespace SAE_geniert
                 return true;
             return false;
         }
-        public bool Theo(TiledMapTileLayer _mapLayer, TiledMap _tiledMap)
+        /*public bool Theo(TiledMapTileLayer _mapLayer, TiledMap _tiledMap)
         {
             bool res = false;
             //debug map (collision vers le bas)
@@ -162,7 +170,7 @@ namespace SAE_geniert
             }
             //============ 
             return res;
-        }
+        }*/
 
     }
 }

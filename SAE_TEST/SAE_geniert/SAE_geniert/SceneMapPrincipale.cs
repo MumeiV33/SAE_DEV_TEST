@@ -13,11 +13,11 @@ namespace SAE_geniert
 {
     public class SceneMapPrincipale : GameScreen
     {
-        //private new Game1 Game => (Game1)base.Game;
+        private new Game1 Game => (Game1)base.Game;
         
         public SceneMapPrincipale(Game1 game) : base(game) { }
 
-        private new Game1 Game; 
+       // private new Game1 Game; 
 
         //------> Map
         public TiledMap _tiledMap;
@@ -60,12 +60,15 @@ namespace SAE_geniert
             Console.WriteLine("map");
             _positionPerso = new Vector2(300, 340);
             _player._positionPerso = _positionPerso;
-
+            
             base.Initialize();
         }
 
         public override void LoadContent()
         {
+
+            _positionPerso.X = 300;
+            _positionPerso.Y = 340;
 
             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
@@ -84,7 +87,7 @@ namespace SAE_geniert
 
         public override void Update(GameTime gameTime)
         {
-            //debug map (collision vers le bas)
+           /* //debug map (collision vers le bas)
             int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(a);
 
@@ -97,8 +100,8 @@ namespace SAE_geniert
             {
                 Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
                 /*Game1.LoadGrotte();
-                GameScreen.LoadGrotte();*/ 
-            }
+                GameScreen.LoadGrotte();
+            }*/
 
 
         }
@@ -125,14 +128,14 @@ namespace SAE_geniert
 
             _tiledMapRenderer.Draw();
 
-            SpriteBatch.Begin();
-            SpriteBatch.Draw(_player._perso, _positionPerso);
-            SpriteBatch.End();
+            Game.SpriteBatch.Begin();
+            Game.SpriteBatch.Draw(Game._player._perso,Game._player._positionPerso);
+            Game.SpriteBatch.End();
 
-            //debug autres collisions (collision vers le bas)
+            /*//debug autres collisions (collision vers le bas)
             int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(b);
-            /*
+            
             if (a == 1064)
             {
                 Console.WriteLine("oui");

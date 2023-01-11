@@ -55,6 +55,7 @@ namespace SAE_geniert
         private SceneGrotte _sceneGrotte;
         private ScreenMenu _screenMenu;
         private SpriteBatch _spriteBatch;
+        private SceneExplication _sceneFin; 
 
         
         public Joueur _player = new Joueur();
@@ -163,49 +164,56 @@ namespace SAE_geniert
             _player._perso.Update(deltaSeconds); // time écoulé
 
 
-            if (keyboardState.IsKeyDown(Keys.A))
-                LoadGrotte(); 
+            if (keyboardState.IsKeyDown(Keys.NumPad2))
+                LoadGrotte();
+
+            if (keyboardState.IsKeyDown(Keys.NumPad1))
+                LoadMap();
+
+            if (keyboardState.IsKeyDown(Keys.NumPad3))
+                LoadExplication();
+
 
 
 
             // Théo range
-           
-
-           /* if (etat == Etats.Grotte)
-            {
-                _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
-            }
 
 
-            
-            //clic souris                                                                                                                           //THEO RANGEEEEEE
-            //-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-            // On teste le clic de souris et l'état pour savoir quelle action faire 
-            MouseState _mouseState = Mouse.GetState();
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
-                // Attention, l'état a été mis à jour directement par l'écran en question
-                if (this.Etat == Etats.Quit)
-                    Exit();
-
-                else if (this.Etat == Etats.Play)
-                    _screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
-                else if (this.Etat == Etats.Menu)
-                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            /* if (etat == Etats.Grotte)
+             {
+                 _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
+             }
 
 
-            }
+
+             //clic souris                                                                                                                           //THEO RANGEEEEEE
+             //-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*
+             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                 Exit();
+             // On teste le clic de souris et l'état pour savoir quelle action faire 
+             MouseState _mouseState = Mouse.GetState();
+             if (_mouseState.LeftButton == ButtonState.Pressed)
+             {
+                 // Attention, l'état a été mis à jour directement par l'écran en question
+                 if (this.Etat == Etats.Quit)
+                     Exit();
+
+                 else if (this.Etat == Etats.Play)
+                     _screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
+                 else if (this.Etat == Etats.Menu)
+                     _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
 
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Back))
-            {
-                if (this.Etat == Etats.Menu)
-                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
-            }*/
+             }
 
-           
+
+             if (Keyboard.GetState().IsKeyDown(Keys.Back))
+             {
+                 if (this.Etat == Etats.Menu)
+                     _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+             }*/
+
+
             _tiledMapRenderer.Update(gameTime);
 
             //Console.WriteLine(_player._positionPerso);
@@ -242,11 +250,15 @@ namespace SAE_geniert
             _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
-        private void LoadMap()
+        public void LoadMap()
         {
             _screenManager.LoadScreen(new SceneMapPrincipale(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
-       
+        public void LoadExplication()
+        {
+            _screenManager.LoadScreen(new SceneExplication(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
+
 
 
 
