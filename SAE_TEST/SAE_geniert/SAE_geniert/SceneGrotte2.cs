@@ -29,10 +29,11 @@ namespace SAE_geniert
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
         private int _vitessePerso;
-
+        //--> RECTANGLE DE SES MORTS
+        public Vector2 persoPos;
 
         //-----> Tortue
-        public Enemis _Enemis = new Enemis();
+
 
         private Vector2 _positionTortue;
         private AnimatedSprite _Tortue;
@@ -53,8 +54,10 @@ namespace SAE_geniert
 
         //-----> Autres
         private KeyboardState _keyboardState;
-        public float niveauGravite = 1;
-        public float niveauSaut = 8;
+        float deltaSeconds = 1;
+        float niveauGravite = 4;
+        public float niveauSaut = 90;
+        public Enemis _Enemis = new Enemis();
 
         private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
@@ -77,7 +80,7 @@ namespace SAE_geniert
         public override void Initialize()
         {
 
-            Console.WriteLine("grotte2");
+            Console.WriteLine("grotte");
 
 
             _positionTortue = _Enemis._positionTortue = new Vector2(275, 360);
@@ -93,6 +96,8 @@ namespace SAE_geniert
 
             Game._player._positionPerso = new Vector2(30, 60);
 
+
+
             base.Initialize();
         }
 
@@ -102,8 +107,11 @@ namespace SAE_geniert
 
         public override void LoadContent()
         {
+            //persoPos.X = Window.ClientBounds.Width - 20;
+            //persoPos.Y = (Window.ClientBounds.Height / 2) - 50;
 
-            _tiledMap = Content.Load<TiledMap>("MapGrotte2");
+
+            _tiledMap = Content.Load<TiledMap>("MapGrotte");
 
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
@@ -121,6 +129,8 @@ namespace SAE_geniert
             Game.mapLayer = _mapLayer;
 
 
+
+
             base.LoadContent();
         }
 
@@ -135,6 +145,7 @@ namespace SAE_geniert
             _keyboardState = Keyboard.GetState();
             _tiledMapRenderer.Update(gameTime);
 
+            //Rectangle persoRect = new Rectangle((int)_positionPerso.X);
 
             float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                   Tortue
             float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite        tortue      
@@ -152,21 +163,23 @@ namespace SAE_geniert
 
             KeyboardState keyboardState = Keyboard.GetState();
             //=================GRAVITY=================\\
-            if (!keyboardState.IsKeyDown(Keys.Space))
+            if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
             {
                 ushort txGravity = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
-                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 0.5);
+                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 1);
 
                 if (!IsCollision(txGravity, tyGravity, _mapLayer))
-                { 
-                    Game._player._positionPerso.Y += niveauGravite;
+                {
+                    Game._player._positionPerso.Y += (float)niveauGravite;
                     _perso.Play("idle");
                 }
                 if (keyboardState.IsKeyDown(Keys.Space) && IsCollision(txGravity, tyGravity, _mapLayer))
-                    Game._player._positionPerso.Y -= niveauSaut;
+                    Game._player._positionPerso.Y -= (float)niveauSaut;
 
-                
+
             }
+
+
 
 
 
@@ -184,7 +197,10 @@ namespace SAE_geniert
             if (__mapLayer.TryGetTile(x, y, out tile) == false)
                 return false;
             if (!tile.Value.IsBlank)
+            {
+                //active la gravite
                 return true;
+            }
             return false;
         }
 
