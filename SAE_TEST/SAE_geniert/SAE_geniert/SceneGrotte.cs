@@ -134,10 +134,9 @@ namespace SAE_geniert
 
         public override void Update(GameTime gameTime)
         {
-            
-            
+
+            _keyboardState = Keyboard.GetState();
             _tiledMapRenderer.Update(gameTime);
-            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
 
 
             float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                   Tortue
@@ -151,12 +150,25 @@ namespace SAE_geniert
             _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
             _Enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
 
+            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            float walkSpeed = deltaSeconds * _player._vitessePerso; // Vitesse de déplacement du sprite
+
+            KeyboardState keyboardState = Keyboard.GetState();
+            //=================GRAVITY=================\\
+            if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
+            {
+                ushort txGravity = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
+                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 1);
+
+                if (!IsCollision(txGravity, tyGravity, _mapLayer))
+                    Game._player._positionPerso.Y += niveauGravite;
+                _perso.Play("idle");
+            }
+
 
             
-            
-            KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé
-            _keyboardState = Keyboard.GetState();
+            
 
             
         }

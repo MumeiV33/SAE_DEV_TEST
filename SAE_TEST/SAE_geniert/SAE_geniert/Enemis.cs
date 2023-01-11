@@ -74,7 +74,7 @@ namespace SAE_geniert
             //-->> Droite
             if (_sensTortue == 0)
             {
-                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth -0.5);
+                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
                 ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
                 animation = "walkEast";
                 
