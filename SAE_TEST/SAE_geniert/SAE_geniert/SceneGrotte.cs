@@ -55,6 +55,7 @@ namespace SAE_geniert
         //-----> Autres
         private KeyboardState _keyboardState;
         float deltaSeconds = 1;
+        float niveauGravite = 4;
 
         public Enemis _Enemis = new Enemis();
 
@@ -153,9 +154,6 @@ namespace SAE_geniert
 
             
             
-            //-----------------Déplacements--------
-
-            float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé
             _keyboardState = Keyboard.GetState();
