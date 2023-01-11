@@ -40,10 +40,11 @@ namespace SAE_geniert
         private int _vitesseTortue;
 
         //-----> chainsaw
+
         private Vector2 _positionChainsaw;
-        private AnimatedSprite _chainsaw;
+        private AnimatedSprite _Chainsaw;
         private int _sensChainsaw;
-        private int _vitesseChainsaw;
+        public int _vitesseChainsaw;
 
 
         private readonly ScreenManager _screenManager;
@@ -52,7 +53,7 @@ namespace SAE_geniert
 
         //-----> Autres
         private KeyboardState _keyboardState;
-
+        public float niveauGravite = 4;
 
         private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
@@ -78,14 +79,18 @@ namespace SAE_geniert
             Console.WriteLine("grotte");
 
 
-            _Enemis._positionTortue = new Vector2(275, 360);
-            _Enemis._vitesseTortue = 100;
-            _Enemis._sensTortue = 1;
+            _positionTortue = _Enemis._positionTortue = new Vector2(275, 360);
+            _vitesseTortue = _Enemis._vitesseTortue = 100;
+            _sensTortue = _Enemis._sensTortue = 0;
+
+            _positionChainsaw = _Enemis._positionChainsaw = new Vector2(103, 481);
+            _vitesseChainsaw = _Enemis._vitesseChainsaw = 100;
+            _sensChainsaw = _Enemis._sensChainsaw = 1;
 
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-           
+            Game._player._positionPerso = new Vector2(30, 60);
 
             base.Initialize();
         }
@@ -97,7 +102,7 @@ namespace SAE_geniert
         public override void LoadContent()
         {
 
-            _tiledMap = Content.Load<TiledMap>("MapGrotte2");
+            _tiledMap = Content.Load<TiledMap>("MapGrotte");
 
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
@@ -108,12 +113,12 @@ namespace SAE_geniert
             SpriteSheet spriteSheetTortue = Content.Load<SpriteSheet>("Torute.sf", new JsonContentLoader());
             _Tortue = new AnimatedSprite(spriteSheetTortue);
 
-
-            /*SpriteSheet spriteSheetChainsaw = Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
-            _chainsaw = new AnimatedSprite(spriteSheetChainsaw);*/
+            SpriteSheet spriteSheetChainsaw = Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
+            _Chainsaw = new AnimatedSprite(spriteSheetChainsaw);
 
             _mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Colision");
             Game.mapLayer = _mapLayer;
+
 
             base.LoadContent();
         }
@@ -125,125 +130,41 @@ namespace SAE_geniert
 
         public override void Update(GameTime gameTime)
         {
+
+            _keyboardState = Keyboard.GetState();
             _tiledMapRenderer.Update(gameTime);
 
-            
-            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
-            float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite
+
+            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                   Tortue
+            float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite        tortue      
+
+
+            float deltaSecondsChainsaw = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                 Chainsaw
+            float walkSpeedChainsaw = deltaSecondsChainsaw * _vitesseChainsaw; // Vitesse de déplacement du sprite    Chainsaw
+
+
             _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
+            _Enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
 
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            float walkSpeed = deltaSeconds * _player._vitessePerso; // Vitesse de déplacement du sprite
 
-            //-----------------Déplacements--------
-
-            float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
+            //=================GRAVITY=================\\
+            if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
+            {
+                ushort txGravity = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
+                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 1);
+
+                if (!IsCollision(txGravity, tyGravity, _mapLayer))
+                    Game._player._positionPerso.Y += niveauGravite;
+                _perso.Play("idle");
+            }
+
+
+
             _perso.Update(deltaSeconds); // time écoulé
-            _keyboardState = Keyboard.GetState();
 
-            //-=-=-=-=-=-=-=-=-=-DROITE-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements---------
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-                if (!IsCollision(tx, ty, _mapLayer))
-                    _positionPerso.X += walkSpeed;
-                _perso.Play("walkEast");
-            }
-            //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements-------------
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 0.5);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.5);
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-
-                if (!IsCollision(tx, ty, _mapLayer))
-                    _positionPerso.X -= walkSpeed;
-                _perso.Play("walkWest");
-            }
-            //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements----------
-            if (keyboardState.IsKeyDown(Keys.Up))
-            {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight);
-
-                if (_keyboardState.IsKeyDown(Keys.Left))
-                    _perso.Play("walkWest");
-                else if (_keyboardState.IsKeyDown(Keys.Right))
-                    _perso.Play("walkEast");
-                else
-                    _perso.Play("walkNorth");
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-
-                if (!IsCollision(tx, ty, _mapLayer))
-                    _positionPerso.Y -= walkSpeed;
-            }
-
-
-            //-=-=-=-=-=-=-=-=-=-BAS-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements--------
-
-            if (keyboardState.IsKeyDown(Keys.Down))
-            {
-                ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 1);
-
-                if (_keyboardState.IsKeyDown(Keys.Left))
-                    _perso.Play("walkWest");
-                else if (_keyboardState.IsKeyDown(Keys.Right))
-                    _perso.Play("walkEast");
-                else
-                    _perso.Play("walkSouth");
-                //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-
-                if (!IsCollision(tx, ty, _mapLayer))
-                    _positionPerso.Y += walkSpeed;
-            }
-
-
-
-
-
-
-            //-->> Gauche
-            if (_sensTortue == 1)
-            {
-                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
-                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue, _mapLayer))
-                {
-                    _positionTortue.X -= walkSpeedTortue;
-                    _Tortue.Play("walkWest");
-                }
-                else
-                {
-                    _sensTortue = 0;
-                }
-
-            }
-            //-->> Droite
-            if (_sensTortue == 0)
-            {
-                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
-                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue, _mapLayer))
-                {
-                    _positionTortue.X += walkSpeedTortue;
-                    _Tortue.Play("walkEast");
-                }
-                else
-                {
-                    _sensTortue = 1;
-                }
-            }
 
 
         }
@@ -270,6 +191,7 @@ namespace SAE_geniert
 
             Game.SpriteBatch.Begin();
             Game.SpriteBatch.Draw(_Tortue, _Enemis._positionTortue);
+            Game.SpriteBatch.Draw(_Chainsaw, _Enemis._positionChainsaw);
             Game.SpriteBatch.Draw(Game._player._perso, Game._player._positionPerso);
             Game.SpriteBatch.End();
         }
