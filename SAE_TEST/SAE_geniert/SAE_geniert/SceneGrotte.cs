@@ -22,12 +22,8 @@ namespace SAE_geniert
         //------> Map
         private GraphicsDeviceManager _graphics;
         private TiledMap _tiledMap;
-        private TiledMap _tiledMapTest;
-        private TiledMap _tiledMapTestFin;
-        private TiledMap _tiledMapRendererTestFin;
         private TiledMapRenderer _tiledMapRenderer;
-        private TiledMapTileLayer mapLayer;
-        private TiledMapTileLayer mapLayerTest;
+        private TiledMapTileLayer _mapLayer;
 
         //-----> Perso
         public Joueur _player = new Joueur();
@@ -57,8 +53,8 @@ namespace SAE_geniert
         
         //-----> Autres
         private KeyboardState _keyboardState;
+        float deltaSeconds = 1;
 
-        
         private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
         public const int LARGEUR_FENETRE = 512;
@@ -83,7 +79,7 @@ namespace SAE_geniert
             Console.WriteLine("grotte");
 
 
-            _Enemis._positionTortue = new Vector2(30, 60);
+            _Enemis._positionTortue = new Vector2(275, 360);
             _Enemis._vitesseTortue = 100;
             _Enemis._sensTortue = 1;
 
@@ -119,9 +115,10 @@ namespace SAE_geniert
             /*SpriteSheet spriteSheetChainsaw = Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
             _chainsaw = new AnimatedSprite(spriteSheetChainsaw);*/
 
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Colision");
-            Game.mapLayer = mapLayer;
+            _mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Colision");
+            Game.mapLayer = _mapLayer;
             
+
             base.LoadContent();
         }
 
@@ -132,11 +129,17 @@ namespace SAE_geniert
 
         public override void Update(GameTime gameTime)
         {
-            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             _tiledMapRenderer.Update(gameTime);
+            
+
+            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite
+            _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
+
+            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
 
             //-----------------Déplacements--------
-            
+
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
             _perso.Update(deltaSeconds); // time écoulé
@@ -150,7 +153,7 @@ namespace SAE_geniert
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
                 //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
-                if (!IsCollision(tx, ty, mapLayer))
+                if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
             }
@@ -163,7 +166,7 @@ namespace SAE_geniert
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.5);
              //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
-                if (!IsCollision(tx, ty, mapLayer))
+                if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
             }
@@ -183,7 +186,7 @@ namespace SAE_geniert
                     _perso.Play("walkNorth");
             //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
-                if (!IsCollision(tx, ty, mapLayer))
+                if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y -= walkSpeed;
             }
 
@@ -205,18 +208,14 @@ namespace SAE_geniert
                     _perso.Play("walkSouth");
             //-^-^-^-^-^-^-^-^--COLLISIONS--^-^-^-^-^-^-^-^
 
-                if (!IsCollision(tx, ty, mapLayer))
+                if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y += walkSpeed;
             }
 
 
 
-            /*]=-• COPY CODE TORTUE*/
-            //--------------Déplacements-Torute--------
 
-            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
-            float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite
-            //_Tortue.Update(deltaSecondsTortue); // time écoulé
+            
 
 
             //-->> Gauche
@@ -224,7 +223,7 @@ namespace SAE_geniert
             {
                 ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
                 ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue, mapLayer))
+                if (!IsCollision(txTortue, tyTortue, _mapLayer))
                 {
                     _positionTortue.X -= walkSpeedTortue;
                     _Tortue.Play("walkWest");
@@ -240,7 +239,7 @@ namespace SAE_geniert
             {
                 ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
                 ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue, mapLayer))
+                if (!IsCollision(txTortue, tyTortue, _mapLayer))
                 {
                     _positionTortue.X += walkSpeedTortue;
                     _Tortue.Play("walkEast");
