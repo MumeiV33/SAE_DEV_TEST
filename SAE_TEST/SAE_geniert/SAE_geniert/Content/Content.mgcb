@@ -71,15 +71,20 @@
 /processor:TiledMapProcessor
 /build:Map_Generale_SilverWorld.tmx
 
-#begin Map_Generale_SilverWorld.tmx
+#begin Map_Generale_SilverWorld2.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
-/build:Map_Generale_SilverWorld.tmx
+/build:Map_Generale_SilverWorld2.tmx
 
 #begin MapGrotte.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
 /build:MapGrotte.tmx
+
+#begin MapGrotte2.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte2.tmx
 
 #begin Menu_Avec_Nom_STart.png
 /importer:TextureImporter
