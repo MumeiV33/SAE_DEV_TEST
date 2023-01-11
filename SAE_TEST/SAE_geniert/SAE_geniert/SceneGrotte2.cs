@@ -76,7 +76,7 @@ namespace SAE_geniert
         public override void Initialize()
         {
 
-            Console.WriteLine("grotte");
+            Console.WriteLine("grotte2");
 
 
             _positionTortue = _Enemis._positionTortue = new Vector2(275, 360);
@@ -102,7 +102,7 @@ namespace SAE_geniert
         public override void LoadContent()
         {
 
-            _tiledMap = Content.Load<TiledMap>("MapGrotte");
+            _tiledMap = Content.Load<TiledMap>("MapGrotte2");
 
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 

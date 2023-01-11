@@ -96,6 +96,8 @@ namespace SAE_geniert
 
             Game._player._positionPerso = new Vector2(30, 60);
 
+            
+
             base.Initialize();
         }
 
@@ -122,6 +124,8 @@ namespace SAE_geniert
 
             _mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Colision");
             Game.mapLayer = _mapLayer;
+
+            
 
 
             base.LoadContent();
@@ -165,8 +169,10 @@ namespace SAE_geniert
                 _perso.Play("idle");
             }
 
-
             
+
+
+
             _perso.Update(deltaSeconds); // time écoulé
             
 

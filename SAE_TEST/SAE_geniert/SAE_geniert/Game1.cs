@@ -164,25 +164,21 @@ namespace SAE_geniert
                 LoadGrotte();
 
             if (keyboardState.IsKeyDown(Keys.NumPad1)) //|| keyboardState.IsKeyDown(Keys.Space))
-                LoadMap();
+                LoadMap();            
 
             if (keyboardState.IsKeyDown(Keys.NumPad3))
-                LoadExplication();
-
-            if (keyboardState.IsKeyDown(Keys.NumPad4))
                 LoadGrotte2();
 
-            if (keyboardState.IsKeyDown(Keys.NumPad5))
+            if (keyboardState.IsKeyDown(Keys.NumPad4))
                 LoadMap2();
 
-            if (keyboardState.IsKeyDown(Keys.T))
-                LoadMenu();
+           
 
             if (keyboardState.IsKeyDown(Keys.P))
                 LoadExplication();
 
-            if (etat == Etats.Menu && keyboardState.IsKeyDown(Keys.Enter))
-                LoadExplication();
+            if (keyboardState.IsKeyDown(Keys.Enter))
+                LoadMap();
 
             if (keyboardState.IsKeyDown(Keys.Back))
                 LoadMenu();
@@ -215,12 +211,16 @@ namespace SAE_geniert
              MouseState _mouseState = Mouse.GetState();
              if (_mouseState.LeftButton == ButtonState.Pressed)
              {
-                 // Attention, l'état a été mis à jour directement par l'écran en question
-                 if (this.Etat == Etats.Quit)
-                     Exit();
+                // Attention, l'état a été mis à jour directement par l'écran en question
+                if (this.Etat == Etats.Quit)
+                    Exit();
 
-                 else if (this.Etat == Etats.Play)
-                    LoadMap();
+                else if (this.Etat == Etats.Play)
+                    LoadExplication(); 
+                else if (this.Etat == Etats.Controls)
+                    LoadCommande();
+
+                    //LoadMap();
                      //_screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
                  
                  /*else if (this.Etat == Etats.Menu)
@@ -250,12 +250,12 @@ namespace SAE_geniert
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.Black);
+           // GraphicsDevice.Clear(Color.Black);
 
-            _tiledMapRenderer.Draw();
+           // _tiledMapRenderer.Draw();
 
             SpriteBatch.Begin();
-            SpriteBatch.Draw(_player._perso, _player._positionPerso);
+           // SpriteBatch.Draw(_player._perso, _player._positionPerso);
             SpriteBatch.End();
 
 
@@ -291,8 +291,12 @@ namespace SAE_geniert
         {
             _screenManager.LoadScreen(new SceneMapPrincipale2(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
+        public void LoadCommande()
+        {
+            _screenManager.LoadScreen(new ScennControle(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
 
-        
+
 
 
 

@@ -147,13 +147,16 @@ namespace SAE_geniert
                 game.LoadGrotte2(); 
             }
             if (a == 8277 || a == 6928)
-                Console.WriteLine("LA FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"); 
+                Console.WriteLine("LA FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
 
-            if(_keyboardState.IsKeyDown(Keys.R))
+            if (a == 5658)
+                Console.WriteLine("LE CHATTTTTTTTTTTTTTTTTTTTTTTTTT MIAOUUUUUUU");
+
+            if ( _keyboardState.IsKeyDown(Keys.R))
             {
                 _positionPerso = new Vector2(30, 60);
             }
-               
+
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {

@@ -16,22 +16,21 @@ using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
 
-
 namespace SAE_geniert
 {
-    internal class SceneExplication : GameScreen
+    internal class ScennControle : GameScreen
     {
         private Game1 _myGame;
         private Texture2D _textExplication;
 
-        public SceneExplication(Game1 game) : base(game)
+        public ScennControle(Game1 game) : base(game)
         {
             //game = Game;
             _myGame = game;
         }
         public override void LoadContent()
         {
-            _textExplication = Content.Load<Texture2D>("story2");
+            _textExplication = Content.Load<Texture2D>("Commande_fleches");
             base.LoadContent();
         }
 
@@ -41,7 +40,7 @@ namespace SAE_geniert
         {
             /*if (Keyboard.GetState().IsKeyDown(Keys.Back))
                 _myGame.Etat = Game1.Etats.Menu;*/
-            
+
         }
         public override void Draw(GameTime gameTime)
         {
