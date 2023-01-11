@@ -42,12 +42,6 @@
 /processorParam:TextureFormat=Color
 /build:Brya_StyleSheet.png
 
-#begin BryaAnimations.sf
-/importer:SpriteFactoryContentImporter
-/processor:SpriteFactoryContentProcessor
-/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
-/build:BryaAnimations.sf
-
 #begin chainsaw.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -59,12 +53,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:chainsaw.png
-
-#begin chainsaw.sf
-/importer:SpriteFactoryContentImporter
-/processor:SpriteFactoryContentProcessor
-/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
-/build:chainsaw.sf
 
 #begin Map_Generale_SilverWorld.tmx
 /importer:TiledMapImporter
@@ -80,11 +68,6 @@
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
 /build:MapGrotte.tmx
-
-#begin MapGrotte2.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:MapGrotte2.tmx
 
 #begin MapGrotte2.tmx
 /importer:TiledMapImporter
@@ -150,12 +133,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Tortue.png
-
-#begin Torute.sf
-/importer:SpriteFactoryContentImporter
-/processor:SpriteFactoryContentProcessor
-/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
-/build:Torute.sf
 
 #begin Verdure.png
 /importer:TextureImporter
