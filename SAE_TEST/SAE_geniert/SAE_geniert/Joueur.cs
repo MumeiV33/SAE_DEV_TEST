@@ -42,6 +42,7 @@ namespace SAE_geniert
 
             // TODO: Add your update logic here
 
+            /*╔════════════════════════════════《✧》════════════════════════════════╗*/
             //-----------------Déplacements-------------------------------------------------------------------
             KeyboardState keyboardState = Keyboard.GetState();
             _keyboardState = Keyboard.GetState();
@@ -91,18 +92,14 @@ namespace SAE_geniert
                     _perso.Play("walkEast");
                 else
                     _perso.Play("walkNorth");
-                //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
-
-
-
+                //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y -= walkSpeed;
 
             }
             //-=-=-=-=-=-=-=-=-=-BAS-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements-------------------------------------------------------------------
-
+            
+            /*━━━━━━━━━━━━━━━━━━━━━━━━━━°⌜Déplacements⌟°━━━━━━━━━━━━━━━━━━━━━━━━━━┓*/
             if (keyboardState.IsKeyDown(Keys.Down))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
@@ -114,14 +111,19 @@ namespace SAE_geniert
                     _perso.Play("walkEast");
                 else
                     _perso.Play("walkSouth");
-                //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+                /*━━━━━━━━━━━━━━━━━━━━━━°⌜Fin Déplacements⌟°━━━━━━━━━━━━━━━━━━━━━━━┛*/
+
+                /*╭┈┈┈┈┈┈┈┈┈┈┈┈┈Collision┈┈┈┈┈┈┈┈┈┈┈┈╮*/
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y += walkSpeed;
+                /*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯*/
             }
-           //============ INTERACTIONS
+            /*════════════════════════════════《✧》════════════════════════════════╝*/
 
-            //debug map (collision vers le bas)
-            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth -1), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+                //============ INTERACTIONS
+
+                //debug map (collision vers le bas)
+                int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth -1), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(a);
 
             //debug autres collisions (collision vers le bas)
@@ -188,6 +190,6 @@ namespace SAE_geniert
             return res;
         }*/
 
+        }
     }
-}
 
