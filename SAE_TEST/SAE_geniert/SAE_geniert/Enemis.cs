@@ -22,12 +22,20 @@ namespace SAE_geniert
         public int _vitesseTortue;
         public string animation = "";
 
+        //-----> chainsaw
+        public Vector2 _positionChainsaw;
+        public AnimatedSprite _Chainsaw;
+        public int _sensChainsaw;
+        public int _vitesseChainsaw;
+
         public void TortueInitialize(Vector2 positionTortue, int vitesseTortue, Game1 _game)
         {
             _vitesseTortue = vitesseTortue;
             _positionTortue = positionTortue;
             SpriteSheet spriteSheetTortue = _game.Content.Load<SpriteSheet>("Torute.sf", new JsonContentLoader());
             _Tortue = new AnimatedSprite(spriteSheetTortue);
+            SpriteSheet spriteSheetChainsaw = _game.Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
+            _Chainsaw = new AnimatedSprite(spriteSheetChainsaw);
         }
         public void DeplacementsTortue(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
         {
@@ -70,6 +78,48 @@ namespace SAE_geniert
                     _sensTortue = 1;
                 }
             }
+        }
+        public void DeplacementsChainsaw(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
+        {
+            float walkSpeedChainsaw = deltaSeconds * _vitesseChainsaw; // Vitesse de déplacement du sprite
+
+
+
+            ////-->> Gauche
+            //if (_sensChainsaw == 1)
+            //{
+            //    ushort txChainsaw = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
+            //    ushort tyChainsaw = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
+            //    animation = "walkNorth";
+
+            //    if (!IsCollisionEnnemies(txChainsaw, tyChainsaw, _mapLayer))
+            //    {
+            //        _positionChainsaw.Y -= walkSpeedChainsaw;
+            //        _Chainsaw.Play(animation);
+            //    }
+            //    else
+            //    {
+            //        _sensChainsaw = 0;
+            //    }
+
+            //}
+            ////-->> Droite
+            //if (_sensChainsaw == 0)
+            //{
+            //    ushort txChainsaw = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
+            //    ushort tyChainsaw = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
+            //    animation = "walkSouth";
+
+            //    if (!IsCollisionEnnemies(txChainsaw, tyChainsaw, _mapLayer))
+            //    {
+            //        _positionChainsaw.Y += walkSpeedChainsaw;
+            //        _Chainsaw.Play(animation);
+            //    }
+            //    else
+            //    {
+            //        _sensChainsaw = 1;
+            //    }
+            //}
         }
         private bool IsCollisionEnnemies(ushort x, ushort y, TiledMapTileLayer _mapLayer)
         {

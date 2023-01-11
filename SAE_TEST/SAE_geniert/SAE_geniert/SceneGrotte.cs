@@ -33,7 +33,7 @@ namespace SAE_geniert
 
 
         //-----> Tortue
-        public Enemis _Enemis = new Enemis();
+        
 
         private Vector2 _positionTortue;
         private AnimatedSprite _Tortue;
@@ -41,8 +41,9 @@ namespace SAE_geniert
         private int _vitesseTortue;
 
         //-----> chainsaw
+        
         private Vector2 _positionChainsaw;
-        private AnimatedSprite _chainsaw;
+        private AnimatedSprite _Chainsaw;
         private int _sensChainsaw;
         private int _vitesseChainsaw;
 
@@ -54,6 +55,8 @@ namespace SAE_geniert
         //-----> Autres
         private KeyboardState _keyboardState;
         float deltaSeconds = 1;
+
+        public Enemis _Enemis = new Enemis();
 
         private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
@@ -81,7 +84,11 @@ namespace SAE_geniert
 
             _Enemis._positionTortue = new Vector2(275, 360);
             _Enemis._vitesseTortue = 100;
-            _Enemis._sensTortue = 1;
+            _Enemis._sensTortue = 0;
+
+            _Enemis._positionChainsaw = new Vector2(275, 360);
+            _Enemis._vitesseChainsaw = 100;
+            _Enemis._sensChainsaw = 1;
 
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
@@ -111,7 +118,7 @@ namespace SAE_geniert
 
 
             /*SpriteSheet spriteSheetChainsaw = Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
-            _chainsaw = new AnimatedSprite(spriteSheetChainsaw);*/
+            _Chainsaw = new AnimatedSprite(spriteSheetChainsaw);*/
 
             _mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Colision");
             Game.mapLayer = _mapLayer;
@@ -133,6 +140,7 @@ namespace SAE_geniert
             float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite
             _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
+            _Enemis.DeplacementsChainsaw(deltaSecondsTortue, _tiledMap, _mapLayer, this);
 
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
 
@@ -273,6 +281,7 @@ namespace SAE_geniert
 
             Game.SpriteBatch.Begin();
             Game.SpriteBatch.Draw(_Tortue, _Enemis._positionTortue);
+            //Game.SpriteBatch.Draw(_Chainsaw, _Enemis._positionChainsaw);
             Game.SpriteBatch.Draw(Game._player._perso, Game._player._positionPerso);
             Game.SpriteBatch.End();
         }
