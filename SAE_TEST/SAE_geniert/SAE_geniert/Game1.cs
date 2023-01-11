@@ -24,7 +24,7 @@ namespace SAE_geniert
         private TiledMapRenderer _tiledMapRenderer;
         public TiledMapTileLayer mapLayer;
         private TiledMapTileLayer mapLayerTest;
-
+        private Texture2D _textBoutons;
 
         private int LARGEUR_FENETRE = 512;
         private int HAUTEUR_FENETRE = 512;
@@ -45,11 +45,10 @@ namespace SAE_geniert
         // on définit un champ pour stocker l'état en cours du jeu
         private Etats etat;
 
-        
-        
-        private SceneMapPrincipale _sceneMapPrincipale;
-        private SceneGrotte _sceneGrotte;
+
         private ScreenMenu _screenMenu;
+        private SceneMapPrincipale _sceneMapPrincipale;
+        private SceneGrotte _sceneGrotte; 
         private SpriteBatch _spriteBatch;
         private SceneExplication _sceneFin; 
 
@@ -106,15 +105,15 @@ namespace SAE_geniert
             Components.Add(_screenManager);
 
             // écrant de base Menu 
-            //Etat = Etats.Menu;        pour le menu de base 
+            Etat = Etats.Menu;        //pour le menu de base 
             //Etat = Etats.Play;
 
             //  chargement les 2 écrans 
             //LoadMap(); 
-            _sceneMapPrincipale = new SceneMapPrincipale(this);
-            /*_sceneGrotte = new SceneGrotte(this);
+            //_sceneMapPrincipale = new SceneMapPrincipale(this);
+            //_sceneGrotte = new SceneGrotte(this);
             _screenMenu = new ScreenMenu(this);
-            LoadMap();*/
+            
 
 
         }
@@ -136,10 +135,11 @@ namespace SAE_geniert
            
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
-            _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+            LoadMenu(); 
+             _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
+             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
+            _textBoutons = Content.Load<Texture2D>("Menu_Avec_Nom_STart");
 
 
             _player.playerInitialize(_positionPerso, 100, this);
@@ -184,6 +184,9 @@ namespace SAE_geniert
             if (etat == Etats.Menu && keyboardState.IsKeyDown(Keys.Enter))
                 LoadExplication();
 
+            if (keyboardState.IsKeyDown(Keys.Back))
+                LoadMenu(); 
+
             
 
 
@@ -219,9 +222,9 @@ namespace SAE_geniert
                     LoadMap();
                      //_screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
                  
-                 else if (this.Etat == Etats.Menu)
+                 /*else if (this.Etat == Etats.Menu)
                     LoadMenu();
-                     //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+                     //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));*/
 
 
              }

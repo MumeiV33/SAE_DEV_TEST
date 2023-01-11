@@ -32,13 +32,13 @@ namespace SAE_geniert
             Game = game;
             lesBoutons = new Rectangle[3];
             lesBoutons[0] = new Rectangle(700, 365, 190, 70);
-            lesBoutons[1] = new Rectangle(166, 265, 190, 70);//oui bouton start
-            lesBoutons[2] = new Rectangle(300, 365, 190, 70); // oui exit
+            lesBoutons[1] = new Rectangle(166, 265, 166, 70);//oui bouton start
+            lesBoutons[2] = new Rectangle(166, 365, 166, 70); // oui exit
 
         }
         public override void LoadContent()
         {
-            _textBoutons = Content.Load<Texture2D>("Menu_Avec_Nom_STart");
+            _textBoutons = Content.Load<Texture2D>("final_Menu");
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)
