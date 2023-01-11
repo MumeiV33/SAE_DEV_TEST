@@ -121,11 +121,11 @@ namespace SAE_geniert
            //============ INTERACTIONS
 
             //debug map (collision vers le bas)
-            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth -1), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(a);
 
             //debug autres collisions (collision vers le bas)
-            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth -1), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(b);
 
             if (a == 1064 && _keyboardState.IsKeyDown(Keys.Up)){
@@ -156,11 +156,11 @@ namespace SAE_geniert
         {
             bool res = false;
             //debug map (collision vers le bas)
-            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth ), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(a);
 
             //debug autres collisions (collision vers le bas)
-            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth ), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(b);
 
             if (a == 1064)

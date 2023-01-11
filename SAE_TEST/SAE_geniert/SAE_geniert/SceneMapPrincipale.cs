@@ -77,8 +77,7 @@ namespace SAE_geniert
             // TODO: use this.Content to load your game content here
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
-
-           
+                       
             
             Game.mapLayer = mapLayer;
 
