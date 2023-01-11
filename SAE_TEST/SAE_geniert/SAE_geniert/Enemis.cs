@@ -20,6 +20,7 @@ namespace SAE_geniert
         public AnimatedSprite _Tortue;
         public int _sensTortue;
         public int _vitesseTortue;
+        public string animation = "";
 
         public void TortueInitialize(Vector2 positionTortue, int vitesseTortue, Game1 _game)
         {
@@ -28,10 +29,10 @@ namespace SAE_geniert
             SpriteSheet spriteSheetTortue = _game.Content.Load<SpriteSheet>("Torute.sf", new JsonContentLoader());
             _Tortue = new AnimatedSprite(spriteSheetTortue);
         }
-        public void DeplacementsTortue(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer)
+        public void DeplacementsTortue(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
         {
             float walkSpeedTortue = deltaSeconds * _vitesseTortue; // Vitesse de déplacement du sprite
-            _Tortue.Update(deltaSeconds); // time écoulé
+            
 
 
             //-->> Gauche
@@ -39,11 +40,12 @@ namespace SAE_geniert
             {
                 ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
                 ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-
+                animation = "walkWest";
+                
                 if (!IsCollisionEnnemies(txTortue, tyTortue, _mapLayer))
                 {
                     _positionTortue.X -= walkSpeedTortue;
-                    _Tortue.Play("walkWest");
+                    //_Tortue.Play(animation);
                 }
                 else
                 {
@@ -56,10 +58,12 @@ namespace SAE_geniert
             {
                 ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
                 ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
+                animation = "walkEast";
+                
                 if (!IsCollisionEnnemies(txTortue, tyTortue, _mapLayer))
                 {
                     _positionTortue.X += walkSpeedTortue;
-                    _Tortue.Play("walkEast");
+                    //_Tortue.Play(animation);
                 }
                 else
                 {
@@ -67,11 +71,11 @@ namespace SAE_geniert
                 }
             }
         }
-        private bool IsCollisionEnnemies(ushort x, ushort y, TiledMapTileLayer mapLayer)
+        private bool IsCollisionEnnemies(ushort x, ushort y, TiledMapTileLayer _mapLayer)
         {
             // définition de tile qui peut être null (?)
             TiledMapTile? tile;
-            if (mapLayer.TryGetTile(x, y, out tile) == false)
+            if (_mapLayer.TryGetTile(x, y, out tile) == false)
                 return false;
             if (!tile.Value.IsBlank)
                 return true;
