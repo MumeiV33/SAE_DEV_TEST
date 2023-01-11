@@ -53,7 +53,8 @@ namespace SAE_geniert
 
         //-----> Autres
         private KeyboardState _keyboardState;
-        public float niveauGravite = 4;
+        public float niveauGravite = 1;
+        public float niveauSaut = 8;
 
         private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
@@ -151,14 +152,20 @@ namespace SAE_geniert
 
             KeyboardState keyboardState = Keyboard.GetState();
             //=================GRAVITY=================\\
-            if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
+            if (!keyboardState.IsKeyDown(Keys.Space))
             {
                 ushort txGravity = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
-                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 1);
+                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 0.5);
 
                 if (!IsCollision(txGravity, tyGravity, _mapLayer))
+                { 
                     Game._player._positionPerso.Y += niveauGravite;
-                _perso.Play("idle");
+                    _perso.Play("idle");
+                }
+                if (keyboardState.IsKeyDown(Keys.Space) && IsCollision(txGravity, tyGravity, _mapLayer))
+                    Game._player._positionPerso.Y -= niveauSaut;
+
+                
             }
 
 
