@@ -86,6 +86,11 @@
 /processor:TiledMapProcessor
 /build:MapGrotte2.tmx
 
+#begin MapGrotte2.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte2.tmx
+
 #begin Menu_Avec_Nom_STart.png
 /importer:TextureImporter
 /processor:TextureProcessor
