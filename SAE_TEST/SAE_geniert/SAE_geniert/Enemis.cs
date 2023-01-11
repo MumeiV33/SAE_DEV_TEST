@@ -14,6 +14,7 @@ namespace SAE_geniert
 {
     public class Enemis
     {
+        public Enemis() { }
         //-----> Tortue
         public Vector2 _positionTortue;
         public AnimatedSprite _Tortue;
