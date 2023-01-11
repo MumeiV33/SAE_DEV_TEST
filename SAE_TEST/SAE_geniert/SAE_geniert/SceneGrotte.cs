@@ -45,7 +45,7 @@ namespace SAE_geniert
         private Vector2 _positionChainsaw;
         private AnimatedSprite _Chainsaw;
         private int _sensChainsaw;
-        private int _vitesseChainsaw;
+        public int _vitesseChainsaw;
 
 
         private readonly ScreenManager _screenManager;
@@ -82,13 +82,13 @@ namespace SAE_geniert
             Console.WriteLine("grotte");
 
 
-            _Enemis._positionTortue = new Vector2(275, 360);
-            _Enemis._vitesseTortue = 100;
-            _Enemis._sensTortue = 0;
+            _positionTortue = _Enemis._positionTortue = new Vector2(275, 360);
+            _vitesseTortue = _Enemis._vitesseTortue = 100;
+            _sensTortue = _Enemis._sensTortue = 0;
 
-            _Enemis._positionChainsaw = new Vector2(275, 360);
-            _Enemis._vitesseChainsaw = 100;
-            _Enemis._sensChainsaw = 1;
+            _positionChainsaw = _Enemis._positionChainsaw = new Vector2(103, 481);
+            _vitesseChainsaw = _Enemis._vitesseChainsaw = 100;
+            _sensChainsaw = _Enemis._sensChainsaw = 1;
 
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
@@ -133,16 +133,26 @@ namespace SAE_geniert
 
         public override void Update(GameTime gameTime)
         {
+            
+            
             _tiledMapRenderer.Update(gameTime);
-
-
-            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
-            float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite
-            _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
-            _Enemis.DeplacementsChainsaw(deltaSecondsTortue, _tiledMap, _mapLayer, this);
-
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
 
+
+            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                   Tortue
+            float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite        tortue      
+            
+
+            float deltaSecondsChainsaw = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                 Chainsaw
+            float walkSpeedChainsaw = deltaSecondsChainsaw * _vitesseChainsaw; // Vitesse de déplacement du sprite    Chainsaw
+            
+           
+            _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
+            _Enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
+
+
+            
+            
             //-----------------Déplacements--------
 
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
@@ -151,8 +161,7 @@ namespace SAE_geniert
             _keyboardState = Keyboard.GetState();
 
             //-=-=-=-=-=-=-=-=-=-DROITE-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements---------
+                //-----------------Déplacements---------
             if (keyboardState.IsKeyDown(Keys.Right))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
@@ -162,9 +171,9 @@ namespace SAE_geniert
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
             }
-            //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
 
-            //-----------------Déplacements-------------
+            //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
+                //-----------------Déplacements-------------
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth - 0.5);
@@ -175,9 +184,9 @@ namespace SAE_geniert
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
             }
-            //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
 
-            //-----------------Déplacements----------
+            //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
+                //-----------------Déplacements----------
             if (keyboardState.IsKeyDown(Keys.Up))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
@@ -195,11 +204,8 @@ namespace SAE_geniert
                     _positionPerso.Y -= walkSpeed;
             }
 
-
             //-=-=-=-=-=-=-=-=-=-BAS-=-=-=-=-=-=-=-=-=-\\
-
-            //-----------------Déplacements--------
-
+                //-----------------Déplacements--------
             if (keyboardState.IsKeyDown(Keys.Down))
             {
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth);
@@ -217,45 +223,6 @@ namespace SAE_geniert
                     _positionPerso.Y += walkSpeed;
             }
 
-
-
-
-
-
-
-            //-->> Gauche
-            if (_sensTortue == 1)
-            {
-                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
-                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue, _mapLayer))
-                {
-                    _positionTortue.X -= walkSpeedTortue;
-                    _Tortue.Play("walkWest");
-                }
-                else
-                {
-                    _sensTortue = 0;
-                }
-
-            }
-            //-->> Droite
-            if (_sensTortue == 0)
-            {
-                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
-                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue, _mapLayer))
-                {
-                    _positionTortue.X += walkSpeedTortue;
-                    _Tortue.Play("walkEast");
-                }
-                else
-                {
-                    _sensTortue = 1;
-                }
-            }
-
-
         }
 
 
@@ -267,7 +234,7 @@ namespace SAE_geniert
                 return false;
             if (!tile.Value.IsBlank)
             {
-                
+                //active la gravite
                 return true;
             }
             return false;

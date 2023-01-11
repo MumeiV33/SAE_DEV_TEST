@@ -173,8 +173,10 @@ namespace SAE_geniert
                 LoadGrotte2();
 
             if (keyboardState.IsKeyDown(Keys.NumPad5))
-                LoadMap2(); 
+                LoadMap2();
 
+            if (keyboardState.IsKeyDown(Keys.Escape))
+                Exit();
 
 
 
