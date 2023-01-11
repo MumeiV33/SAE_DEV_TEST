@@ -9,15 +9,16 @@ using System;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
+
 namespace SAE_geniert
 {
-    public class SceneMapPrincipale : GameScreen
+    public class SceneMapPrincipale2 : GameScreen
     {
         private new Game1 Game => (Game1)base.Game;
-        
-        public SceneMapPrincipale(Game1 game) : base(game) { }
 
-       // private new Game1 Game; 
+        public SceneMapPrincipale2(Game1 game) : base(game) { }
+
+        // private new Game1 Game; 
 
         //------> Map
         public TiledMap _tiledMap;
@@ -54,13 +55,13 @@ namespace SAE_geniert
 
         public override void Initialize()
         {
-           
 
-            
+
+
             Console.WriteLine("map");
             _positionPerso = new Vector2(300, 340);
             _player._positionPerso = _positionPerso;
-            
+
             base.Initialize();
         }
 
@@ -77,8 +78,8 @@ namespace SAE_geniert
             // TODO: use this.Content to load your game content here
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
-                       
-            
+
+
             Game.mapLayer = mapLayer;
 
             base.LoadContent();
@@ -86,21 +87,21 @@ namespace SAE_geniert
 
         public override void Update(GameTime gameTime)
         {
-           /* //debug map (collision vers le bas)
-            int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(a);
+            /* //debug map (collision vers le bas)
+             int a = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+             Console.WriteLine(a);
 
 
-            //debug autres collisions (collision vers le bas)
-            int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(b);
+             //debug autres collisions (collision vers le bas)
+             int b = mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
+             Console.WriteLine(b);
 
-            if (a == 1064 && Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-                /*Game1.LoadGrotte();
-                GameScreen.LoadGrotte();
-            }*/
+             if (a == 1064 && Keyboard.GetState().IsKeyDown(Keys.Up))
+             {
+                 Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+                 /*Game1.LoadGrotte();
+                 GameScreen.LoadGrotte();
+             }*/
 
 
         }
@@ -126,9 +127,9 @@ namespace SAE_geniert
             GraphicsDevice.Clear(Color.Black);
 
             _tiledMapRenderer.Draw();
-            
+
             Game.SpriteBatch.Begin();
-            Game.SpriteBatch.Draw(Game._player._perso,Game._player._positionPerso);
+            Game.SpriteBatch.Draw(Game._player._perso, Game._player._positionPerso);
             Game.SpriteBatch.End();
 
             /*//debug autres collisions (collision vers le bas)
@@ -147,7 +148,4 @@ namespace SAE_geniert
 
 
     }
-
-
 }
-

@@ -128,18 +128,18 @@ namespace SAE_geniert
             int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth -1), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
             Console.WriteLine(b);
 
-            if (a == 1064 && _keyboardState.IsKeyDown(Keys.Up)){
+            if (a == 1405 && _keyboardState.IsKeyDown(Keys.Up)){
                 Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUU");
                 game.LoadGrotte(); 
             }
             //============
 
 
-            /*if (a == 401)
+            if (a == 402 && _keyboardState.IsKeyDown(Keys.E))
             {
                 Console.WriteLine("Map"); ////////////////////////////////////////////////////////////////////////////////////////
                 game.LoadMap();
-            }*/
+            }
                
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)

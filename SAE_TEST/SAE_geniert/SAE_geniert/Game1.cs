@@ -249,6 +249,10 @@ namespace SAE_geniert
         {
             _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
+        public void LoadGrotte2()
+        {
+            _screenManager.LoadScreen(new SceneGrotte2(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
 
         public void LoadMap()
         {
@@ -257,6 +261,10 @@ namespace SAE_geniert
         public void LoadExplication()
         {
             _screenManager.LoadScreen(new SceneExplication(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
+        public void LoadMap2()
+        {
+            _screenManager.LoadScreen(new SceneMapPrincipale2(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
 

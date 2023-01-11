@@ -21,10 +21,12 @@ namespace SAE_geniert
 {
     internal class SceneExplication : GameScreen
     {
+        private Game1 _myGame;
         private Texture2D _textExplication;
 
         public SceneExplication(Game game) : base(game)
         {
+            game = Game; 
         }
         public override void LoadContent()
         {
@@ -45,11 +47,12 @@ namespace SAE_geniert
         }
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            Game.SpriteBatch.Begin();
-            Game.SpriteBatch.Draw(_textBoutons, new Vector2(0, 0), Color.White);
-            Game.SpriteBatch.End();
-            //throw new NotImplementedException();
+           /* GraphicsDevice.Clear(Color.Black);
+            _myGame.SpriteBatch.Begin();
+            
+            game.SpriteBatch.End();
+            
+            //throw new NotImplementedException()*/
         }
     }
 }
