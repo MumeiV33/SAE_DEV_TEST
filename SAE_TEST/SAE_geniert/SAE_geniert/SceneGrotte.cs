@@ -30,12 +30,15 @@ namespace SAE_geniert
         private TiledMapTileLayer mapLayerTest;
 
         //-----> Perso
+        public Joueur _player = new Joueur();
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
         private int _vitessePerso;
 
 
         //-----> Tortue
+        public Enemis _Enemis = new Enemis();
+
         private Vector2 _positionTortue;
         private AnimatedSprite _Tortue;
         private int _sensTortue;
@@ -55,9 +58,7 @@ namespace SAE_geniert
         //-----> Autres
         private KeyboardState _keyboardState;
 
-
-
-        public Joueur _player = new Joueur();
+        
         private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
         public const int LARGEUR_FENETRE = 512;
@@ -82,9 +83,9 @@ namespace SAE_geniert
             Console.WriteLine("grotte");
 
 
-            _positionTortue = new Vector2(300, 300);   
-            _vitesseTortue = 100;   
-            _sensTortue = 1;
+            _Enemis._positionTortue = new Vector2(30, 60);
+            _Enemis._vitesseTortue = 100;
+            _Enemis._sensTortue = 1;
 
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
@@ -111,7 +112,10 @@ namespace SAE_geniert
             SpriteSheet spriteSheet = Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
 
-            
+            SpriteSheet spriteSheetTortue = Content.Load<SpriteSheet>("Torute.sf", new JsonContentLoader());
+            _Tortue = new AnimatedSprite(spriteSheetTortue);
+
+
             /*SpriteSheet spriteSheetChainsaw = Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
             _chainsaw = new AnimatedSprite(spriteSheetChainsaw);*/
 
@@ -271,6 +275,7 @@ namespace SAE_geniert
             _tiledMapRenderer.Draw();
 
             Game.SpriteBatch.Begin();
+            Game.SpriteBatch.Draw(_Tortue, _Enemis._positionTortue);
             Game.SpriteBatch.Draw(Game._player._perso, Game._player._positionPerso);
             Game.SpriteBatch.End();
         }
