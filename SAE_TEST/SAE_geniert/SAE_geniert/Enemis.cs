@@ -93,43 +93,39 @@ namespace SAE_geniert
         {
             float walkSpeedChainsaw = deltaSeconds * _vitesseChainsaw; // Vitesse de déplacement du sprite
 
+            //-->> Haut Chainsaw
+            if (_sensChainsaw == 1)
+            {
+                ushort txChainsaw = (ushort)(_positionChainsaw.X / _tiledMap.TileWidth);
+                ushort tyChainsaw = (ushort)(_positionChainsaw.Y / _tiledMap.TileHeight - 0.5);
+                if (!IsCollisionEnnemies(txChainsaw, tyChainsaw, _mapLayer))
+                {
+                    _positionChainsaw.Y -= 1;
+                    //_Chainsaw.Play("walkWest");
+                }
+                else
+                {
+                    _sensChainsaw = 0;
+                }
+
+            }
+            //-->> Bas Chainsaw
+            if (_sensChainsaw == 0)
+            {
+                ushort txChainsaw = (ushort)(_positionChainsaw.X / _tiledMap.TileWidth);
+                ushort tyChainsaw = (ushort)(_positionChainsaw.Y / _tiledMap.TileHeight + 0.5);
+                if (!IsCollisionEnnemies(txChainsaw, tyChainsaw, _mapLayer))
+                {
+                    _positionChainsaw.Y += 1;
+                    //_Chainsaw.Play("walkEast");
+                }
+                else
+                {
+                    _sensChainsaw = 1;
+                }
+            }
 
 
-            ////-->> Gauche
-            //if (_sensChainsaw == 1)
-            //{
-            //    ushort txChainsaw = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
-            //    ushort tyChainsaw = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-            //    animation = "walkNorth";
-
-            //    if (!IsCollisionEnnemies(txChainsaw, tyChainsaw, _mapLayer))
-            //    {
-            //        _positionChainsaw.Y -= walkSpeedChainsaw;
-            //        _Chainsaw.Play(animation);
-            //    }
-            //    else
-            //    {
-            //        _sensChainsaw = 0;
-            //    }
-
-            //}
-            ////-->> Droite
-            //if (_sensChainsaw == 0)
-            //{
-            //    ushort txChainsaw = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
-            //    ushort tyChainsaw = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-            //    animation = "walkSouth";
-
-            //    if (!IsCollisionEnnemies(txChainsaw, tyChainsaw, _mapLayer))
-            //    {
-            //        _positionChainsaw.Y += walkSpeedChainsaw;
-            //        _Chainsaw.Play(animation);
-            //    }
-            //    else
-            //    {
-            //        _sensChainsaw = 1;
-            //    }
-            //}
         }
         private bool IsCollisionEnnemies(ushort x, ushort y, TiledMapTileLayer _mapLayer)
         {

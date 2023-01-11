@@ -185,10 +185,11 @@ namespace SAE_geniert
                 LoadExplication();
 
             if (keyboardState.IsKeyDown(Keys.Back))
-                LoadMenu(); 
+                LoadMenu();
 
-            
 
+            if (keyboardState.IsKeyDown(Keys.Escape))
+                Exit();
 
 
 

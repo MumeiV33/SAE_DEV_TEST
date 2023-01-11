@@ -45,7 +45,7 @@ namespace SAE_geniert
         private Vector2 _positionChainsaw;
         private AnimatedSprite _Chainsaw;
         private int _sensChainsaw;
-        private int _vitesseChainsaw;
+        public int _vitesseChainsaw;
 
 
         private readonly ScreenManager _screenManager;
@@ -83,13 +83,13 @@ namespace SAE_geniert
             Console.WriteLine("grotte");
 
 
-            _Enemis._positionTortue = new Vector2(275, 360);
-            _Enemis._vitesseTortue = 100;
-            _Enemis._sensTortue = 0;
+            _positionTortue = _Enemis._positionTortue = new Vector2(275, 360);
+            _vitesseTortue = _Enemis._vitesseTortue = 100;
+            _sensTortue = _Enemis._sensTortue = 0;
 
-            _Enemis._positionChainsaw = new Vector2(275, 360);
-            _Enemis._vitesseChainsaw = 100;
-            _Enemis._sensChainsaw = 1;
+            _positionChainsaw = _Enemis._positionChainsaw = new Vector2(103, 481);
+            _vitesseChainsaw = _Enemis._vitesseChainsaw = 100;
+            _sensChainsaw = _Enemis._sensChainsaw = 1;
 
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
@@ -134,13 +134,21 @@ namespace SAE_geniert
 
         public override void Update(GameTime gameTime)
         {
+
+            _keyboardState = Keyboard.GetState();
             _tiledMapRenderer.Update(gameTime);
 
 
-            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
-            float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite
+            float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                   Tortue
+            float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite        tortue      
+            
+
+            float deltaSecondsChainsaw = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                 Chainsaw
+            float walkSpeedChainsaw = deltaSecondsChainsaw * _vitesseChainsaw; // Vitesse de déplacement du sprite    Chainsaw
+            
+           
             _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
-            _Enemis.DeplacementsChainsaw(deltaSecondsTortue, _tiledMap, _mapLayer, this);
+            _Enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
 
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _player._vitessePerso; // Vitesse de déplacement du sprite
@@ -150,52 +158,19 @@ namespace SAE_geniert
             if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
             {
                 ushort txGravity = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
-                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight+1);
+                ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 1);
 
                 if (!IsCollision(txGravity, tyGravity, _mapLayer))
                     Game._player._positionPerso.Y += niveauGravite;
                 _perso.Play("idle");
             }
-            //-----------------Déplacements--------
+
 
             
             _perso.Update(deltaSeconds); // time écoulé
+            
 
-
-
-            //-->> Gauche
-            if (_sensTortue == 1)
-            {
-                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth - 0.5);
-                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue, _mapLayer))
-                {
-                    _positionTortue.X -= walkSpeedTortue;
-                    _Tortue.Play("walkWest");
-                }
-                else
-                {
-                    _sensTortue = 0;
-                }
-
-            }
-            //-->> Droite
-            if (_sensTortue == 0)
-            {
-                ushort txTortue = (ushort)(_positionTortue.X / _tiledMap.TileWidth + 0.5);
-                ushort tyTortue = (ushort)(_positionTortue.Y / _tiledMap.TileHeight);
-                if (!IsCollision(txTortue, tyTortue, _mapLayer))
-                {
-                    _positionTortue.X += walkSpeedTortue;
-                    _Tortue.Play("walkEast");
-                }
-                else
-                {
-                    _sensTortue = 1;
-                }
-            }
-
-
+            
         }
 
 
@@ -207,7 +182,7 @@ namespace SAE_geniert
                 return false;
             if (!tile.Value.IsBlank)
             {
-                
+                //active la gravite
                 return true;
             }
             return false;
