@@ -30,7 +30,8 @@ namespace SAE_geniert
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
         private int _vitessePerso;
-
+        //--> RECTANGLE DE SES MORTS
+        public Vector2 persoPos;
 
         //-----> Tortue
 
@@ -56,7 +57,7 @@ namespace SAE_geniert
         private KeyboardState _keyboardState;
         float deltaSeconds = 1;
         float niveauGravite = 4;
-
+        public float niveauSaut = 90;
         public Enemis _Enemis = new Enemis();
 
         private SpriteBatch _spriteBatch;
@@ -107,6 +108,9 @@ namespace SAE_geniert
 
         public override void LoadContent()
         {
+            //persoPos.X = Window.ClientBounds.Width - 20;
+            //persoPos.Y = (Window.ClientBounds.Height / 2) - 50;
+
 
             _tiledMap = Content.Load<TiledMap>("MapGrotte");
 
@@ -133,7 +137,7 @@ namespace SAE_geniert
 
 
 
-
+        
 
 
         public override void Update(GameTime gameTime)
@@ -142,6 +146,7 @@ namespace SAE_geniert
             _keyboardState = Keyboard.GetState();
             _tiledMapRenderer.Update(gameTime);
 
+            //Rectangle persoRect = new Rectangle((int)_positionPerso.X);
 
             float deltaSecondsTortue = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime                   Tortue
             float walkSpeedTortue = deltaSecondsTortue * _vitesseTortue; // Vitesse de déplacement du sprite        tortue      
@@ -165,8 +170,14 @@ namespace SAE_geniert
                 ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 1);
 
                 if (!IsCollision(txGravity, tyGravity, _mapLayer))
-                    Game._player._positionPerso.Y += niveauGravite;
-                _perso.Play("idle");
+                {
+                    Game._player._positionPerso.Y += (float)niveauGravite;
+                    _perso.Play("idle");
+                }
+                if (keyboardState.IsKeyDown(Keys.Space) && IsCollision(txGravity, tyGravity, _mapLayer))
+                    Game._player._positionPerso.Y -= (float)niveauSaut;
+
+
             }
 
             
