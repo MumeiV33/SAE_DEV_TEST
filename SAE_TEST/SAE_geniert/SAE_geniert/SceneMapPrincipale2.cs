@@ -61,6 +61,7 @@ namespace SAE_geniert
             Console.WriteLine("map");
             _positionPerso = new Vector2(300, 340);
             _player._positionPerso = _positionPerso;
+            Game._player._positionPerso = new Vector2(458, 463);
 
             base.Initialize();
         }
@@ -71,7 +72,7 @@ namespace SAE_geniert
             _positionPerso.X = 300;
             _positionPerso.Y = 340;
 
-            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld");
+            _tiledMap = Content.Load<TiledMap>("Map_Generale_SilverWorld2");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("COLISIONS");
 

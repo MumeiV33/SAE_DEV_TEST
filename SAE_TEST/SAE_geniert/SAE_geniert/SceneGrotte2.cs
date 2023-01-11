@@ -89,7 +89,7 @@ namespace SAE_geniert
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-            Game._player._positionPerso = new Vector2(30, 60);
+           // Game._player._positionPerso = new Vector2(30, 60);
 
             base.Initialize();
         }
@@ -101,7 +101,7 @@ namespace SAE_geniert
         public override void LoadContent()
         {
 
-            _tiledMap = Content.Load<TiledMap>("MapGrotte");
+            _tiledMap = Content.Load<TiledMap>("MapGrotte2");
 
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 

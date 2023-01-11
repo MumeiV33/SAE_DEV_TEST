@@ -138,8 +138,16 @@ namespace SAE_geniert
             if (a == 402 && _keyboardState.IsKeyDown(Keys.E))
             {
                 Console.WriteLine("Map"); ////////////////////////////////////////////////////////////////////////////////////////
-                game.LoadMap();
+                game.LoadMap2();
             }
+
+            if(a == 196 && _keyboardState.IsKeyDown(Keys.E))
+            {
+                Console.WriteLine("Grotte2");
+                game.LoadGrotte2(); 
+            }
+            if (a == 8277)
+                Console.WriteLine("LA FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"); 
                
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)

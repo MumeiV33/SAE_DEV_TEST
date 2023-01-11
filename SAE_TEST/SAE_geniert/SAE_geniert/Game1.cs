@@ -169,6 +169,12 @@ namespace SAE_geniert
             if (keyboardState.IsKeyDown(Keys.NumPad3))
                 LoadExplication();
 
+            if (keyboardState.IsKeyDown(Keys.NumPad4))
+                LoadGrotte2();
+
+            if (keyboardState.IsKeyDown(Keys.NumPad5))
+                LoadMap2(); 
+
 
 
 
