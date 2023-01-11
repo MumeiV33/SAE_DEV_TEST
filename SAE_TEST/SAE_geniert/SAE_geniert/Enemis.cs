@@ -34,9 +34,19 @@ namespace SAE_geniert
             _positionTortue = positionTortue;
             SpriteSheet spriteSheetTortue = _game.Content.Load<SpriteSheet>("Torute.sf", new JsonContentLoader());
             _Tortue = new AnimatedSprite(spriteSheetTortue);
+            
+        }
+
+
+        public void ChainsawInitialze(Vector2 positionChainsaw, int vitesseChainsaw, Game1 _game)
+        {
+            _vitesseChainsaw = vitesseChainsaw;
+            _positionChainsaw = positionChainsaw;
             SpriteSheet spriteSheetChainsaw = _game.Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
             _Chainsaw = new AnimatedSprite(spriteSheetChainsaw);
         }
+
+
         public void DeplacementsTortue(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
         {
             float walkSpeedTortue = deltaSeconds * _vitesseTortue; // Vitesse de déplacement du sprite
