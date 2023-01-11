@@ -24,9 +24,10 @@ namespace SAE_geniert
         private Game1 _myGame;
         private Texture2D _textExplication;
 
-        public SceneExplication(Game game) : base(game)
+        public SceneExplication(Game1 game) : base(game)
         {
-            game = Game; 
+            //game = Game;
+            _myGame = game;
         }
         public override void LoadContent()
         {
@@ -36,23 +37,24 @@ namespace SAE_geniert
 
 
 
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            /*if (Keyboard.GetState().IsKeyDown(Keys.Back))
+                _myGame.Etat = Game1.Etats.Menu;*/
+            
         }
         public override void Draw(GameTime gameTime)
         {
-           /* GraphicsDevice.Clear(Color.Black);
+            /* GraphicsDevice.Clear(Color.Black);
+             _myGame.SpriteBatch.Begin();
+
+             game.SpriteBatch.End();
+
+             //throw new NotImplementedException()*/
+            GraphicsDevice.Clear(Color.Orange);
             _myGame.SpriteBatch.Begin();
-            
-            game.SpriteBatch.End();
-            
-            //throw new NotImplementedException()*/
+            _myGame.SpriteBatch.Draw(_textExplication, new Vector2(0, 0), Color.White);
+            _myGame.SpriteBatch.End();
         }
     }
 }

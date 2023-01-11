@@ -40,7 +40,7 @@ namespace SAE_geniert
 
         private readonly ScreenManager _screenManager;
         // on définit les différents états possibles du jeu ( à compléter) 
-        public enum Etats { Menu, Controls, Play, Quit , Grotte };
+        public enum Etats { Menu, Controls, Play, Quit  };
 
         // on définit un champ pour stocker l'état en cours du jeu
         private Etats etat;
@@ -163,7 +163,7 @@ namespace SAE_geniert
             if (keyboardState.IsKeyDown(Keys.NumPad2))
                 LoadGrotte();
 
-            if (keyboardState.IsKeyDown(Keys.NumPad1))
+            if (keyboardState.IsKeyDown(Keys.NumPad1)) //|| keyboardState.IsKeyDown(Keys.Space))
                 LoadMap();
 
             if (keyboardState.IsKeyDown(Keys.NumPad3))
@@ -173,7 +173,22 @@ namespace SAE_geniert
                 LoadGrotte2();
 
             if (keyboardState.IsKeyDown(Keys.NumPad5))
-                LoadMap2(); 
+                LoadMap2();
+
+            if (keyboardState.IsKeyDown(Keys.T))
+                LoadMenu();
+
+            if (keyboardState.IsKeyDown(Keys.P))
+                LoadExplication();
+
+            if (etat == Etats.Menu && keyboardState.IsKeyDown(Keys.Enter))
+                LoadExplication();
+
+            
+
+
+
+
 
 
 
@@ -181,16 +196,16 @@ namespace SAE_geniert
             // Théo range
 
 
-            /* if (etat == Etats.Grotte)
+            /*if (etat == Etats.Menu)
              {
                  _screenManager.LoadScreen(new SceneGrotte(this), new FadeTransition(GraphicsDevice, Color.Black));
-             }
+             }*/
 
 
 
-             //clic souris                                                                                                                           //THEO RANGEEEEEE
-             //-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*
-             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //clic souris                                                                                                                           //THEO RANGEEEEEE
+            //-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                  Exit();
              // On teste le clic de souris et l'état pour savoir quelle action faire 
              MouseState _mouseState = Mouse.GetState();
@@ -201,9 +216,12 @@ namespace SAE_geniert
                      Exit();
 
                  else if (this.Etat == Etats.Play)
-                     _screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
+                    LoadMap();
+                     //_screenManager.LoadScreen(_sceneMapPrincipale, new FadeTransition(GraphicsDevice, Color.Black));
+                 
                  else if (this.Etat == Etats.Menu)
-                     _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+                    LoadMenu();
+                     //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
 
 
              }
@@ -211,9 +229,10 @@ namespace SAE_geniert
 
              if (Keyboard.GetState().IsKeyDown(Keys.Back))
              {
-                 if (this.Etat == Etats.Menu)
-                     _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
-             }*/
+                if (this.Etat == Etats.Menu)
+                    LoadMenu(); 
+                     //_screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+             }
 
 
             _tiledMapRenderer.Update(gameTime);
@@ -241,7 +260,7 @@ namespace SAE_geniert
         }
 
 
-        private void LoadMenu()
+        public void LoadMenu()
         {
             _screenManager.LoadScreen(new ScreenMenu(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
@@ -268,6 +287,8 @@ namespace SAE_geniert
         {
             _screenManager.LoadScreen(new SceneMapPrincipale2(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
+
+        
 
 
 

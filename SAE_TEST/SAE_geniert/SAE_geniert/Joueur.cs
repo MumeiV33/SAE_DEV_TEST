@@ -129,7 +129,7 @@ namespace SAE_geniert
             Console.WriteLine(b);
 
             if (a == 1405 && _keyboardState.IsKeyDown(Keys.Up)){
-                Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUU");
+                //Console.WriteLine("ON A REUSSI SUUUUUUUUUUUUU");
                 game.LoadGrotte(); 
             }
             //============
@@ -146,8 +146,13 @@ namespace SAE_geniert
                 Console.WriteLine("Grotte2");
                 game.LoadGrotte2(); 
             }
-            if (a == 8277)
+            if (a == 8277 || a == 6928)
                 Console.WriteLine("LA FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"); 
+
+            if(_keyboardState.IsKeyDown(Keys.R))
+            {
+                _positionPerso = new Vector2(30, 60);
+            }
                
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
