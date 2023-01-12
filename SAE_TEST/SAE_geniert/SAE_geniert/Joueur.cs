@@ -154,17 +154,38 @@ namespace SAE_geniert
 
             if (a == 402 && _keyboardState.IsKeyDown(Keys.E))
             {
-                Console.WriteLine("Map"); ////////////////////////////////////////////////////////////////////////////////////////
+                Console.WriteLine("Map2"); ////////////////////////////////////////////////////////////////////////////////////////
                 game.LoadMap2();
+                
             }
+            
 
-            if(a == 196 && _keyboardState.IsKeyDown(Keys.E))
+            if (a == 196 )
             {
-                Console.WriteLine("Grotte2");
-                game.LoadGrotte2(); 
+                Console.WriteLine("Appuyez sur E pour interagir"); 
+                if (_keyboardState.IsKeyDown(Keys.E))
+                {
+                    Console.WriteLine("Grotte2");
+                    game.LoadGrotte2();
+                }
+                
             }
             if (a == 8277 || a == 6928)
-                Console.WriteLine("LA FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+            {
+                Console.WriteLine("Appuyez sur E pour interagir");
+
+                if (_keyboardState.IsKeyDown(Keys.E))
+                {
+                    game.LoadFin();
+                    if (_keyboardState.IsKeyDown(Keys.Enter))
+                    {
+                        Console.WriteLine("oui"); 
+                    }
+                }
+                
+
+            }
+                
 
             if (a == 5658)
                 Console.WriteLine("LE CHATTTTTTTTTTTTTTTTTTTTTTTTTT MIAOUUUUUUU");
@@ -174,7 +195,10 @@ namespace SAE_geniert
                 _positionPerso = new Vector2(30, 60);
             }
 
-           
+            
+
+            
+
         }
         public void IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
         {
@@ -200,25 +224,7 @@ namespace SAE_geniert
                 return true;
             return false;
         }
-        /*public bool Theo(TiledMapTileLayer _mapLayer, TiledMap _tiledMap)
-        {
-            bool res = false;
-            //debug map (collision vers le bas)
-            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth ), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(a);
-
-            //debug autres collisions (collision vers le bas)
-            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth ), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(b);
-
-            if (a == 1064)
-            {
-                Console.WriteLine("oui");
-                res = true;
-            }
-            //============ 
-            return res;
-        }*/
+        
 
         }
     }

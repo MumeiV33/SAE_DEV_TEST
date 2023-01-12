@@ -110,7 +110,7 @@
 /processorParam:TextureFormat=Color
 /build:Menu_Avec_Nom_STart.png
 
-#begin menu_font_final.png
+#begin menu_font_final2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -120,7 +120,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:menu_font_final.png
+/build:menu_font_final2.png
 
 #begin NoCopyRight_music.mp3
 /importer:Mp3Importer

@@ -94,7 +94,7 @@ namespace SAE_geniert
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-            Game._player._positionPerso = new Vector2(30, 60);
+            //Game._player._positionPerso = new Vector2(30, 60);
 
 
 
