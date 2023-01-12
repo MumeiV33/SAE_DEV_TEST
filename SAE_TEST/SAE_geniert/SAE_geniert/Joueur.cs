@@ -184,6 +184,10 @@ namespace SAE_geniert
                         Console.WriteLine("oui"); 
                     }
                 }
+                if (_keyboardState.IsKeyDown(Keys.A))
+                {
+                    game.Auteurs();
+                }
                 
 
             }

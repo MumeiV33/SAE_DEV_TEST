@@ -307,6 +307,11 @@ namespace SAE_geniert
         {
             _screenManager.LoadScreen(new SceneFin(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
+        public void Auteurs()
+        {
+            _screenManager.LoadScreen(new Auteurs(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
+
 
 
 
