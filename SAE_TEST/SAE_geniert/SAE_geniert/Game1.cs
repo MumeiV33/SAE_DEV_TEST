@@ -187,6 +187,8 @@ namespace SAE_geniert
             if (keyboardState.IsKeyDown(Keys.Escape))
                 Exit();
 
+            
+
 
 
 
@@ -294,6 +296,10 @@ namespace SAE_geniert
         public void LoadCommande()
         {
             _screenManager.LoadScreen(new ScennControle(this), new FadeTransition(GraphicsDevice, Color.Black));
+        }
+        public void LoadFin()
+        {
+            _screenManager.LoadScreen(new SceneFin(this), new FadeTransition(GraphicsDevice, Color.Black));
         }
 
 

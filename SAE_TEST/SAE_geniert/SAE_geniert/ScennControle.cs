@@ -30,7 +30,7 @@ namespace SAE_geniert
         }
         public override void LoadContent()
         {
-            _textExplication = Content.Load<Texture2D>("menu_font_final");
+            _textExplication = Content.Load<Texture2D>("menu_font_final2");
             base.LoadContent();
         }
 

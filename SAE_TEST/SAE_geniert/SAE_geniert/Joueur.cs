@@ -149,7 +149,21 @@ namespace SAE_geniert
                 game.LoadGrotte2(); 
             }
             if (a == 8277 || a == 6928)
+            {
                 Console.WriteLine("LA FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+
+                if(_keyboardState.IsKeyDown(Keys.E))
+                {
+                    game.LoadFin();
+                    if (_keyboardState.IsKeyDown(Keys.Enter))
+                    {
+                        Console.WriteLine("oui"); 
+                    }
+                }
+                
+
+            }
+                
 
             if (a == 5658)
                 Console.WriteLine("LE CHATTTTTTTTTTTTTTTTTTTTTTTTTT MIAOUUUUUUU");
@@ -158,6 +172,8 @@ namespace SAE_geniert
             {
                 _positionPerso = new Vector2(30, 60);
             }
+
+            
 
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
