@@ -57,8 +57,6 @@ namespace SAE_geniert
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
                 //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
 
-
-
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X += walkSpeed;
                 _perso.Play("walkEast");
