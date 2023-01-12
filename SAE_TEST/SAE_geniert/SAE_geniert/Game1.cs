@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Tiled;
@@ -9,6 +10,7 @@ using System;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
+using Microsoft.Xna.Framework.Media;
 
 namespace SAE_geniert
 {
@@ -35,6 +37,11 @@ namespace SAE_geniert
         private AnimatedSprite _perso;
         private int _sensPerso;
         private int _vitessePerso;
+
+
+        //-----> Musique
+
+        Song song;
 
         //------------------------------------------------------------------> Changement de scene 
 
@@ -146,8 +153,8 @@ namespace SAE_geniert
             
             _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer, this);
 
-
-
+            song = Content.Load<Song>("NoCopyRight_music");         // uncomment to have the music on the game 
+            MediaPlayer.Play(song);
         }
 
         protected override void Update(GameTime gameTime)
