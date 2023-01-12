@@ -93,6 +93,16 @@
 /processor:TiledMapProcessor
 /build:MapGrotte.tmx
 
+#begin MapGrotte.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte.tmx
+
+#begin MapGrotte2.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte2.tmx
+
 #begin MapGrotte2.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
@@ -139,6 +149,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:story.png
+
+#begin story_de_fin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:story_de_fin.png
 
 #begin story_de_fin.png
 /importer:TextureImporter
