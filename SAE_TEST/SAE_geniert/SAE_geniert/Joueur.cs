@@ -150,13 +150,7 @@ namespace SAE_geniert
                 game.LoadMap2();
                 
             }
-            if (a == 1100 && _keyboardState.IsKeyDown(Keys.Left))
-            {
-                Console.WriteLine("Map");
-                
-                game.LoadMap();
-
-            }
+            
 
             if (a == 196 )
             {
