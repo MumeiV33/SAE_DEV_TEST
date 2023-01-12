@@ -79,7 +79,6 @@ namespace SAE_geniert
         float niveauGravite = 4;
         public float niveauSaut = 3.1f;             // hauteur du saut
         
-        public float niveauSaut = 4;
 
         public bool EtatIntersect = false;
 
@@ -158,7 +157,7 @@ namespace SAE_geniert
             Game.mapLayer = _mapLayer;
 
 
-            _Enemis.TortueInitialize(_positionTortue, _vitesseTortue, Game);
+            _enemis.TortueInitialize(_positionTortue, _vitesseTortue, Game);
 
             base.LoadContent();
         }
@@ -258,13 +257,18 @@ namespace SAE_geniert
                     for (float incrementI = incrementFin; incrementI < 10; incrementI++)
                     {
                         Game._player._positionPerso.Y -= (float)niveauSaut * incrementDebut;
-                        if (keyboardState.IsKeyDown(Keys.Right))
+                        if (keyboardState.IsKeyDown(Keys.Right) && IsCollision(txGravity, tyGravity, _mapLayer) )
                         {
 
                             Game._player._positionPerso.X += 1;
 
                         }
+                        if (keyboardState.IsKeyDown(Keys.Left) && IsCollision(txGravity, tyGravity, _mapLayer))
+                        {
 
+                            Game._player._positionPerso.X -= 1;
+
+                        }
                     }
                      
                     //Console.WriteLine("MMMMMMMMMMMMMMMMMMMMMMM");
@@ -319,7 +323,7 @@ namespace SAE_geniert
         }
         //-=-=-=-=-=-=-=-FIN GROS BORDEL GRAVITY-=-=-=-=-=-=-//
 
-        public void IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
+        public bool IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
         {
             if (persoRect.Intersects(tortueRect))
             {
