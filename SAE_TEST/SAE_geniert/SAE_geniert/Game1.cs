@@ -153,7 +153,7 @@ namespace SAE_geniert
             
             _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer, this);
 
-            song = Content.Load<Song>("NoCopyRight_music");         // uncomment to have the music on the game 
+           // song = Content.Load<Song>("NoCopyRight_music");         // uncomment to have the music on the game 
             MediaPlayer.Play(song);
         }
 

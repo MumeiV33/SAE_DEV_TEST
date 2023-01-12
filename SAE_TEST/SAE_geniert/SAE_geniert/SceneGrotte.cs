@@ -148,7 +148,7 @@ namespace SAE_geniert
             Game.mapLayer = _mapLayer;
 
 
-
+            _Enemis.TortueInitialize(_positionTortue, _vitesseTortue, Game);
 
             base.LoadContent();
         }
