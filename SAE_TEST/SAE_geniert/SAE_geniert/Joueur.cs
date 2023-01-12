@@ -36,14 +36,16 @@ namespace SAE_geniert
         public void playerInitialize(Vector2 positionPerso, int vitessePerso, Game1 _game)
         {
             _vitessePerso = vitessePerso;
+
             _positionPerso = positionPerso;
             SpriteSheet spriteSheet = _game.Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
         }
-        public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game)
+       
+        public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game, bool EtatIntersect)
         {
             float walkspeedRect = deltaSeconds * _vitessePerso;
-            Rectangle persoRect = new Rectangle((int)_positionPerso.X, (int)_positionPerso.Y, 16, 32);
+            
 
 
 
@@ -69,9 +71,10 @@ namespace SAE_geniert
 
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X += walkSpeed;
-                    
+                
                 _perso.Play("walkEast");
                 persoRectPos.X = _positionPerso.X;
+                
 
             }
             //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
@@ -87,7 +90,9 @@ namespace SAE_geniert
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
                 persoRectPos.X = _positionPerso.X;
-                
+
+                //if (IsIntersect(persoRect, _enemis.tortueRect, _enemis.chainsawRect));
+
             }
             //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
 
@@ -197,19 +202,11 @@ namespace SAE_geniert
             
 
         }
-        public void IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
-        {
-            if (persoRect.Intersects(tortueRect))
-            {
-                _positionPerso = new Vector2(30, 60);
-                persoRectPos = new Vector2(30, 60);
 
-            }
-            if (persoRect.Intersects(chainsawRect))
-            {
-                _positionPerso = new Vector2(30, 60);
-                persoRectPos = new Vector2(30, 60);
-            }
+        public Rectangle RectanglePlayer()
+        {
+            Rectangle persoRect = new Rectangle((int)_positionPerso.X, (int)_positionPerso.Y, 16, 32);
+            return persoRect;
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {
@@ -225,4 +222,4 @@ namespace SAE_geniert
 
         }
     }
-
+        

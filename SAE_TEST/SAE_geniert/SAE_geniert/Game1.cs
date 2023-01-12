@@ -62,6 +62,7 @@ namespace SAE_geniert
         private GameTime gameTime;
         public float deltaSeconds = 1;
 
+        public bool EtatIntersect = false;
         // Theo doit ranger 
 
         public Etats Etat
@@ -147,10 +148,12 @@ namespace SAE_geniert
 
             _player.playerInitialize(_positionPerso, 100, this);
             
-            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer, this);
+            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer, this, EtatIntersect);
 
            // song = Content.Load<Song>("NoCopyRight_music");         // uncomment to have the music on the game 
            // MediaPlayer.Play(song);
+            //song = Content.Load<Song>("NoCopyRight_music");         // or comment if the game doesn't work uncomment to have the music on the game 
+            MediaPlayer.Play(song);
         }
 
         protected override void Update(GameTime gameTime)
@@ -158,7 +161,7 @@ namespace SAE_geniert
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
             KeyboardState keyboardState = Keyboard.GetState();
-            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer, this);
+            _player.DeplacementsPerso(deltaSeconds, _tiledMap, mapLayer, this, EtatIntersect);
 
             _player._perso.Update(deltaSeconds); // time écoulé
 
