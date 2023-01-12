@@ -78,6 +78,18 @@
 /processorParam:TextureFormat=Color
 /build:final_Menu.png
 
+#begin img_crédits_source_autor.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:img_crédits_source_autor.jpg
+
 #begin Map_Generale_SilverWorld.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
@@ -92,16 +104,6 @@
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
 /build:MapGrotte.tmx
-
-#begin MapGrotte.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:MapGrotte.tmx
-
-#begin MapGrotte2.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:MapGrotte2.tmx
 
 #begin MapGrotte2.tmx
 /importer:TiledMapImporter
