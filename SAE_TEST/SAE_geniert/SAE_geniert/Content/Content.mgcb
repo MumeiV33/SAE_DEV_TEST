@@ -105,6 +105,16 @@
 /processor:TiledMapProcessor
 /build:MapGrotte.tmx
 
+#begin MapGrotte.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte.tmx
+
+#begin MapGrotte2.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte2.tmx
+
 #begin MapGrotte2.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor

@@ -287,10 +287,35 @@ namespace SAE_geniert
             public float incrementDebut = 2f;
             public bool isJumping;
             */
-            /*████████████████████████████████████████████████████████████████████████████████████████████████████*/
 
 
-            _perso.Update(deltaSeconds); // time écoulé                       
+
+            Console.WriteLine(Game._player._positionPerso.X < _enemis.tortueRectPos.X + 16 && Game._player._positionPerso.Y < _enemis.tortueRectPos.Y + 16);
+            Console.WriteLine(Game._player._positionPerso.X + 16 > _enemis.tortueRectPos.X && Game._player._positionPerso.Y + 32 > _enemis.tortueRectPos.Y);
+            Console.WriteLine();
+            Console.WriteLine();
+            //Console.WriteLine(_enemis.tortueRectPos.X);
+            if (
+                (Game._player._positionPerso.X < _enemis.tortueRectPos.X + 16 &&
+                Game._player._positionPerso.X + 16 > _enemis.tortueRectPos.X &&
+                Game._player._positionPerso.Y < _enemis.tortueRectPos.Y + 16 &&
+                Game._player._positionPerso.Y + 32 > _enemis.tortueRectPos.Y) ||
+                (Game._player._positionPerso.X < _enemis.chainsawRectPos.X + 32 &&
+                Game._player._positionPerso.X + 16 > _enemis.chainsawRectPos.X &&
+                Game._player._positionPerso.Y < _enemis.chainsawRectPos.Y + 16 &&
+                Game._player._positionPerso.Y + 32 > _enemis.chainsawRectPos.Y)
+                )
+            {
+                Console.WriteLine("bou");
+                Game._player._positionPerso = new Vector2(30, 60);
+            }
+
+
+
+                /*████████████████████████████████████████████████████████████████████████████████████████████████████*/
+
+
+                _perso.Update(deltaSeconds); // time écoulé                       
         }
         public void UpdateGravity(GameTime gameTime, bool isJumping)
         {
