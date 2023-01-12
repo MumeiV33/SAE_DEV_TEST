@@ -10,7 +10,7 @@ using System.Windows;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
-
+using Microsoft.Xna.Framework.Audio;
 
 namespace SAE_geniert
 {
@@ -180,13 +180,10 @@ namespace SAE_geniert
 
             }
 
-            
-
 
 
             _perso.Update(deltaSeconds); // time écoulé
             
-
             
         }
 
