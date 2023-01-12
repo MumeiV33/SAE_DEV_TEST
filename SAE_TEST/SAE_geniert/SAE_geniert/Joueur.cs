@@ -40,10 +40,11 @@ namespace SAE_geniert
             SpriteSheet spriteSheet = _game.Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
         }
-        public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game)
+       
+        public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game, bool EtatIntersect)
         {
             float walkspeedRect = deltaSeconds * _vitessePerso;
-            Rectangle persoRect = new Rectangle((int)_positionPerso.X, (int)_positionPerso.Y, 16, 32);
+            
 
 
 
@@ -69,9 +70,10 @@ namespace SAE_geniert
 
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X += walkSpeed;
-                    
+                
                 _perso.Play("walkEast");
                 persoRectPos.X = _positionPerso.X;
+                
 
             }
             //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
@@ -173,19 +175,11 @@ namespace SAE_geniert
 
            
         }
-        public void IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
-        {
-            if (persoRect.Intersects(tortueRect))
-            {
-                _positionPerso = new Vector2(30, 60);
-                persoRectPos = new Vector2(30, 60);
 
-            }
-            if (persoRect.Intersects(chainsawRect))
-            {
-                _positionPerso = new Vector2(30, 60);
-                persoRectPos = new Vector2(30, 60);
-            }
+        public Rectangle RectanglePlayer()
+        {
+            Rectangle persoRect = new Rectangle((int)_positionPerso.X, (int)_positionPerso.Y, 16, 32);
+            return persoRect;
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {
@@ -197,26 +191,8 @@ namespace SAE_geniert
                 return true;
             return false;
         }
-        /*public bool Theo(TiledMapTileLayer _mapLayer, TiledMap _tiledMap)
-        {
-            bool res = false;
-            //debug map (collision vers le bas)
-            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth ), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(a);
-
-            //debug autres collisions (collision vers le bas)
-            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth ), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(b);
-
-            if (a == 1064)
-            {
-                Console.WriteLine("oui");
-                res = true;
-            }
-            //============ 
-            return res;
-        }*/
-
-        }
+        
     }
+    
+}
 
