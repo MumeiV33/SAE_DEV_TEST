@@ -32,6 +32,8 @@ namespace SAE_geniert
         public int _sensChainsaw;
         public int _vitesseChainsaw;
 
+
+
         public void TortueInitialize(Vector2 positionTortue, int vitesseTortue, Game1 _game)
         {
             _vitesseTortue = vitesseTortue;
@@ -48,13 +50,13 @@ namespace SAE_geniert
             _positionChainsaw = positionChainsaw;
             SpriteSheet spriteSheetChainsaw = _game.Content.Load<SpriteSheet>("chainsaw.sf", new JsonContentLoader());
             _Chainsaw = new AnimatedSprite(spriteSheetChainsaw);
+            
         }
 
 
         public void DeplacementsTortue(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
         {
-            Rectangle tortueRect = new Rectangle((int)_positionTortue.X, (int)_positionTortue.Y, 16, 16);
-            Rectangle chainsawRect = new Rectangle((int)_positionChainsaw.X, (int)_positionChainsaw.Y, 32, 16);
+            
 
             
 
@@ -76,9 +78,8 @@ namespace SAE_geniert
                 {
                     _positionTortue.X -= walkSpeedTortue;
 
-                    _Tortue.Play(animation);
-
                     //_Tortue.Play(animation);
+
 
                 }
                 else
@@ -104,6 +105,7 @@ namespace SAE_geniert
                     _sensTortue = 1;
                 }
                 tortueRectPos.X = _positionTortue.X;
+
             }
 
             _Tortue.Update(deltaSeconds);
@@ -148,6 +150,17 @@ namespace SAE_geniert
 
 
         }
+        public Rectangle RectangleTortue()
+        {
+            Rectangle tortueRect = new Rectangle((int)_positionTortue.X, (int)_positionTortue.Y, 16, 16);
+            return tortueRect;
+        }
+        public Rectangle RectangleChainsaw()
+        {
+            Rectangle chainsawRect = new Rectangle((int)_positionChainsaw.X, (int)_positionChainsaw.Y, 32, 16);
+            return chainsawRect;
+        }
+
         private bool IsCollisionEnnemies(ushort x, ushort y, TiledMapTileLayer _mapLayer)
         {
             // définition de tile qui peut être null (?)
