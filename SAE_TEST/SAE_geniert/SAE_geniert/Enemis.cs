@@ -16,7 +16,8 @@ namespace SAE_geniert
     {
         public Enemis() { }
         //Collisions entre sprites
-        public Vector2 tortueRectVelo;
+        public Vector2 tortueRectPos;
+        public Vector2 chainsawRectPos;
 
         //-----> Tortue
         public Vector2 _positionTortue;
@@ -52,9 +53,10 @@ namespace SAE_geniert
 
         public void DeplacementsTortue(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
         {
-            float walkspeedRect = deltaSeconds * _vitesseTortue;
             Rectangle tortueRect = new Rectangle((int)_positionTortue.X, (int)_positionTortue.Y, 16, 16);
-            tortueRectVelo += _positionTortue;
+            Rectangle chainsawRect = new Rectangle((int)_positionChainsaw.X, (int)_positionChainsaw.Y, 32, 16);
+
+            
 
 
 
@@ -79,7 +81,7 @@ namespace SAE_geniert
                 {
                     _sensTortue = 0;
                 }
-
+                tortueRectPos.X = _positionTortue.X;
             }
             //-->> Droite
             if (_sensTortue == 0)
@@ -97,6 +99,7 @@ namespace SAE_geniert
                 {
                     _sensTortue = 1;
                 }
+                tortueRectPos.X = _positionTortue.X;
             }
 
             _Tortue.Update(deltaSeconds);
@@ -119,7 +122,7 @@ namespace SAE_geniert
                 {
                     _sensChainsaw = 0;
                 }
-
+                chainsawRectPos.Y = _positionChainsaw.Y;
             }
             //-->> Bas Chainsaw
             if (_sensChainsaw == 0)
@@ -135,6 +138,8 @@ namespace SAE_geniert
                 {
                     _sensChainsaw = 1;
                 }
+                chainsawRectPos.Y = _positionChainsaw.Y;
+
             }
 
 
