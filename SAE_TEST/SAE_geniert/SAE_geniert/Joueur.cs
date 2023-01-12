@@ -9,7 +9,6 @@ using System;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
-
 namespace SAE_geniert
 {
     public class Joueur
@@ -27,6 +26,7 @@ namespace SAE_geniert
         public AnimatedSprite _perso;
         public int _sensPerso;
 
+        
 
         //-----> Autres
         private KeyboardState _keyboardState;
@@ -38,7 +38,6 @@ namespace SAE_geniert
             SpriteSheet spriteSheet = _game.Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
         }
-
         public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game)
         {
             

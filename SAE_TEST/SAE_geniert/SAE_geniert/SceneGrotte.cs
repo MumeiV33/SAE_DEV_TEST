@@ -274,19 +274,11 @@ namespace SAE_geniert
         }
         //-=-=-=-=-=-=-=-FIN GROS BORDEL GRAVITY-=-=-=-=-=-=-//
 
-        public void IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
-        {
-            if (persoRect.Intersects(tortueRect))
-            {
-                _player._positionPerso = new Vector2 (30,60);
-                persoRectVelo = new Vector2(30, 60);
 
-            }
-            if (persoRect.Intersects(chainsawRect))
-            {
-                _player._positionPerso = new Vector2(30, 60);
-                persoRectVelo = new Vector2(30, 60);
-            }
+
+            _perso.Update(deltaSeconds); // time écoulé
+            
+            
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer __mapLayer)
         {

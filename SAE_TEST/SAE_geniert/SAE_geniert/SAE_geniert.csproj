@@ -33,9 +33,6 @@
     <None Update="Content\chainsaw.sf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Jump sound effect  No copyright.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="Content\TextureGrotteAutre.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

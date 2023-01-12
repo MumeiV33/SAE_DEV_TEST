@@ -78,12 +78,6 @@
 /processorParam:TextureFormat=Color
 /build:final_Menu.png
 
-#begin Jump sound effect  No copyright.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Jump sound effect  No copyright.mp3
-
 #begin Map_Generale_SilverWorld.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
@@ -98,6 +92,16 @@
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
 /build:MapGrotte.tmx
+
+#begin MapGrotte.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte.tmx
+
+#begin MapGrotte2.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:MapGrotte2.tmx
 
 #begin MapGrotte2.tmx
 /importer:TiledMapImporter
@@ -127,12 +131,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:menu_font_final.png
-
-#begin NoCopyRight_music.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:NoCopyRight_music.mp3
 
 #begin story.png
 /importer:TextureImporter
