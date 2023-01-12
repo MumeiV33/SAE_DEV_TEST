@@ -27,7 +27,7 @@ namespace SAE_geniert
         //-----> Perso
         private Vector2 _positionPerso;
         private AnimatedSprite _perso;
-
+        public bool _sortie = false; 
 
         //-----> Autres
 
@@ -58,9 +58,18 @@ namespace SAE_geniert
 
             
             Console.WriteLine("map");
-            _positionPerso = new Vector2(300, 340);
+            if (_sortie == true)
+            {
+                Game._player._positionPerso = new Vector2(458, 463);
+            }
+            else
+            {
+                _positionPerso = new Vector2(300, 340);
+            }
+            
             _player._positionPerso = _positionPerso;
             
+
             base.Initialize();
         }
 

@@ -141,8 +141,15 @@ namespace SAE_geniert
                 game.LoadMap2();
                 
             }
+            if (a == 1100 && _keyboardState.IsKeyDown(Keys.Left))
+            {
+                Console.WriteLine("Map");
+                
+                game.LoadMap();
 
-            if(a == 196 )
+            }
+
+            if (a == 196 )
             {
                 Console.WriteLine("Appuyez sur E pour interagir"); 
                 if (_keyboardState.IsKeyDown(Keys.E))
