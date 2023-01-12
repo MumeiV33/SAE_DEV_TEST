@@ -139,7 +139,7 @@ namespace SAE_geniert
 
             if (a == 402 && _keyboardState.IsKeyDown(Keys.E))
             {
-                Console.WriteLine("Map"); ////////////////////////////////////////////////////////////////////////////////////////
+                Console.WriteLine("Map2"); ////////////////////////////////////////////////////////////////////////////////////////
                 game.LoadMap2();
             }
 
@@ -170,25 +170,7 @@ namespace SAE_geniert
                 return true;
             return false;
         }
-        /*public bool Theo(TiledMapTileLayer _mapLayer, TiledMap _tiledMap)
-        {
-            bool res = false;
-            //debug map (collision vers le bas)
-            int a = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth ), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(a);
-
-            //debug autres collisions (collision vers le bas)
-            int b = _mapLayer.GetTile((ushort)(_positionPerso.X / _tiledMap.TileWidth ), (ushort)(_positionPerso.Y / _tiledMap.TileHeight - 1)).GlobalIdentifier;
-            Console.WriteLine(b);
-
-            if (a == 1064)
-            {
-                Console.WriteLine("oui");
-                res = true;
-            }
-            //============ 
-            return res;
-        }*/
+        
 
         }
     }

@@ -31,9 +31,9 @@ namespace SAE_geniert
         {
             Game = game;
             lesBoutons = new Rectangle[3];
-            lesBoutons[0] = new Rectangle(428, 350, 70, 70);
-            lesBoutons[1] = new Rectangle(160, 267, 178, 53);//oui bouton start
-            lesBoutons[2] = new Rectangle(160, 350, 178, 53); // oui exit
+            lesBoutons[0] = new Rectangle(428, 400, 70, 70);
+            lesBoutons[1] = new Rectangle(160, 300, 178, 53);//oui bouton start
+            lesBoutons[2] = new Rectangle(160, 400, 178, 53); // oui exit
 
         }
         public override void LoadContent()
