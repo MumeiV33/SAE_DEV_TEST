@@ -17,7 +17,10 @@ namespace SAE_geniert
         {
 
         }
+        //Collisions entre sprites
+        public Vector2 persoRectVelo;
 
+        //-----> Perso
         public Vector2 _positionPerso;
         public int _vitessePerso;
         public AnimatedSprite _perso;
@@ -38,6 +41,10 @@ namespace SAE_geniert
         public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game)
         {
             
+            
+
+
+
             float walkSpeed = deltaSeconds * _vitessePerso; // Vitesse de déplacement du sprite
 
             // TODO: Add your update logic here
@@ -61,6 +68,7 @@ namespace SAE_geniert
 
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X += walkSpeed;
+                    
                 _perso.Play("walkEast");
 
 
@@ -160,6 +168,7 @@ namespace SAE_geniert
             }
 
         }
+        
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {
             // définition de tile qui peut être null (?)

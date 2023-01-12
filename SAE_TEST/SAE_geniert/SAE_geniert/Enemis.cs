@@ -15,6 +15,9 @@ namespace SAE_geniert
     public class Enemis
     {
         public Enemis() { }
+        //Collisions entre sprites
+        public Vector2 tortueRectVelo;
+
         //-----> Tortue
         public Vector2 _positionTortue;
         public AnimatedSprite _Tortue;
@@ -49,10 +52,17 @@ namespace SAE_geniert
 
         public void DeplacementsTortue(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
         {
+            float walkspeedRect = deltaSeconds * _vitesseTortue;
+            Rectangle tortueRect = new Rectangle((int)_positionTortue.X, (int)_positionTortue.Y, 16, 16);
+            tortueRectVelo += _positionTortue;
+
+
+
             float walkSpeedTortue = deltaSeconds * _vitesseTortue; // Vitesse de déplacement du sprite
+
+
             
-
-
+            
             //-->> Gauche
             if (_sensTortue == 1)
             {
