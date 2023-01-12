@@ -306,7 +306,7 @@ namespace SAE_geniert
                 Game._player._positionPerso.Y + 32 > _enemis.chainsawRectPos.Y)
                 )
             {
-                Console.WriteLine("bou");
+              
                 Game._player._positionPerso = new Vector2(30, 60);
             }
 

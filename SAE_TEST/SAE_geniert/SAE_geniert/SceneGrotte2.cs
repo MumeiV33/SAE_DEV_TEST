@@ -206,6 +206,24 @@ namespace SAE_geniert
             _enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
 
 
+            if (
+                (Game._player._positionPerso.X < _enemis.tortueRectPos.X + 16 &&
+                Game._player._positionPerso.X + 16 > _enemis.tortueRectPos.X &&
+                Game._player._positionPerso.Y < _enemis.tortueRectPos.Y + 16 &&
+                Game._player._positionPerso.Y + 32 > _enemis.tortueRectPos.Y) ||
+                (Game._player._positionPerso.X < _enemis.chainsawRectPos.X + 32 &&
+                Game._player._positionPerso.X + 16 > _enemis.chainsawRectPos.X &&
+                Game._player._positionPerso.Y < _enemis.chainsawRectPos.Y + 16 &&
+                Game._player._positionPerso.Y + 32 > _enemis.chainsawRectPos.Y)
+                )
+            {
+
+                Game._player._positionPerso = new Vector2(30, 60);
+            }
+
+
+
+
             /*████████████████████████████████████████████████████████████████████████████████████████████████████*/
 
             //=================GRAVITY=================\\
