@@ -111,7 +111,7 @@ namespace SAE_geniert
             //persoPos.Y = (Window.ClientBounds.Height / 2) - 50;
 
 
-            _tiledMap = Content.Load<TiledMap>("MapGrotte");
+            _tiledMap = Content.Load<TiledMap>("MapGrotte2");
 
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
