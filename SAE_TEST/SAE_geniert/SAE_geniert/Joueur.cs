@@ -87,7 +87,7 @@ namespace SAE_geniert
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
                 persoRectPos.X = _positionPerso.X;
-                if (IsIntersect(persoRect, _enemis.tortueRect, _enemis.chainsawRect))
+                
             }
             //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
 
