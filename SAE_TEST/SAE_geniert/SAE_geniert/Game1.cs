@@ -20,12 +20,8 @@ namespace SAE_geniert
         //-----> Map
         private GraphicsDeviceManager _graphics;
         private TiledMap _tiledMap;
-        private TiledMap _tiledMapTest;
-        private TiledMap _tiledMapTestFin;
-        private TiledMap _tiledMapRendererTestFin;
         private TiledMapRenderer _tiledMapRenderer;
         public TiledMapTileLayer mapLayer;
-        private TiledMapTileLayer mapLayerTest;
         private Texture2D _textBoutons;
 
         private int LARGEUR_FENETRE = 512;

@@ -1,7 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="SAE_geniert.Game1" Collapsed="true">
-    <Position X="33.5" Y="5" Width="1.5" />
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="SAE_geniert.Joueur">
+    <Position X="1" Y="31.75" Width="6.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAgAAEABAEAAAAAUgAQBCAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Joueur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.Enemis">
+    <Position X="7.5" Y="25.25" Width="8.5" />
+    <TypeIdentifier>
+      <HashCode>QAEIBEAAAAAAAAAAAIAAAKQAIAAAAQEAAAAIAAAIBAA=</HashCode>
+      <FileName>Enemis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.SceneExplication">
+    <Position X="2.25" Y="13" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>SceneExplication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.SceneFin">
+    <Position X="10.75" Y="31" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>SceneFin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.SceneGrotte">
+    <Position X="4" Y="16.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>QAUIEwgAAAEAEwCBMIAACDUCJQhAAUAKQIUIABAoBAQ=</HashCode>
+      <FileName>SceneGrotte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.SceneGrotte2">
+    <Position X="8" Y="16.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>QAUIEQAAAAEAAwABMIAACDECJQhAAQACQIAAABAoBAQ=</HashCode>
+      <FileName>SceneGrotte2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.SceneMapPrincipale">
+    <Position X="12.25" Y="17" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAEQAAAAAAAwAAABAACBECAAhAAgAAQIAAAAAIAAQ=</HashCode>
+      <FileName>SceneMapPrincipale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.SceneMapPrincipale2">
+    <Position X="15.75" Y="17" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAEQAAAAAAAwAAABAACBECAAhAAAAAQIAAAAAIAAQ=</HashCode>
+      <FileName>SceneMapPrincipale2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.ScennControle">
+    <Position X="1.25" Y="27.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>ScennControle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.ScreenMenu">
+    <Position X="65.75" Y="22.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgABAAAAAAAQAAgAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>ScreenMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_geniert.Game1">
+    <Position X="0.5" Y="16.25" Width="3" />
     <NestedTypes>
       <Enum Name="SAE_geniert.Game1.Etats" Collapsed="true">
         <TypeIdentifier>
@@ -10,78 +80,8 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAQgEAAAAgQAAwgBEBAACFECBEBKQQAiSICAERAIgNQ=</HashCode>
+      <HashCode>AAQAEAAAAgQAAwgBEBAACFECBEBKQQAiQICAEBAIgMQ=</HashCode>
       <FileName>Game1.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.Joueur" Collapsed="true">
-    <Position X="11.75" Y="6.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAYAAAgAAAABAEAAAAAEAAQBCAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Joueur.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.Enemis" Collapsed="true">
-    <Position X="11.75" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>QAEIBEQAAAAAAAAAAIAAAKAAIAAAAQEAAAAAAAAIBAA=</HashCode>
-      <FileName>Enemis.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.SceneExplication" Collapsed="true">
-    <Position X="11.75" Y="7.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAACAAAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAQ=</HashCode>
-      <FileName>SceneExplication.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.SceneFin" Collapsed="true">
-    <Position X="34.25" Y="8.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAACAAAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAQ=</HashCode>
-      <FileName>SceneFin.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.SceneGrotte" Collapsed="true">
-    <Position X="29" Y="11.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>QAUIE4wAAAEAEwCBMIAACDECJQhAAUAKQIUAABA4BAQ=</HashCode>
-      <FileName>SceneGrotte.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.SceneGrotte2" Collapsed="true">
-    <Position X="29" Y="12" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>QAUIEQAAAAEAAwABMIAACDECJQhAAQACQIAAABAoBAQ=</HashCode>
-      <FileName>SceneGrotte2.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.SceneMapPrincipale" Collapsed="true">
-    <Position X="33.5" Y="3.25" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAQAEQAAAAAAAwAAABAACBECAAhAAgAAQIAAAAAIAAQ=</HashCode>
-      <FileName>SceneMapPrincipale.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.SceneMapPrincipale2" Collapsed="true">
-    <Position X="33.5" Y="4" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAQAEQAAAAAAAwAAABAACBECAAhAAAAAQIAAAAAIAAQ=</HashCode>
-      <FileName>SceneMapPrincipale2.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.ScennControle" Collapsed="true">
-    <Position X="34.25" Y="7" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAACAAAAAAAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAQ=</HashCode>
-      <FileName>ScennControle.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SAE_geniert.ScreenMenu" Collapsed="true">
-    <Position X="35.75" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAgABAAAAAAAQAAgAAAAAAAAAAAAAAAQ=</HashCode>
-      <FileName>ScreenMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

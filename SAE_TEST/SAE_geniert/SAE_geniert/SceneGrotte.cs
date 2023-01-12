@@ -77,7 +77,7 @@ namespace SAE_geniert
         private KeyboardState _keyboardState;
         float deltaSeconds = 1;
         float niveauGravite = 4;
-        public float niveauSaut = 2f;
+        public float niveauSaut = 4.5f;
         
 
         private SpriteBatch _spriteBatch;
