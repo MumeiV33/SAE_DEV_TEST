@@ -15,7 +15,7 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework.Audio;
+
 
 namespace SAE_geniert
 {
@@ -242,6 +242,14 @@ namespace SAE_geniert
             }
             _perso.Update(deltaSeconds);
 
+            
+
+
+
+            _perso.Update(deltaSeconds); // time écoulé
+            
+
+            
         }
         public void UpdateGravity(GameTime gameTime, bool isJumping)
         {
@@ -274,11 +282,19 @@ namespace SAE_geniert
         }
         //-=-=-=-=-=-=-=-FIN GROS BORDEL GRAVITY-=-=-=-=-=-=-//
 
+        public void IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
+        {
+            if (persoRect.Intersects(tortueRect))
+            {
+                _player._positionPerso = new Vector2 (30,60);
+                persoRectVelo = new Vector2(30, 60);
 
-
-            _perso.Update(deltaSeconds); // time écoulé
-            
-            
+            }
+            if (persoRect.Intersects(chainsawRect))
+            {
+                _player._positionPerso = new Vector2(30, 60);
+                persoRectVelo = new Vector2(30, 60);
+            }
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer __mapLayer)
         {
