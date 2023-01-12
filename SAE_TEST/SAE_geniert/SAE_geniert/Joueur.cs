@@ -139,18 +139,24 @@ namespace SAE_geniert
             {
                 Console.WriteLine("Map2"); ////////////////////////////////////////////////////////////////////////////////////////
                 game.LoadMap2();
+                
             }
 
-            if(a == 196 && _keyboardState.IsKeyDown(Keys.E))
+            if(a == 196 )
             {
-                Console.WriteLine("Grotte2");
-                game.LoadGrotte2(); 
+                Console.WriteLine("Appuyez sur E pour interagir"); 
+                if (_keyboardState.IsKeyDown(Keys.E))
+                {
+                    Console.WriteLine("Grotte2");
+                    game.LoadGrotte2();
+                }
+                
             }
             if (a == 8277 || a == 6928)
             {
-                Console.WriteLine("LA FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+                Console.WriteLine("Appuyez sur E pour interagir");
 
-                if(_keyboardState.IsKeyDown(Keys.E))
+                if (_keyboardState.IsKeyDown(Keys.E))
                 {
                     game.LoadFin();
                     if (_keyboardState.IsKeyDown(Keys.Enter))
@@ -170,6 +176,8 @@ namespace SAE_geniert
             {
                 _positionPerso = new Vector2(30, 60);
             }
+
+            
 
             
 
