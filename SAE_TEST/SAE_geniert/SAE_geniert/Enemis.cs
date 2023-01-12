@@ -77,8 +77,11 @@ namespace SAE_geniert
                 if (!IsCollisionEnnemies(txTortue, tyTortue, _mapLayer))
                 {
                     _positionTortue.X -= walkSpeedTortue;
+
+                    _Tortue.Play(animation);
+
                     //_Tortue.Play(animation);
-                    
+
                 }
                 else
                 {
@@ -96,7 +99,7 @@ namespace SAE_geniert
                 if (!IsCollisionEnnemies(txTortue, tyTortue, _mapLayer))
                 {
                     _positionTortue.X += walkSpeedTortue;
-                    //_Tortue.Play(animation);
+                    _Tortue.Play(animation);
                 }
                 else
                 {
@@ -105,6 +108,8 @@ namespace SAE_geniert
                 tortueRectPos.X = _positionTortue.X;
 
             }
+
+            _Tortue.Update(deltaSeconds);
         }
         public void DeplacementsChainsaw(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
         {

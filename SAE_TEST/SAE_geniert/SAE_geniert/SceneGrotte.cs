@@ -57,7 +57,8 @@ namespace SAE_geniert
         private readonly ScreenManager _screenManager;
 
         //ˏˋ°•*⁀➷ GRAVITY
-        float velocity;
+        float velocite;
+        Vector2 velocity;
         float gravity = 4f;
 
         public float incrementFin = 0.8f;
@@ -76,6 +77,8 @@ namespace SAE_geniert
         private KeyboardState _keyboardState;
         float deltaSeconds = 1;
         float niveauGravite = 4;
+        public float niveauSaut = 3.1f;             // hauteur du saut
+        
         public float niveauSaut = 4;
 
         public bool EtatIntersect = false;
@@ -120,6 +123,9 @@ namespace SAE_geniert
             Game._player._positionPerso = new Vector2(30, 60);
 
             _player.persoRectPos = Game._player._positionPerso;
+            Game._player._vitessePerso = 150;    // fais allez plus vite le perso sur la map grotte
+           
+
             _enemis.tortueRectPos = _enemis._positionTortue;
             _enemis.chainsawRectPos = _enemis._positionChainsaw;
 
@@ -127,9 +133,6 @@ namespace SAE_geniert
 
             base.Initialize();
         }
-
-
-
 
 
         public override void LoadContent()
@@ -155,7 +158,7 @@ namespace SAE_geniert
             Game.mapLayer = _mapLayer;
 
 
-
+            _Enemis.TortueInitialize(_positionTortue, _vitesseTortue, Game);
 
             base.LoadContent();
         }
@@ -195,7 +198,8 @@ namespace SAE_geniert
             
 
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
-            float walkSpeed = deltaSeconds * _player._vitessePerso; // Vitesse de déplacement du sprite
+            float walkSpeed = deltaSeconds * _player._vitessePerso+100; // Vitesse de déplacement du sprite
+            // Vitesse de déplacement du sprite
 
             KeyboardState keyboardState = Keyboard.GetState();
 
@@ -208,6 +212,9 @@ namespace SAE_geniert
             _enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
             _enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
 
+
+            /*████████████████████████████████████████████████████████████████████████████████████████████████████*/
+
             //=================GRAVITY=================\\
 
             if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
@@ -215,6 +222,7 @@ namespace SAE_geniert
                 ushort txGravity = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
                 ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 1);
 
+                // dans les air
                 if (!IsCollision(txGravity, tyGravity, _mapLayer))
                 {
                     ushort txEatCol = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
@@ -226,7 +234,7 @@ namespace SAE_geniert
                     if (IsCollision(txColHaut, tyColHaut, _mapLayer))
                     {
                         isJumping = false;
-                        Game._player._positionPerso.Y += (float)gravity * 2 * gravity;
+                        Game._player._positionPerso.Y += (float)gravity ;
                     }
                     if (IsCollision(txEatCol, tyEatCol, _mapLayer))
                     {
@@ -241,17 +249,41 @@ namespace SAE_geniert
                         UpdateGravity(gameTime, isJumping);
                     }
                 }
+
+                //sur le sol
                 if (keyboardState.IsKeyDown(Keys.Space) && IsCollision(txGravity, tyGravity, _mapLayer))
                 {
                     isJumping = true;
+                    
                     for (float incrementI = incrementFin; incrementI < 10; incrementI++)
+                    {
                         Game._player._positionPerso.Y -= (float)niveauSaut * incrementDebut;
+                        if (keyboardState.IsKeyDown(Keys.Right))
+                        {
+
+                            Game._player._positionPerso.X += 1;
+
+                        }
+
+                    }
+                     
+                    //Console.WriteLine("MMMMMMMMMMMMMMMMMMMMMMM");
                     //UpdateGravity(gameTime, isJumping);
                 }
                 
             }
 
-         
+            /* ˏˋ°•*⁀➷ GRAVITY
+            
+            float velocite;
+            Vector2 velocity;   
+            float gravity = 4f;
+                
+            public float incrementFin = 0.8f;
+            public float incrementDebut = 2f;
+            public bool isJumping;
+            */
+            /*████████████████████████████████████████████████████████████████████████████████████████████████████*/
 
 
             _perso.Update(deltaSeconds); // time écoulé                       
@@ -259,8 +291,8 @@ namespace SAE_geniert
         public void UpdateGravity(GameTime gameTime, bool isJumping)
         {
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
-            velocity += gravity * deltaSeconds;
-            _player._positionPerso.Y += velocity * deltaSeconds;
+            _positionPerso += velocity;
+            _player._positionPerso.Y += velocite * deltaSeconds;
             // Check if player is currently jumping
             if (isJumping == true)
             {
@@ -283,11 +315,11 @@ namespace SAE_geniert
                     persoJumpPosition -= (int)gravity;
                     Game._player._positionPerso.Y -= (float)gravity;
                 }
-            }
+            }            
         }
         //-=-=-=-=-=-=-=-FIN GROS BORDEL GRAVITY-=-=-=-=-=-=-//
 
-        public bool IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
+        public void IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
         {
             if (persoRect.Intersects(tortueRect))
             {

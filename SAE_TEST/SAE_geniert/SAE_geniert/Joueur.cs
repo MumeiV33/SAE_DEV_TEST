@@ -36,6 +36,7 @@ namespace SAE_geniert
         public void playerInitialize(Vector2 positionPerso, int vitessePerso, Game1 _game)
         {
             _vitessePerso = vitessePerso;
+
             _positionPerso = positionPerso;
             SpriteSheet spriteSheet = _game.Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
@@ -89,7 +90,9 @@ namespace SAE_geniert
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
                 persoRectPos.X = _positionPerso.X;
-                
+
+                //if (IsIntersect(persoRect, _enemis.tortueRect, _enemis.chainsawRect));
+
             }
             //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
 
@@ -153,17 +156,38 @@ namespace SAE_geniert
 
             if (a == 402 && _keyboardState.IsKeyDown(Keys.E))
             {
-                Console.WriteLine("Map"); ////////////////////////////////////////////////////////////////////////////////////////
+                Console.WriteLine("Map2"); ////////////////////////////////////////////////////////////////////////////////////////
                 game.LoadMap2();
+                
             }
+            
 
-            if(a == 196 && _keyboardState.IsKeyDown(Keys.E))
+            if (a == 196 )
             {
-                Console.WriteLine("Grotte2");
-                game.LoadGrotte2(); 
+                Console.WriteLine("Appuyez sur E pour interagir"); 
+                if (_keyboardState.IsKeyDown(Keys.E))
+                {
+                    Console.WriteLine("Grotte2");
+                    game.LoadGrotte2();
+                }
+                
             }
             if (a == 8277 || a == 6928)
-                Console.WriteLine("LA FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+            {
+                Console.WriteLine("Appuyez sur E pour interagir");
+
+                if (_keyboardState.IsKeyDown(Keys.E))
+                {
+                    game.LoadFin();
+                    if (_keyboardState.IsKeyDown(Keys.Enter))
+                    {
+                        Console.WriteLine("oui"); 
+                    }
+                }
+                
+
+            }
+                
 
             if (a == 5658)
                 Console.WriteLine("LE CHATTTTTTTTTTTTTTTTTTTTTTTTTT MIAOUUUUUUU");
@@ -173,7 +197,10 @@ namespace SAE_geniert
                 _positionPerso = new Vector2(30, 60);
             }
 
-           
+            
+
+            
+
         }
 
         public Rectangle RectanglePlayer()
@@ -191,6 +218,10 @@ namespace SAE_geniert
                 return true;
             return false;
         }
+        
+
+        }
+    }
         
     }
     
