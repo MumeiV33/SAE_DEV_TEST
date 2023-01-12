@@ -30,11 +30,11 @@ namespace SAE_geniert
         private AnimatedSprite _perso;
         private int _vitessePerso;
         //--> RECTANGLE DE SES MORTS
-        public Vector2 persoPos;
 
+
+        //=====> ENEMIS
+        public Enemis _enemis = new Enemis();
         //-----> Tortue
-
-
         private Vector2 _positionTortue;
         private AnimatedSprite _Tortue;
         private int _sensTortue;
@@ -50,14 +50,33 @@ namespace SAE_geniert
 
         private readonly ScreenManager _screenManager;
 
+        //ˏˋ°•*⁀➷ GRAVITY
+        float velocite;
+        Vector2 velocity;
+        float gravity = 4f;
 
+        public float incrementFin = 0.8f;
+        public float incrementDebut = 2f;
+        public bool isJumping;
+
+        public Vector2 hitBoxPlayer;
+        public float persoJumpPosition;
+
+        //Collisions entre sprites
+        //public Vector2 persoRectPos;
+        public Vector2 tortueRectPos;
+        public Vector2 chainsawRectPos;
 
         //-----> Autres
         private KeyboardState _keyboardState;
         float deltaSeconds = 1;
         float niveauGravite = 4;
-        public float niveauSaut = 90;
-        public Enemis _Enemis = new Enemis();
+        public float niveauSaut = 3.1f;             // hauteur du saut
+        
+
+        public bool EtatIntersect = false;
+
+
 
         private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
@@ -83,18 +102,25 @@ namespace SAE_geniert
             Console.WriteLine("grotte");
 
 
-            _positionTortue = _Enemis._positionTortue = new Vector2(275, 360);
-            _vitesseTortue = _Enemis._vitesseTortue = 100;
-            _sensTortue = _Enemis._sensTortue = 0;
+            _positionTortue = _enemis._positionTortue = new Vector2(275, 360);
+            _vitesseTortue = _enemis._vitesseTortue = 100;
+            _sensTortue = _enemis._sensTortue = 0;
 
-            _positionChainsaw = _Enemis._positionChainsaw = new Vector2(199, 481);
-            _vitesseChainsaw = _Enemis._vitesseChainsaw = 100;
-            _sensChainsaw = _Enemis._sensChainsaw = 1;
+            _positionChainsaw = _enemis._positionChainsaw = new Vector2(199, 481);
+            _vitesseChainsaw = _enemis._vitesseChainsaw = 100;
+            _sensChainsaw = _enemis._sensChainsaw = 1;
 
             Game.Window.Title = "Silver World";
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
             //Game._player._positionPerso = new Vector2(30, 60);
+
+            _player.persoRectPos = Game._player._positionPerso;
+            Game._player._vitessePerso = 150;    // fais allez plus vite le perso sur la map grotte
+           
+
+            _enemis.tortueRectPos = _enemis._positionTortue;
+            _enemis.chainsawRectPos = _enemis._positionChainsaw;
 
 
 
@@ -102,13 +128,9 @@ namespace SAE_geniert
         }
 
 
-
-
-
         public override void LoadContent()
         {
-            //persoPos.X = Window.ClientBounds.Width - 20;
-            //persoPos.Y = (Window.ClientBounds.Height / 2) - 50;
+            
 
 
             _tiledMap = Content.Load<TiledMap>("MapGrotte2");
@@ -129,7 +151,7 @@ namespace SAE_geniert
             Game.mapLayer = _mapLayer;
 
 
-
+            _enemis.TortueInitialize(_positionTortue, _vitesseTortue, Game);
 
             base.LoadContent();
         }
@@ -142,6 +164,17 @@ namespace SAE_geniert
         public override void Update(GameTime gameTime)
         {
 
+            EtatIntersect = IsIntersect(_player.RectanglePlayer(), _enemis.RectangleTortue(), _enemis.RectangleChainsaw());
+            if (EtatIntersect==true)
+            {
+                _player._positionPerso = new Vector2(30, 60);
+                _player.persoRectPos = new Vector2(30, 60);
+            }
+            if (_player.persoRectPos.Y == _enemis.tortueRectPos.Y && _player.persoRectPos.X == _enemis.tortueRectPos.Y)
+            {
+                _player._positionPerso = new Vector2(30, 60);
+                _player.persoRectPos = new Vector2(30, 60);
+            }
             _keyboardState = Keyboard.GetState();
             _tiledMapRenderer.Update(gameTime);
 
@@ -155,41 +188,150 @@ namespace SAE_geniert
             float walkSpeedChainsaw = deltaSecondsChainsaw * _vitesseChainsaw; // Vitesse de déplacement du sprite    Chainsaw
 
 
-            _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
-            _Enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
+            
 
             float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
-            float walkSpeed = deltaSeconds * _player._vitessePerso; // Vitesse de déplacement du sprite
+            float walkSpeed = deltaSeconds * _player._vitessePerso+100; // Vitesse de déplacement du sprite
+            // Vitesse de déplacement du sprite
 
             KeyboardState keyboardState = Keyboard.GetState();
+
+
+
+
+            
+            
+
+            _enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
+            _enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
+
+
+            /*████████████████████████████████████████████████████████████████████████████████████████████████████*/
+
             //=================GRAVITY=================\\
+
             if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
             {
                 ushort txGravity = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
                 ushort tyGravity = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight + 1);
 
+                // dans les air
                 if (!IsCollision(txGravity, tyGravity, _mapLayer))
                 {
-                    Game._player._positionPerso.Y += (float)niveauGravite;
-                    _perso.Play("idle");
+                    ushort txEatCol = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
+                    ushort tyEatCol = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight);
+                    
+                    ushort txColHaut = (ushort)(Game._player._positionPerso.X / _tiledMap.TileWidth);
+                    ushort tyColHaut = (ushort)(Game._player._positionPerso.Y / _tiledMap.TileHeight - 1);
+
+                    if (IsCollision(txColHaut, tyColHaut, _mapLayer))
+                    {
+                        isJumping = false;
+                        Game._player._positionPerso.Y += (float)gravity ;
+                    }
+                    if (IsCollision(txEatCol, tyEatCol, _mapLayer))
+                    {
+                        isJumping = false;
+                        Game._player._positionPerso.Y += (float)gravity;
+                    }
+                    else
+                    {
+                        isJumping = false;
+                        Game._player._positionPerso.Y += (float)gravity;
+                        _perso.Play("idle");
+                        UpdateGravity(gameTime, isJumping);
+                    }
                 }
+
+                //sur le sol
                 if (keyboardState.IsKeyDown(Keys.Space) && IsCollision(txGravity, tyGravity, _mapLayer))
-                    Game._player._positionPerso.Y -= (float)niveauSaut;
+                {
+                    isJumping = true;
+                    
+                    for (float incrementI = incrementFin; incrementI < 10; incrementI++)
+                    {
+                        Game._player._positionPerso.Y -= (float)niveauSaut * incrementDebut;
+                        if (keyboardState.IsKeyDown(Keys.Right) && IsCollision(txGravity, tyGravity, _mapLayer) )
+                        {
 
+                            Game._player._positionPerso.X += 1;
 
+                        }
+                        if (keyboardState.IsKeyDown(Keys.Left) && IsCollision(txGravity, tyGravity, _mapLayer))
+                        {
+
+                            Game._player._positionPerso.X -= 1;
+
+                        }
+                    }
+                     
+                    //Console.WriteLine("MMMMMMMMMMMMMMMMMMMMMMM");
+                    //UpdateGravity(gameTime, isJumping);
+                }
+                
             }
 
+            /* ˏˋ°•*⁀➷ GRAVITY
+            
+            float velocite;
+            Vector2 velocity;   
+            float gravity = 4f;
+                
+            public float incrementFin = 0.8f;
+            public float incrementDebut = 2f;
+            public bool isJumping;
+            */
+            /*████████████████████████████████████████████████████████████████████████████████████████████████████*/
 
 
+            _perso.Update(deltaSeconds); // time écoulé                       
+        }
+        public void UpdateGravity(GameTime gameTime, bool isJumping)
+        {
+            float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
+            _positionPerso += velocity;
+            _player._positionPerso.Y += velocite * deltaSeconds;
+            // Check if player is currently jumping
+            if (isJumping == true)
+            {
+                if (persoJumpPosition < 10)
+                {
+                    Game._player._positionPerso.Y += gravity;
+                    persoJumpPosition += gravity;
+                }
+                else if (persoJumpPosition >= 10)
+                {
+                    isJumping = false;
+                    Game._player._positionPerso.Y -= gravity;
+                    persoJumpPosition -= gravity;
+                }
+            }
+            else if (isJumping == false)
+            {
+                if (persoJumpPosition > 0)
+                {
+                    persoJumpPosition -= (int)gravity;
+                    Game._player._positionPerso.Y -= (float)gravity;
+                }
+            }            
+        }
+        //-=-=-=-=-=-=-=-FIN GROS BORDEL GRAVITY-=-=-=-=-=-=-//
 
+        public bool IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
+        {
+            if (persoRect.Intersects(tortueRect))
+            {
+                return true;
+            }
+            if (persoRect.Intersects(chainsawRect))
+            {
+                return true;
 
-            _perso.Update(deltaSeconds); // time écoulé
-
-
+            }
+            else
+                return false;
 
         }
-
-
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer __mapLayer)
         {
             // définition de tile qui peut être null (?)
@@ -204,8 +346,6 @@ namespace SAE_geniert
             return false;
         }
 
-
-
         public override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
@@ -213,8 +353,8 @@ namespace SAE_geniert
             _tiledMapRenderer.Draw();
 
             Game.SpriteBatch.Begin();
-            Game.SpriteBatch.Draw(_Tortue, _Enemis._positionTortue);
-            Game.SpriteBatch.Draw(_Chainsaw, _Enemis._positionChainsaw);
+            Game.SpriteBatch.Draw(_Tortue, _enemis._positionTortue);
+            Game.SpriteBatch.Draw(_Chainsaw, _enemis._positionChainsaw);
             Game.SpriteBatch.Draw(Game._player._perso, Game._player._positionPerso);
             Game.SpriteBatch.End();
         }

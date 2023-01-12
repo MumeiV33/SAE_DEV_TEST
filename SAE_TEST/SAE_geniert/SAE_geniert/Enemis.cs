@@ -108,7 +108,7 @@ namespace SAE_geniert
 
             }
 
-            _Tortue.Update(deltaSeconds);
+            //_Tortue.Update(deltaSeconds);
         }
         public void DeplacementsChainsaw(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, GameScreen _game)
         {
