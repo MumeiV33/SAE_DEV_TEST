@@ -9,6 +9,7 @@ using System;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
+
 namespace SAE_geniert
 {
     public class Joueur
@@ -26,7 +27,6 @@ namespace SAE_geniert
         public AnimatedSprite _perso;
         public int _sensPerso;
 
-        
 
         //-----> Autres
         private KeyboardState _keyboardState;
@@ -38,6 +38,7 @@ namespace SAE_geniert
             SpriteSheet spriteSheet = _game.Content.Load<SpriteSheet>("BryaAnimations.sf", new JsonContentLoader());
             _perso = new AnimatedSprite(spriteSheet);
         }
+
         public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game)
         {
             
@@ -63,8 +64,6 @@ namespace SAE_geniert
                 ushort tx = (ushort)(_positionPerso.X / _tiledMap.TileWidth + 0.5);
                 ushort ty = (ushort)(_positionPerso.Y / _tiledMap.TileHeight + 0.8);
                 //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
-
-
 
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X += walkSpeed;

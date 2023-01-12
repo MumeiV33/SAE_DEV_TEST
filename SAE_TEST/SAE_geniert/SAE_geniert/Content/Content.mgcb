@@ -78,6 +78,12 @@
 /processorParam:TextureFormat=Color
 /build:final_Menu.png
 
+#begin Jump sound effect  No copyright.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Jump sound effect  No copyright.mp3
+
 #begin Map_Generale_SilverWorld.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
@@ -122,6 +128,12 @@
 /processorParam:TextureFormat=Color
 /build:menu_font_final.png
 
+#begin NoCopyRight_music.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:NoCopyRight_music.mp3
+
 #begin story.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -133,6 +145,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:story.png
+
+#begin story_de_fin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:story_de_fin.png
 
 #begin story2.png
 /importer:TextureImporter

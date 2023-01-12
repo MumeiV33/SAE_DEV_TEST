@@ -15,6 +15,7 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework.Audio;
 
 namespace SAE_geniert
 {
@@ -106,7 +107,7 @@ namespace SAE_geniert
             _vitesseTortue = _Enemis._vitesseTortue = 100;
             _sensTortue = _Enemis._sensTortue = 0;
 
-            _positionChainsaw = _Enemis._positionChainsaw = new Vector2(103, 481);
+            _positionChainsaw = _Enemis._positionChainsaw = new Vector2(199, 481);
             _vitesseChainsaw = _Enemis._vitesseChainsaw = 100;
             _sensChainsaw = _Enemis._sensChainsaw = 1;
 
