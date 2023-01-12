@@ -38,9 +38,10 @@ namespace SAE_geniert
         //--> RECTANGLE DE SES MORTS
         public Vector2 persoPos;
 
+
+        //=====> ENEMIS
+        public Enemis _Enemis = new Enemis();
         //-----> Tortue
-
-
         private Vector2 _positionTortue;
         private AnimatedSprite _Tortue;
         private int _sensTortue;
@@ -68,16 +69,16 @@ namespace SAE_geniert
         public float persoJumpPosition;
 
         //Collisions entre sprites
-        public Vector2 persoRectVelo;
-        public Vector2 tortueRectVelo;
-        public Vector2 chainsawRectVelo;
+        //public Vector2 persoRectPos;
+        public Vector2 tortueRectPos;
+        public Vector2 chainsawRectPos;
 
         //-----> Autres
         private KeyboardState _keyboardState;
         float deltaSeconds = 1;
         float niveauGravite = 4;
         public float niveauSaut = 2f;
-        public Enemis _Enemis = new Enemis();
+        
 
         private SpriteBatch _spriteBatch;
         /*=-=-=-=-=-=-=-PUBLIC_CONSTANT-=-=-=-=-=-=-*/
@@ -116,7 +117,7 @@ namespace SAE_geniert
 
             Game._player._positionPerso = new Vector2(30, 60);
 
-            persoRectVelo = Game._player._positionPerso;
+            _player.persoRectPos = Game._player._positionPerso;
 
             base.Initialize();
         }
@@ -183,21 +184,15 @@ namespace SAE_geniert
 
             KeyboardState keyboardState = Keyboard.GetState();
 
-            float walkspeedRect = deltaSeconds * _vitessePerso;
-            Rectangle persoRect = new Rectangle((int)Game._player._positionPerso.X, (int)Game._player._positionPerso.Y, 16, 32);
-            persoRectVelo += Game._player._positionPerso;
-            walkspeedRect = deltaSeconds * _vitesseTortue;
-            Rectangle tortueRect = new Rectangle((int)_Enemis._positionTortue.X, (int)_Enemis._positionTortue.Y, 16, 16);
-            tortueRectVelo += _Enemis._positionTortue;
-            Rectangle chainsawRect = new Rectangle((int)_Enemis._positionChainsaw.X, (int)_Enemis._positionChainsaw.Y, 32, 16);
-            chainsawRectVelo += _Enemis._positionChainsaw;
+            
+            
 
             
 
             _Enemis.DeplacementsTortue(deltaSecondsTortue, _tiledMap, _mapLayer, this);
             _Enemis.DeplacementsChainsaw(deltaSecondsChainsaw, _tiledMap, _mapLayer, this);
 
-            IsIntersect(persoRect, tortueRect, chainsawRect);
+
             //=================GRAVITY=================\\
 
             if (keyboardState.IsKeyDown(Keys.Space) || !keyboardState.IsKeyDown(Keys.Space))
@@ -240,16 +235,11 @@ namespace SAE_geniert
                 }
 
             }
-            _perso.Update(deltaSeconds);
 
-            
-
+         
 
 
-            _perso.Update(deltaSeconds); // time écoulé
-            
-
-            
+            _perso.Update(deltaSeconds); // time écoulé                       
         }
         public void UpdateGravity(GameTime gameTime, bool isJumping)
         {
@@ -286,14 +276,14 @@ namespace SAE_geniert
         {
             if (persoRect.Intersects(tortueRect))
             {
-                _player._positionPerso = new Vector2 (30,60);
-                persoRectVelo = new Vector2(30, 60);
+                _player._positionPerso = new Vector2(30, 60);
+                _player.persoRectPos = new Vector2(30, 60);
 
             }
             if (persoRect.Intersects(chainsawRect))
             {
                 _player._positionPerso = new Vector2(30, 60);
-                persoRectVelo = new Vector2(30, 60);
+                _player.persoRectPos = new Vector2(30, 60);
             }
         }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer __mapLayer)

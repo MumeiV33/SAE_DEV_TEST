@@ -17,8 +17,9 @@ namespace SAE_geniert
         {
 
         }
+        public Enemis _enemis = new Enemis();
         //Collisions entre sprites
-        public Vector2 persoRectVelo;
+        public Vector2 persoRectPos;
 
         //-----> Perso
         public Vector2 _positionPerso;
@@ -40,8 +41,9 @@ namespace SAE_geniert
         }
         public void DeplacementsPerso(float deltaSeconds, TiledMap _tiledMap, TiledMapTileLayer _mapLayer, Game1 game)
         {
-            
-            
+            float walkspeedRect = deltaSeconds * _vitessePerso;
+            Rectangle persoRect = new Rectangle((int)_positionPerso.X, (int)_positionPerso.Y, 16, 32);
+
 
 
 
@@ -68,7 +70,7 @@ namespace SAE_geniert
                     _positionPerso.X += walkSpeed;
                     
                 _perso.Play("walkEast");
-
+                persoRectPos.X = _positionPerso.X;
 
             }
             //-=-=-=-=-=-=-=-=-=-GAUCHE-=-=-=-=-=-=-=-=-=-\\
@@ -83,6 +85,8 @@ namespace SAE_geniert
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.X -= walkSpeed;
                 _perso.Play("walkWest");
+                persoRectPos.X = _positionPerso.X;
+                if (IsIntersect(persoRect, _enemis.tortueRect, _enemis.chainsawRect))
             }
             //-=-=-=-=-=-=-=-=-=-HAUT-=-=-=-=-=-=-=-=-=-\\
 
@@ -101,7 +105,7 @@ namespace SAE_geniert
                 //-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y -= walkSpeed;
-
+                persoRectPos.Y = _positionPerso.Y;
             }
             //-=-=-=-=-=-=-=-=-=-BAS-=-=-=-=-=-=-=-=-=-\\
             
@@ -123,6 +127,7 @@ namespace SAE_geniert
                 if (!IsCollision(tx, ty, _mapLayer))
                     _positionPerso.Y += walkSpeed;
                 /*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯*/
+                persoRectPos.Y = _positionPerso.Y;
             }
             /*════════════════════════════════《✧》════════════════════════════════╝*/
 
@@ -165,8 +170,22 @@ namespace SAE_geniert
                 _positionPerso = new Vector2(30, 60);
             }
 
+           
         }
-        
+        public void IsIntersect(Rectangle persoRect, Rectangle tortueRect, Rectangle chainsawRect)
+        {
+            if (persoRect.Intersects(tortueRect))
+            {
+                _positionPerso = new Vector2(30, 60);
+                persoRectPos = new Vector2(30, 60);
+
+            }
+            if (persoRect.Intersects(chainsawRect))
+            {
+                _positionPerso = new Vector2(30, 60);
+                persoRectPos = new Vector2(30, 60);
+            }
+        }
         private bool IsCollision(ushort x, ushort y, TiledMapTileLayer mapLayer)
         {
             // définition de tile qui peut être null (?)
